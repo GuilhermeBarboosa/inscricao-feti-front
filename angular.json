@@ -25,9 +25,18 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.css",
+              "node_modules/ngx-toastr/toastr.css",
+              // "src/styles.css",
+              // "src/divmon-1.0.0.css",
+              // "src/getz-1.0.0.css",
+              // "src/divmon-getz-1.0.0.css"
             ],
-            "scripts": []
+            "scripts": [
+              // "src/divmon-1.0.0.js",
+              // "src/getz-1.0.0.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -87,12 +96,22 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.css",
+              // "src/divmon-1.0.0.css",
+              // "src/getz-1.0.0.css",
+              // "src/divmon-getz-1.0.0.css"
             ],
-            "scripts": []
+            "scripts": [
+              // "src/divmon-1.0.0.js",
+              // "src/getz-1.0.0.js"
+            ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "9b06ba9a-6323-47f0-b9e1-144785f61776"
   }
 }

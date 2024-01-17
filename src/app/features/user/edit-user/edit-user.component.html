@@ -1,0 +1,94 @@
+<app-navbar></app-navbar>
+
+<app-sidebar></app-sidebar>
+
+<div class="home-section">
+  <form class="h-full m-5" [formGroup]="formulario" *ngIf="formulario">
+    <div class="flex justify-between">
+      <p class="text-black font-medium justify-start text-lg font-bold">
+        EDITAR USUÁRIO
+      </p>
+    </div>
+
+    <div class="">
+      <label class="block text-sm" for="id">Código</label>
+      <input
+        formControlName="id"
+        class="default-input p-2.5 text-center"
+        type="text"
+        id="id"
+        required
+      />
+    </div>
+
+    <form class="h-full" [formGroup]="formulario" *ngIf="formulario">
+      <div>
+        <div class="">
+          <div class="col-span-3">
+            <label class="block text-sm" for="name">Nome</label>
+            <input
+              formControlName="name"
+              class="default-input w-full p-2.5"
+              type="text"
+              id="name"
+              aria-label="name"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="grid" [ngClass]="{'grid-cols-3': this.user?.role == 'ADMIN', 'grid-cols-2' : this.user?.role != 'ADMIN'}">
+          <div class="col mr-4">
+            <label class="block text-sm" for="email">E-mail</label>
+            <input
+              formControlName="email"
+              class="default-input w-full p-2.5"
+              type="email"
+              id="email"
+              aria-label="email"
+              required
+            />
+          </div>
+
+          <div class="col" [ngClass]="{'mr-4': this.user?.role == 'ADMIN'}">
+            <label class="block text-sm" for="password">Senha</label>
+            <input
+              formControlName="password"
+              class="default-input w-full p-2.5"
+              type="password"
+              id="password"
+              aria-label="password"
+              required
+            />
+          </div>
+
+          <div class="col" *ngIf="this.user?.role == 'ADMIN'">
+            <label class="block text-sm" for="first_name"
+              >Permissão</label
+            >
+            <select
+              id="posicao"
+              formControlName="role"
+              class="default-input w-full p-2.5"
+            >
+              <option value="" disabled selected>Selecione a permissão</option>
+              <option *ngFor="let role of roles" [value]="role.id">
+                {{ role.role }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="items-center flex justify-between my-2">
+      <div class="align-end">
+        <app-button-red [value]="Nao" (click)="return()"></app-button-red>
+      </div>
+
+      <div>
+        <app-button-green [value]="Sim" (click)="edit()"></app-button-green>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,37 @@
+<div class="grid grid-cols-4 gap-4 m-2">
+  <div class="text-center" *ngFor="let ed of editalArray">
+    <div class="dv-padding-ldpi">
+      <div
+        class="max-w-sm p-6 bg-gray-200 border border-gray-00 rounded-lg shadow"
+      >
+        <a href="#" class="block">
+          <h5
+            class="mb-2 text-black text-2xl font-bold tracking-tight text-gray-900"
+          >
+            {{ ed.edital }}
+          </h5>
+        </a>
+        <p class="font-normal block text-black">
+          <span class="dv-bold">Data de inscrição: </span>
+          {{ ed.data_inicio }} até {{ ed.data_fim }}
+        </p>
+        <p class="mb-2 font-normal block text-black">
+          <span class="dv-bold">Número da vagas:</span> {{ ed.qtd_vagas }}
+        </p>
+
+        <a routerLink="/edital/inscricao/{{ed.id}}" routerLinkActive="active">
+          <p class="mb-2 font-bold text-2xl block text-blue-600">
+            Inscreva-se
+          </p>
+        </a>
+
+        <a
+          href="#"
+          class="inline-flex items-center px-3 py-2 bx bxs-download text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+        >
+          <p class="font-normal text-white p-1">Edital</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

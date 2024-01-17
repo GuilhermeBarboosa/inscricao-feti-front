@@ -1,0 +1,83 @@
+<!-- <div id="default-sidebar" class="flex h-screen sidebar" aria-label="Sidebar">
+  <div class="h-full px-3 py-4 overflow-y-auto">
+     <ul class="space-y-2 font-medium">
+        <li>
+          <a routerLink="/profile" routerLinkActive="active" class="flex items-center p-2 text-white rounded-lg hover:bg-green-400 hover:text-black">
+            <mat-icon class="hover:text-black">account_circle</mat-icon>
+            <span class="hover:text-black ml-3 whitespace-nowrap">Meu perfil</span>
+          </a>
+        </li>
+        <li>
+           <a routerLink="/user" routerLinkActive="active" class="flex items-center p-2 text-white rounded-lg hover:bg-green-400 hover:text-black">
+              <mat-icon class="hover:text-black">person</mat-icon>
+              <span class="hover:text-black ml-3">Usuários</span>
+           </a>
+        </li>
+     </ul>
+  </div>
+</div> -->
+
+<!-- img/beams.jpg -->
+
+<div class="sidebar">
+  <div class="logo-details">
+    <!-- <i class='bx bxl-angular'></i> -->
+    <div class="logo_name">FETI</div>
+    <i (click)="openMenu()" class="bx bx-menu" id="btn"></i>
+  </div>
+  <li>
+    <i class="bx bx-search" (click)="openMenu()"></i>
+    <input type="text" placeholder="Search..." (keyup)="applyFilter($event)" />
+    <span class="tooltip">Search</span>
+  </li>
+  <ul class="nav-list" id="nav-list">
+    <li>
+      <a routerLink="/profile" routerLinkActive="active">
+        <i class="bx bx-user"></i>
+        <span class="links_name">Perfil</span>
+      </a>
+      <p class="tooltip">Perfil</p>
+    </li>
+    <li>
+      <a routerLink="/user" routerLinkActive="active">
+        <i class="bx bxs-user-detail"></i>
+        <span class="links_name">Usuários</span>
+      </a>
+      <p class="tooltip">Usuários</p>
+    </li>
+    <li>
+      <a routerLink="/pergunta" routerLinkActive="active">
+        <i class='bx bx-question-mark'></i>
+        <span class="links_name">Perguntas</span>
+      </a>
+      <p class="tooltip">Perguntas</p>
+    </li>
+    <li>
+      <a routerLink="/funcao" routerLinkActive="active">
+        <i class='bx bx-poll'></i>
+        <span class="links_name">Função</span>
+      </a>
+      <p class="tooltip">Função</p>
+    </li>
+    <li>
+      <a routerLink="/pergunta" routerLinkActive="active">
+        <i class='bx bx-question-mark'></i>
+        <span class="links_name">Perguntas</span>
+      </a>
+      <p class="tooltip">Perguntas</p>
+    </li>
+
+  </ul>
+  <li class="profile">
+    <div class="profile-details">
+      <div class="name_job">
+        <div class="name">Sistema FETI</div>
+        <!-- <div class="job">Dev Full Stack</div> -->
+      </div>
+    </div>
+    <i (click)="logout()" class="bx bx-log-out cursor-pointer" id="log_out"></i>
+  </li>
+</div>
+<!-- <section class="home-section">
+  <div class="text">Dashboard</div>
+</section> -->

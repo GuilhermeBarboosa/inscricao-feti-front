@@ -1,0 +1,34 @@
+<div [formGroup]="form">
+	<div *ngFor="let pergunta of list">
+    <div>
+      <!-- <input type="text" formControlName="pergunta"> -->
+      <p>{{pergunta.pergunta}}</p>
+    </div>
+    <div>
+      <button (click)="createArray()">Add</button>
+    </div>
+
+    <div *ngFor=" let alternativasGroup of form.get('alternativas')['controls']; let i = index" [formGroup]="alternativasGroup">
+
+      form No : {{i}}
+        <div>
+          street <input formControlName="idAlternativa">
+        </div>
+
+         <div>
+          city <input formControlName="alternativa">
+        </div>
+        <button (click)="deleteAddressGroup(i)" >Delete - {{i}}</button>
+    </div>
+   </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+result <br>
+
+<pre>
+{{form.value | json}}
+</pre>

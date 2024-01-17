@@ -1,1 +1,107 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* DEFAULT STYLE */
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+label{
+  color: #000000;
+  padding: 5px 0px 0px 0px;
+}
+
+.primary-color-text {
+  color: #4862c3;
+}
+
+.primary-color-bg {
+  background-color: #4862c3;
+}
+
+.sidebar,
+.navbar {
+  background-color: #4862c3;
+}
+
+.bg-default {
+  background-color: #00216c;
+}
+
+.title {
+  color: #000000 !important;
+}
+
+.text-color-primary {
+  color: #45ff79;
+}
+
+.default-input {
+  background-color: #f7f7f7;
+  border: 1px solid #bdbdbd;
+  color: #202020;
+  font-size: medium;
+  border-radius: 5px;
+  display: block;
+}
+
+.default-input:focus {
+  border:  #00216c !important;
+}
+
+.m-5 {
+  margin: 5px !important;
+}
+
+/* ------------------------------------------------- */
+
+/* .bg-login{
+  background-repeat: no-repeat;
+  background-size: cover;
+} */
+
+/*
+.bg-button-green{
+  background-color: #45FF79;
+  color: black;
+} */
+
+/*
+.title-login{
+  color: #FFFFFF;
+  font-family: 'Gafata', sans-serif;
+} */
+
+/* .input-form-login{
+  width: 70%;
+} */
+
+.home-section {
+  padding: 20px;
+  position: relative;
+  min-height: 100vh;
+  top: 0;
+  left: 78px;
+  width: calc(100% - 78px);
+  transition: all 0.5s ease;
+  z-index: 2;
+}
+.sidebar.open ~ .home-section {
+  left: 250px;
+  width: calc(100% - 250px);
+}
+.home-section .text {
+  display: inline-block;
+  color: #11101d;
+  font-size: 25px;
+  font-weight: 500;
+  margin: 18px;
+}
