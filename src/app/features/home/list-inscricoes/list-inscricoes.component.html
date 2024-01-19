@@ -1,0 +1,10 @@
+<div>
+  <div *ngFor="let i of this.inscricao">
+
+    <p>{{i.edital}}</p>
+    <p>{{i.funcao}}</p>
+
+    <button class="bg-red-300" (click)="infoInscrica(i)">Visualizar minha inscrição</button>
+
+  </div>
+</div>

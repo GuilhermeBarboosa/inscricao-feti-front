@@ -2,12 +2,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environment';
 import { FuncaoInput } from '../interfaces/input/funcaoInput';
+import { VerifyInput } from '../interfaces/input/verifyInput';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FuncaoService {
-
   constructor(private http: HttpClient) {}
 
   HttpHeaders = new HttpHeaders({
@@ -25,6 +25,12 @@ export class FuncaoService {
 
   getByIdEdital(idEdital: any) {
     return this.http.get(`${this.urlFuncao}/edital/${idEdital}`, {
+      headers: this.HttpHeaders,
+    });
+  }
+
+  getVerifyInscricao(verifyInput: VerifyInput) {
+    return this.http.post(`${this.urlFuncao}/verifyInscricao/`, verifyInput, {
       headers: this.HttpHeaders,
     });
   }

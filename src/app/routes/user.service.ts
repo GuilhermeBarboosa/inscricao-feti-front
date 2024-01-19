@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -31,6 +30,12 @@ export class UserService {
 
   create(user: UserInput) {
     return this.http.post(`${this.urlUser}`, user, {
+      headers: this.HttpHeaders,
+    });
+  }
+
+  createCandidato(user: UserInput) {
+    return this.http.post(`${this.urlUser}/candidato`, user, {
       headers: this.HttpHeaders,
     });
   }

@@ -1,0 +1,11 @@
+<div>
+  <p><span class="font-bold">Nome: </span>{{this.inscricao.user}}</p>
+  <p><span class="font-bold">Inscrição nº:</span>{{ this.inscricao.id }}</p>
+  <p><span class="font-bold">Edital:</span> {{this.inscricao.edital}}</p>
+  <p><span class="font-bold">Cargo:</span> {{this.inscricao.funcao}}</p>
+  <p><span class="font-bold">Pontuacao:</span> {{this.inscricao.pontuacao}}</p>
+
+  <div *ngFor="let p of this.inscricao.inscricaoResposta">
+    <p><span class="font-bold">{{p.pergunta}}:</span> {{p.alternativa}}</p>
+  </div>
+</div>

@@ -4,10 +4,9 @@ import { environment } from 'src/environment';
 import { EditalInput } from '../interfaces/input/editalInput';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EditalService {
-
   constructor(private http: HttpClient) {}
 
   HttpHeaders = new HttpHeaders({
@@ -22,7 +21,6 @@ export class EditalService {
       headers: this.HttpHeaders,
     });
   }
-
 
   create(edital: EditalInput) {
     return this.http.post(`${this.urlEdital}`, edital, {

@@ -12,10 +12,25 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'login-candidato',
+    loadChildren: () =>
+      import('./modules/authentication-candidato/authentication-candidato.module').then(
+        (m) => m.AuthenticationCandidatoModule
+      ),
+  },
+  {
     path: 'edital',
     loadChildren: () =>
       import('./modules/edital/edital.module').then(
         (m) => m.EditalModule
+      ),
+      // canActivate: [LoginGuardService],
+  },
+  {
+    path: 'inscricao',
+    loadChildren: () =>
+      import('./modules/minha-inscricao/minha-inscricao.module').then(
+        (m) => m.MinhaInscricaoModule
       ),
       // canActivate: [LoginGuardService],
   },
@@ -53,7 +68,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'edital',
+    redirectTo: 'login-candidato/login',
     pathMatch: 'full',
   },
 ];

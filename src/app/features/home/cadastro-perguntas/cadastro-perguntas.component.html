@@ -1,34 +1,60 @@
-<div [formGroup]="form">
-	<div *ngFor="let pergunta of list">
-    <div>
-      <!-- <input type="text" formControlName="pergunta"> -->
-      <p>{{pergunta.pergunta}}</p>
-    </div>
-    <div>
-      <button (click)="createArray()">Add</button>
+<div class="screen" *ngFor="let p of list; let i = index">
+  <form [formGroup]="getPerguntaForm(i)">
+
+    <div class="hidden">
+      <label for="idPergunta">ID Pergunta:</label>
+      <input type="text" formControlName="idPergunta" />
+      <label for="pergunta">Pergunta:</label>
+      <input type="text" formControlName="pergunta" />
     </div>
 
-    <div *ngFor=" let alternativasGroup of form.get('alternativas')['controls']; let i = index" [formGroup]="alternativasGroup">
+    <p>{{ p.pergunta }}</p>
 
-      form No : {{i}}
-        <div>
-          street <input formControlName="idAlternativa">
+    <div  class="flex grid grid-cols-10 gap-3" formArrayName="alternativas">
+      <div *ngFor="let a of p.listAlternativas; let j = index" [formGroupName]="j">
+
+        <div class="hidden col">
+          <label for="idAlternativa">ID Alternativa:</label>
+          <input type="text" formControlName="idAlternativa" />
+
+          <label for="alternativa">Alternativa:</label>
+          <input type="text" formControlName="alternativa" />
+
+          <label for="pontuacao">Pontuação:</label>
+          <input type="text" formControlName="pontuacao" />
+
         </div>
 
-         <div>
-          city <input formControlName="alternativa">
+        <div class="col">
+          <input
+            class="hidden"
+            type="radio"
+            name="idAlternativa"
+            id="{{ a.alternativa }}"
+            value="{{ a.id }}"
+            required=""
+            (click)="setResposta(p.idPergunta, a.id, a.pontuacao)"
+          />
+          <label
+            class="flex flex-col text-center items-center p-4 border-2 border-gray-400 cursor-pointer"
+            for="{{ a.alternativa }}"
+          >
+            <!-- <span class="text-xs font-semibold uppercase">Cargo</span> -->
+            <span class="text-xl font-bold mt-2">{{ a.alternativa }}</span>
+          </label>
         </div>
-        <button (click)="deleteAddressGroup(i)" >Delete - {{i}}</button>
+      </div>
     </div>
-   </div>
+  </form>
 </div>
 
-<br>
-<br>
-<br>
-<br>
-result <br>
 
-<pre>
-{{form.value | json}}
-</pre>
+<div class="flex justify-end">
+  <button
+    (click)="realizarInscricao()"
+    type="button"
+    class="w-20 flex justify-center text-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none"
+  >
+    Realizar cadastro
+  </button>
+</div>
