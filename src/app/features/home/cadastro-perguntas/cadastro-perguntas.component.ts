@@ -151,6 +151,7 @@ export class CadastroPerguntasComponent implements OnInit {
       var response = JSON.parse(JSON.stringify(res));
       console.log(response);
       this.toast.showSuccess('Inscrição realizada com sucesso');
+      this.router.navigate(['/edital/visualizareditais']);
     });
   }
 }

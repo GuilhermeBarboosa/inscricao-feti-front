@@ -9,6 +9,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { MinhaInscricaoComponent } from 'src/app/features/home/minha-inscricao/minha-inscricao.component';
 import { SharedModule } from '../shared.module';
 import { MinhaInscricaoRoutes } from './minhas-inscricao.routing';
+import { InscricoesComponent } from 'src/app/features/home/inscricoes/inscricoes.component';
 @NgModule({
   declarations: [MinhaInscricaoComponent],
   imports: [

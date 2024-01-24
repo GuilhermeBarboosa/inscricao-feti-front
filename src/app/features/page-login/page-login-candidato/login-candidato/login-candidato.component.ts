@@ -50,7 +50,7 @@ export class LoginCandidatoComponent implements OnInit {
             (data: any) => {
               var data = JSON.parse(JSON.stringify(data));
               this.notifier.showSuccess('Login efetuado com sucesso!');
-              this.router.navigate(['/edital']);
+              this.router.navigate(['/edital/visualizareditais']);
             },
             (error: any) => {
               this.notifier.showError('Login ou senha incorretos!');

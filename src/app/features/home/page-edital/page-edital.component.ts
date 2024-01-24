@@ -11,6 +11,7 @@ import { UtilsService } from 'src/app/services/utils.service';
   styleUrls: ['./page-edital.component.css'],
 })
 export class PageEditalComponent implements OnInit {
+
   value?: String;
   dateResponseInicio?: Date;
   dateResponseFim?: Date;
@@ -51,6 +52,10 @@ export class PageEditalComponent implements OnInit {
       });
     });
   }
+
+  getFuncao(id: number|undefined) {
+    this.router.navigateByUrl(`/inscricao/fazerinscricao/${id}`)
+   }
 
   convertDate(date: String) {
     const dateString = date;

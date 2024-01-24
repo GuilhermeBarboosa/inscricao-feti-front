@@ -1,0 +1,123 @@
+<app-navbar></app-navbar>
+
+<app-sidebar></app-sidebar>
+
+<div class="home-section">
+  <form class="m-5" [formGroup]="formulario" *ngIf="formulario">
+    <div class="flex justify-between">
+      <p class="text-black font-medium justify-start text-lg font-bold">
+        INFO DO USUÁRIO
+      </p>
+    </div>
+
+    <div class="">
+      <label class="block text-sm" for="nome">Código</label>
+      <input
+        formControlName="id"
+        class="default-input text-center p-2.5"
+        type="text"
+        id="name"
+        required
+      />
+    </div>
+
+    <form class="h-full w-full" [formGroup]="formulario" *ngIf="formulario">
+      <div>
+        <div class="">
+          <div class="col-span-3">
+            <label class="block text-sm" for="edital">Edital</label>
+            <input
+              formControlName="edital"
+              class="default-input w-full p-2.5"
+              type="text"
+              id="edital"
+              aria-label="edital"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3">
+          <div class="col mr-4">
+            <label class="block text-sm" for="data_inicio"
+              >Data de inicio</label
+            >
+            <input
+              formControlName="data_inicio"
+              class="default-input w-full p-2.5"
+              type="text"
+              id="data_inicio"
+              aria-label="data_inicio"
+              required
+              mask="00/00/0000"
+            />
+          </div>
+
+          <div class="col mr-4">
+            <label class="block text-sm" for="data_fim">Data de termino</label>
+            <input
+              formControlName="data_fim"
+              class="default-input w-full p-2.5"
+              type="text"
+              id="data_fim"
+              aria-label="data_fim"
+              required
+              mask="00/00/0000"
+            />
+          </div>
+
+          <div class="col">
+            <label class="block text-sm" for="qtd_vagas"
+              >Quantidade de vagas</label
+            >
+            <input
+              formControlName="qtd_vagas"
+              class="default-input w-full p-2.5"
+              type="text"
+              id="qtd_vagas"
+              aria-label="qtd_vagas"
+              required
+            />
+          </div>
+        </div>
+
+        <div *ngIf="role == 'ADMIN'">
+          <div class="flex justify-between">
+            <div class="col">
+              <label class="block text-sm" for="created">Criado</label>
+              <input
+                formControlName="created"
+                class="default-input p-2.5"
+                type="text"
+                id="created"
+                aria-label="created"
+                required
+              />
+            </div>
+
+            <div class="col">
+              <label class="block text-sm" for="updated">Modificado</label>
+              <input
+                formControlName="updated"
+                class="default-input p-2.5"
+                type="text"
+                id="updated"
+                aria-label="updated"
+                required
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="flex justify-between pt-3">
+      <app-button-green [value]="Voltar" (click)="return()"></app-button-green>
+      <app-button-yellow
+        *ngIf="role == 'ADMIN'"
+        [value]="Editar"
+        (click)="edit()"
+      ></app-button-yellow>
+    </div>
+  </form>
+</div>

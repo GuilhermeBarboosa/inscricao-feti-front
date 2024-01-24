@@ -46,3 +46,7 @@ hr {
 .bg-default:hover{
   background-color: #001859;
 }
+
+.bx-show{
+  color: rgb(76, 76, 76);
+}

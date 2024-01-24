@@ -11,6 +11,7 @@ import { User } from 'src/app/interfaces/dto/user';
 import { UserInput } from 'src/app/interfaces/input/userInput';
 import { UserService } from 'src/app/routes/user.service';
 import { NotifierService } from 'src/app/services/notifier.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class RegisterCandidatoComponent  implements OnInit{
     private userService: UserService,
     private formBuilder: FormBuilder,
     private notifier: NotifierService,
+    private utils: UtilsService
   ) {}
 
   user!: User;
@@ -37,6 +39,7 @@ export class RegisterCandidatoComponent  implements OnInit{
       telefone: ['(34) 98403-9344', [Validators.required]],
       cep: ['38035-205', [Validators.required]],
       rua: ['Rua Arnaldo Augusto dos Reis', [Validators.required]],
+      data_de_nascimento: ['29/11/2000', [Validators.required]],
       cidade: ['Uberaba', [Validators.required]],
       bairro: ['Jardim', [Validators.required]],
       password: ['1234', [Validators.required, Validators.minLength(3)]],
@@ -61,6 +64,7 @@ export class RegisterCandidatoComponent  implements OnInit{
           cpf: this.registerForm.get('cpf')?.value,
           email: this.registerForm.get('email')?.value,
           telefone: this.registerForm.get('telefone')?.value,
+          data_de_nascimento : this.utils.formatarDataToSQL(this.registerForm.get('data_de_nascimento')?.value),
           cep: this.registerForm.get('cep')?.value,
           rua: this.registerForm.get('rua')?.value,
           cidade: this.registerForm.get('cidade')?.value,
@@ -70,6 +74,8 @@ export class RegisterCandidatoComponent  implements OnInit{
         };
 
         let userInput = new UserInput(userDTO);
+
+        console.log(userInput)
 
         this.userService.createCandidato(userInput).subscribe(
           (data) => {

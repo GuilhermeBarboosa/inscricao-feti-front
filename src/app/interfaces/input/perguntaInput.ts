@@ -1,8 +1,9 @@
 export class PerguntaInput {
   pergunta: string | undefined;
+  funcao: number | undefined;
 
-
-  constructor(user: any) {
-    this.pergunta = user.name;
+  constructor(pergunta: any) {
+    this.pergunta = pergunta.pergunta;
+    this.funcao = pergunta.funcao;
   }
 }

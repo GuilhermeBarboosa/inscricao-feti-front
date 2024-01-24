@@ -8,6 +8,7 @@ import { VerifyInput } from '../interfaces/input/verifyInput';
   providedIn: 'root',
 })
 export class FuncaoService {
+
   constructor(private http: HttpClient) {}
 
   HttpHeaders = new HttpHeaders({
@@ -68,4 +69,5 @@ export class FuncaoService {
       headers: this.HttpHeaders,
     });
   }
+
 }

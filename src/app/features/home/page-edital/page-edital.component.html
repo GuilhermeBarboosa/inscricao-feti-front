@@ -1,35 +1,38 @@
 <div class="grid grid-cols-4 gap-4 m-2">
   <div class="text-center" *ngFor="let ed of editalArray">
     <div class="dv-padding-ldpi">
-      <div
-        class="max-w-sm p-6 bg-gray-200 border border-gray-00 rounded-lg shadow"
-      >
-        <a href="#" class="block">
+      <div class=" p-6 bg-gray-200 card shadow">
+
           <h5
-            class="mb-2 text-black text-2xl font-bold tracking-tight text-gray-900"
+            class="mb-2 text-black text-2xl font-bold tracking-tight text-gray-900 font-color-blue"
           >
             {{ ed.edital }}
           </h5>
-        </a>
-        <p class="font-normal block text-black">
-          <span class="dv-bold">Data de inscrição: </span>
-          {{ ed.data_inicio }} até {{ ed.data_fim }}
-        </p>
-        <p class="mb-2 font-normal block text-black">
-          <span class="dv-bold">Número da vagas:</span> {{ ed.qtd_vagas }}
-        </p>
 
-        <a routerLink="/edital/inscricao/{{ed.id}}" routerLinkActive="active">
-          <p class="mb-2 font-bold text-2xl block text-blue-600">
+        <div class="p-2">
+          <div class="flex items-center justify-center">
+            <i class="bx bxs-calendar"></i>
+            <p class="font-normal block text-black">
+              {{ ed.data_inicio }} até {{ ed.data_fim }}
+            </p>
+          </div>
+
+          <div class="flex items-center justify-center">
+            <i class="bx bxs-user"></i>
+            <p class="font-normal block text-black">{{ ed.qtd_vagas }} vagas</p>
+          </div>
+        </div>
+
+        <div >
+          <a href="#" class="flex items-center justify-center">
+            <i class="bx bxs-download"></i>
+            <p class="underline font-normal p-1 text-blue-500">Edital</p>
+          </a>
+        </div>
+        <a (click)="getFuncao(ed.id)" class="cursor-pointer">
+          <p class="mb-2 font-bold text-xl block font-color-blue">
             Inscreva-se
           </p>
-        </a>
-
-        <a
-          href="#"
-          class="inline-flex items-center px-3 py-2 bx bxs-download text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
-        >
-          <p class="font-normal text-white p-1">Edital</p>
         </a>
       </div>
     </div>

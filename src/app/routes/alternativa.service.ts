@@ -9,6 +9,7 @@ import { AlternativaInput } from '../interfaces/input/alternativaInput';
 export class AlternativaService{
 
 
+
   constructor(private http: HttpClient) {}
 
   HttpHeaders = new HttpHeaders({
@@ -20,6 +21,12 @@ export class AlternativaService{
 
   getById(id: number) {
     return this.http.get(`${this.urlAlternativa}/` + id, {
+      headers: this.HttpHeaders,
+    });
+  }
+
+  getAlternativaByPergunta(id: any) {
+    return this.http.post(`${this.urlAlternativa}/pergunta/${id}`, {
       headers: this.HttpHeaders,
     });
   }

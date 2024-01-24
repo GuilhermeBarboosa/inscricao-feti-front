@@ -1,5 +1,5 @@
-.w-50{
-  width: 20%;
+.w-80{
+  width: 60%;
 }
 
 /* The styling below is custom in that we require the :checked Pseudo class, which Tailwind doesn't offer out of the box. However the styling (border color and box shadow) the below applies is native Tailwind. */

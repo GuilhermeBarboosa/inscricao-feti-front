@@ -6,7 +6,7 @@
     <div class="flex justify-between m-5">
       <div class="">
         <p class="title text-white font-medium text-lg font-bold">
-          TABELA DE FUNÇÕES
+          TABELA DO PERGUNTAS
         </p>
       </div>
 
@@ -82,30 +82,59 @@
 
     <div class="">
       <div class="example-container p-2 relative overflow-x-auto">
-        <table mat-table [dataSource]="funcaoArray" class="mat-elevation-z2">
+        <table mat-table [dataSource]="perguntasArray" class="mat-elevation-z2">
           <th  matColumnDef="id">
             <mat-header-cell mat-header-cell *matHeaderCellDef>
               Id
             </mat-header-cell>
-            <mat-cell mat-cell *matCellDef="let funcao"> {{ funcao.id }} </mat-cell>
+            <mat-cell mat-cell *matCellDef="let pergunta"> {{ pergunta.id }} </mat-cell>
           </th >
 
-          <th  matColumnDef="funcao">
+          <th  matColumnDef="pergunta">
             <mat-header-cell mat-header-cell *matHeaderCellDef>
-              Função
+              Pergunta
             </mat-header-cell>
-            <mat-cell mat-cell *matCellDef="let funcao">
-              {{ funcao.funcao }}
+            <mat-cell mat-cell *matCellDef="let pergunta">
+              {{ pergunta.pergunta }}
             </mat-cell>
           </th >
+
+
+          <th  matColumnDef="alternativas">
+            <div>
+              <mat-header-cell mat-header-cell *matHeaderCellDef>
+
+              </mat-header-cell>
+              <mat-cell mat-cell *matCellDef="let pergunta">
+                <div class="flex cursor-pointer" (click)="getAlternativaByPergunta(pergunta.id)">
+                  <i class='bx bx-folder-open folder' ></i>
+                  <button>Alternativas</button>
+                </div>
+              </mat-cell>
+            </div>
+          </th >
+
+          <!-- <th  matColumnDef="arquivos">
+            <div>
+              <mat-header-cell mat-header-cell *matHeaderCellDef>
+
+              </mat-header-cell>
+              <mat-cell mat-cell *matCellDef="let pergunta">
+                <div class="flex cursor-pointer">
+                  <i class='bx bx-folder-open' ></i>
+                  <button>Arquivos</button>
+                </div>
+              </mat-cell>
+            </div>
+          </th > -->
 
           <th  matColumnDef="status">
             <div>
               <mat-header-cell mat-header-cell *matHeaderCellDef>
                 Status
               </mat-header-cell>
-              <mat-cell mat-cell *matCellDef="let funcao">
-                {{ funcao.actived }}
+              <mat-cell mat-cell *matCellDef="let pergunta">
+                {{ pergunta.actived }}
               </mat-cell>
             </div>
           </th >
@@ -113,15 +142,15 @@
           <th  matColumnDef="acoes">
             <mat-header-cell mat-header-cell *matHeaderCellDef>
             </mat-header-cell>
-            <mat-cell mat-cell *matCellDef="let funcao">
+            <mat-cell mat-cell *matCellDef="let pergunta">
               <div class="flex">
-                <i class="bx bx-info-circle" (click)="info(funcao)"> </i>
+                <i class="bx bx-info-circle" (click)="info(pergunta)"> </i>
               </div>
-              <div *ngIf="funcao.actived == 'Ativo' && role == 'ADMIN'"  class="flex">
-                <i class="bx bx-trash" (click)="openDialog(funcao)"></i>
+              <div *ngIf="pergunta.actived == 'Ativo' && role == 'ADMIN'"  class="flex">
+                <i class="bx bx-trash" (click)="openDialog(pergunta)"></i>
               </div>
-              <div *ngIf="funcao.actived == 'Desativado' && role == 'ADMIN'" class="flex">
-                <i class="bx bx-check"  (click)="ativar(funcao)"></i>
+              <div *ngIf="pergunta.actived == 'Desativado' && role == 'ADMIN'" class="flex">
+                <i class="bx bx-check"  (click)="ativar(pergunta)"></i>
               </div>
             </mat-cell>
           </th >

@@ -1,0 +1,67 @@
+<app-navbar></app-navbar>
+
+<app-sidebar></app-sidebar>
+
+<div class="home-section">
+  <form class="h-full m-5" [formGroup]="formulario" *ngIf="formulario">
+    <div class="flex justify-between">
+      <p class="text-black font-medium justify-start text-lg font-bold">
+        EDITAR FUNÇÃO
+      </p>
+    </div>
+
+    <div class="">
+      <label class="block text-sm" for="id">Código</label>
+      <input
+        formControlName="id"
+        class="default-input p-2.5 text-center"
+        type="text"
+        id="id"
+        required
+      />
+    </div>
+
+    <form class="h-full" [formGroup]="formulario" *ngIf="formulario">
+      <div>
+        <div class="">
+          <div class="grid grid-cols-2">
+            <div class="col mr-4">
+              <label class="block text-sm" for="alternativa">Alternativa</label>
+              <input
+                formControlName="alternativa"
+                class="default-input w-full p-2.5"
+                type="text"
+                id="alternativa"
+                aria-label="alternativa"
+                required
+              />
+            </div>
+
+            <div class="col">
+              <label class="block text-sm" for="pontuacao">Pontuação</label>
+              <input
+                formControlName="pontuacao"
+                class="default-input w-full p-2.5"
+                type="text"
+                id="pontuacao"
+                aria-label="pontuacao"
+                required
+              />
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </form>
+
+    <div class="items-center flex justify-between my-2">
+      <div class="align-end">
+        <app-button-red [value]="Nao" (click)="return()"></app-button-red>
+      </div>
+
+      <div>
+        <app-button-green [value]="Sim" (click)="edit()"></app-button-green>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,17 +1,17 @@
-<section
-  class="flex items-center h-screen justify-center p-5 bg-gray-100"
->
-  <div class="md:w-screen lg:w-screen sm:flex sm:justify-center md:flex md:justify-center ">
-    <div
-      class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 "
-    >
+<section class="flex items-center h-screen justify-center p-5 bg-gray-100">
+  <div
+    class="md:w-screen lg:w-screen sm:flex sm:justify-center md:flex md:justify-center"
+  >
+    <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-        <h1
-          class="text-xl font-bold leading-tight tracking-tight md:text-2xl"
-        >
+        <h1 class="text-xl font-bold leading-tight tracking-tight md:text-2xl">
           Register
         </h1>
-        <form class="space-y-4 md:space-y-6" [formGroup]="registerForm" *ngIf="registerForm">
+        <form
+          class="space-y-4 md:space-y-6"
+          [formGroup]="registerForm"
+          *ngIf="registerForm"
+        >
           <div>
             <label for="name" class="block text-md font-medium text-gray-500"
               >Nome</label
@@ -28,51 +28,70 @@
           <div class="grid grid-cols-4">
             <div class="col-span-2 mr-4">
               <label for="cpf" class="block text-md font-medium text-gray-500"
-              >Cpf</label
-            >
-            <input
-              formControlName="cpf"
-              type="text"
-              name="cpf"
-              id="cpf"
-              mask="000.000.000-00"
-              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-green-400 block w-full p-2.5"
-              required=""
-            />
+                >Cpf</label
+              >
+              <input
+                formControlName="cpf"
+                type="text"
+                name="cpf"
+                id="cpf"
+                mask="000.000.000-00"
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-green-400 block w-full p-2.5"
+                required=""
+              />
             </div>
 
             <div class="col-span-2">
               <label for="cpf" class="block text-md font-medium text-gray-500"
-              >Telefone</label
-            >
-            <input
-              formControlName="telefone"
-              type="text"
-              name="telefone"
-              id="telefone"
-              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-green-400 block w-full p-2.5"
-              required=""
-              mask="(00) 00000-0000"
-            />
+                >Telefone</label
+              >
+              <input
+                formControlName="telefone"
+                type="text"
+                name="telefone"
+                id="telefone"
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-green-400 block w-full p-2.5"
+                required=""
+                mask="(00) 00000-0000"
+              />
             </div>
           </div>
-          <div>
-            <label for="email" class="block text-md font-medium text-gray-500"
-              >Email</label
-            >
-            <input
-              formControlName="email"
-              type="email"
-              name="email"
-              id="email"
-              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-green-400 block w-full p-2.5"
-              required=""
-            />
+          <div class="grid grid-cols-2">
+            <div class="col mr-4">
+              <label for="email" class="block text-md font-medium text-gray-500"
+                >Email</label
+              >
+              <input
+                formControlName="email"
+                type="email"
+                name="email"
+                id="email"
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-green-400 block w-full p-2.5"
+                required=""
+              />
+            </div>
+
+            <div class="col">
+              <label for="data_de_nascimento" class="block text-md font-medium text-gray-500"
+                >Data de nascimento</label
+              >
+              <input
+                formControlName="data_de_nascimento"
+                type="text"
+                name="data_de_nascimento"
+                id="data_de_nascimento"
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-green-400 block w-full p-2.5"
+                required=""
+                mask="00/00/0000"
+              />
+            </div>
           </div>
 
           <div class="grid grid-cols-4">
             <div class="col-span-1 mr-4">
-              <label class="block text-md font-medium text-gray-500" for="cep">Cep</label>
+              <label class="block text-md font-medium text-gray-500" for="cep"
+                >Cep</label
+              >
               <input
                 formControlName="cep"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-green-400 block w-full p-2.5"
@@ -84,8 +103,10 @@
               />
             </div>
 
-            <div class="col-span-3 ">
-              <label class="block text-md font-medium text-gray-500" for="rua">Rua</label>
+            <div class="col-span-3">
+              <label class="block text-md font-medium text-gray-500" for="rua"
+                >Rua</label
+              >
               <input
                 formControlName="rua"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-green-400 block w-full p-2.5"
@@ -99,7 +120,11 @@
 
           <div class="grid grid-cols-4">
             <div class="col-span-2 mr-4">
-              <label class="block text-md font-medium text-gray-500" for="cidade">Cidade</label>
+              <label
+                class="block text-md font-medium text-gray-500"
+                for="cidade"
+                >Cidade</label
+              >
               <input
                 formControlName="cidade"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-green-400 block w-full p-2.5"
@@ -110,8 +135,12 @@
               />
             </div>
 
-            <div class="col-span-2 ">
-              <label class="block text-md font-medium text-gray-500" for="bairro">Bairro</label>
+            <div class="col-span-2">
+              <label
+                class="block text-md font-medium text-gray-500"
+                for="bairro"
+                >Bairro</label
+              >
               <input
                 formControlName="bairro"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-green-400 block w-full p-2.5"

@@ -4,25 +4,28 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
-import { Funcao } from 'src/app/interfaces/dto/funcao';
-import { FuncaoInput } from 'src/app/interfaces/input/funcaoInput';
-import { FuncaoService } from 'src/app/routes/funcao.service';
+import { Edital } from 'src/app/interfaces/dto/edital';
+import { EditalInput } from 'src/app/interfaces/input/editalInput';
+import { EditalService } from 'src/app/routes/edital.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { TokenJwtService } from 'src/app/services/token-jwt.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
-  selector: 'app-funcao-table',
-  templateUrl: './funcao-table.component.html',
-  styleUrls: ['./funcao-table.component.css']
+  selector: 'app-edital-table',
+  templateUrl: './edital-table.component.html',
+  styleUrls: ['./edital-table.component.css'],
 })
-export class FuncaoTableComponent implements OnInit {
-
+export class EditalTableComponent implements OnInit {
   value?: String;
   mandaFiltroTrue = 'Ativar';
   mandaFiltroFalse = 'Excluir';
   displayedColumns: string[] = [
     'id',
+    'edital',
     'funcao',
+    'qtd_inicio',
+    'qtd_fim',
     'status',
     'acoes',
   ];
@@ -30,15 +33,16 @@ export class FuncaoTableComponent implements OnInit {
   Info = 'Info';
   role = '';
 
-  funcaoArray = new MatTableDataSource<Funcao>();
+  editalArray = new MatTableDataSource<Edital>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
-    private funcaoService: FuncaoService,
+    private editalService: EditalService,
     public dialog: MatDialog,
     private router: Router,
     private notifier: NotifierService,
-    private token: TokenJwtService
+    private token: TokenJwtService,
+    private utils: UtilsService
   ) {}
 
   async ngOnInit() {
@@ -56,32 +60,32 @@ export class FuncaoTableComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.funcaoArray.paginator = this.paginator;
+    this.editalArray.paginator = this.paginator;
   }
 
   applyFilter(event: Event) {
     let filterValue = (event.target as HTMLInputElement).value;
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
-    this.funcaoArray.filter = filterValue;
+    this.editalArray.filter = filterValue;
   }
 
-  info(funcao: Funcao) {
-    this.router.navigateByUrl(`funcao/info/${funcao.id}`);
+  info(edital: Edital) {
+    this.router.navigateByUrl(`edital/info/${edital.id}`);
   }
 
-  ativar(funcao: Funcao) {
-    let funcaoInput = new FuncaoInput(funcao);
+  ativar(edital: Edital) {
+    let editalInput = new EditalInput(edital);
 
-    this.funcaoService.ativar(funcaoInput, funcao.id!).subscribe((data) => {
-      this.notifier.showSuccess('Funcao ativado com sucesso!');
+    this.editalService.ativar(editalInput, edital.id!).subscribe((data) => {
+      this.notifier.showSuccess('Edital ativado com sucesso!');
       window.location.reload();
     });
 
     window.location.reload();
   }
 
-  openDialog(funcao: any): void {
+  openDialog(edital: any): void {
     let dialogRef = this.dialog.open(DialogComponent, {
       width: '250px',
       data: { value: this.value },
@@ -89,9 +93,9 @@ export class FuncaoTableComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.funcaoService.delete(funcao.id).subscribe(
+        this.editalService.delete(edital.id).subscribe(
           (data) => {
-            this.notifier.showSuccess('Funcao excluído com sucesso!');
+            this.notifier.showSuccess('Edital excluído com sucesso!');
             window.location.reload();
           },
           (error) => {
@@ -103,27 +107,33 @@ export class FuncaoTableComponent implements OnInit {
   }
 
   initTable() {
-    this.funcaoService.getAll().subscribe((data) => {
-      var funcaoResponse = JSON.parse(JSON.stringify(data));
+    this.editalService.getAll().subscribe((data) => {
+      var editalResponse = JSON.parse(JSON.stringify(data));
 
-      funcaoResponse.map((funcao: Funcao) => {
-        if (funcao.actived) {
-          funcao.actived = 'Ativo';
+      editalResponse.map((edital: Edital) => {
+        edital.data_inicio = this.utils.formatarData(edital.data_inicio);
+        edital.data_fim = this.utils.formatarData(edital.data_fim);
+
+        if (edital.actived) {
+          edital.actived = 'Ativo';
         } else {
-          funcao.actived = 'Desativado';
+          edital.actived = 'Desativado';
         }
       });
-      this.funcaoArray.data = funcaoResponse;
-      this.funcaoArray.filter = 'Ativo';
+      this.editalArray.data = editalResponse;
+      this.editalArray.filter = 'Ativo';
     });
   }
 
   getByInativo() {
-    this.funcaoArray.filter = 'Desativado';
+    this.editalArray.filter = 'Desativado';
   }
 
   getByAtivo() {
-    this.funcaoArray.filter = 'Ativo';
+    this.editalArray.filter = 'Ativo';
   }
 
+  getByFuncao(id: any) {
+    this.router.navigateByUrl(`/funcao/${id}`)
+  }
 }

@@ -23,7 +23,6 @@ export class PerguntaService {
     });
   }
 
-
   create(user: PerguntaInput) {
     return this.http.post(`${this.urlPergunta}`, user, {
       headers: this.HttpHeaders,
@@ -57,4 +56,11 @@ export class PerguntaService {
       headers: this.HttpHeaders,
     });
   }
+
+  getIdPerguntaByFuncao(id: number) {
+    return this.http.get(`${this.urlPergunta}/funcao/` + id, {
+      headers: this.HttpHeaders,
+    });
+  }
+
 }

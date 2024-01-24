@@ -1,0 +1,80 @@
+<app-navbar></app-navbar>
+
+<app-sidebar></app-sidebar>
+
+<div class="home-section">
+  <form class="m-5" [formGroup]="formulario" *ngIf="formulario">
+    <div class="flex justify-between">
+      <p class="text-black font-medium justify-start text-lg font-bold">
+        INFO DA PERGUNTA
+      </p>
+    </div>
+
+    <div class="">
+      <label class="block text-sm" for="nome">Código</label>
+      <input
+        formControlName="id"
+        class="default-input text-center p-2.5"
+        type="text"
+        id="name"
+        required
+      />
+    </div>
+
+    <form class="h-full w-full" [formGroup]="formulario" *ngIf="formulario">
+      <div>
+        <div class="">
+          <div class="col-span-3">
+            <label class="block text-sm" for="pergunta">Pergunta</label>
+            <input
+              formControlName="pergunta"
+              class="default-input w-full p-2.5"
+              type="text"
+              id="pergunta"
+              aria-label="pergunta"
+              required
+            />
+          </div>
+        </div>
+
+
+        <div *ngIf="role == 'ADMIN'">
+          <div class="flex justify-between">
+            <div class="col">
+              <label class="block text-sm" for="created">Criado</label>
+              <input
+                formControlName="created"
+                class="default-input p-2.5"
+                type="text"
+                id="created"
+                aria-label="created"
+                required
+              />
+            </div>
+
+            <div class="col">
+              <label class="block text-sm" for="updated">Modificado</label>
+              <input
+                formControlName="updated"
+                class="default-input p-2.5"
+                type="text"
+                id="updated"
+                aria-label="updated"
+                required
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="flex justify-between pt-3">
+      <app-button-green [value]="Voltar" (click)="return()"></app-button-green>
+      <app-button-yellow
+        *ngIf="role == 'ADMIN'"
+        [value]="Editar"
+        (click)="edit()"
+      ></app-button-yellow>
+    </div>
+  </form>
+</div>

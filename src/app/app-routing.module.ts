@@ -27,10 +27,26 @@ export const routes: Routes = [
       // canActivate: [LoginGuardService],
   },
   {
-    path: 'inscricao',
+    path: 'alternativa',
+    loadChildren: () =>
+      import('./modules/alternativa/alternativa.module').then(
+        (m) => m.AlternativaModule
+      ),
+      // canActivate: [LoginGuardService],
+  },
+  {
+    path: 'minha-inscricao',
     loadChildren: () =>
       import('./modules/minha-inscricao/minha-inscricao.module').then(
         (m) => m.MinhaInscricaoModule
+      ),
+      // canActivate: [LoginGuardService],
+  },
+  {
+    path: 'inscricao',
+    loadChildren: () =>
+      import('./modules/inscricao/inscricao.module').then(
+        (m) => m.InscricaoModule
       ),
       // canActivate: [LoginGuardService],
   },

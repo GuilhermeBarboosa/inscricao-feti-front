@@ -7,8 +7,7 @@ export class EditalInput {
 
   qtd_vagas: number | undefined;
 
-  arquivo: string | undefined;
-
+  arquivo: File | undefined;
   constructor(funcao: any) {
     this.edital = funcao.edital;
     this.data_inicio = funcao.data_inicio;

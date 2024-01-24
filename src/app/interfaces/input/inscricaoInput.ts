@@ -1,4 +1,5 @@
 import { PerguntaRespostaInput } from './pergunta_respostaInput';
+import { Inscricao } from '../dto/inscricao';
 export class InscricaoInput{
   edital:  number | undefined;
   funcao:  number | undefined;

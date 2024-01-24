@@ -82,59 +82,68 @@
 
     <div class="">
       <div class="example-container p-2 relative overflow-x-auto">
-        <table mat-table [dataSource]="perguntasArray" class="mat-elevation-z2">
+        <table mat-table [dataSource]="alternativasArray" class="mat-elevation-z2">
           <th  matColumnDef="id">
             <mat-header-cell mat-header-cell *matHeaderCellDef>
               Id
             </mat-header-cell>
-            <mat-cell mat-cell *matCellDef="let pergunta"> {{ pergunta.id }} </mat-cell>
+            <mat-cell mat-cell *matCellDef="let alternativa"> {{ alternativa.id }} </mat-cell>
           </th >
 
-          <th  matColumnDef="pergunta">
+          <th  matColumnDef="alternativa">
             <mat-header-cell mat-header-cell *matHeaderCellDef>
-              Pergunta
+              Alternativa
             </mat-header-cell>
-            <mat-cell mat-cell *matCellDef="let pergunta">
-              {{ pergunta.pergunta }}
+            <mat-cell mat-cell *matCellDef="let alternativa">
+              {{ alternativa.alternativa }}
             </mat-cell>
           </th >
 
 
-          <th  matColumnDef="alternativas">
+          <th  matColumnDef="pontuacao">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              Pontuação
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let alternativa">
+              {{ alternativa.pontuacao }}
+            </mat-cell>
+          </th >
+
+          <!-- <th  matColumnDef="alternativas">
             <div>
               <mat-header-cell mat-header-cell *matHeaderCellDef>
 
               </mat-header-cell>
-              <mat-cell mat-cell *matCellDef="let pergunta">
+              <mat-cell mat-cell *matCellDef="let alternativa">
                 <div class="flex cursor-pointer">
-                  <i class='bx bx-folder-open' ></i>
+                  <i class='bx bx-folder-open folder' ></i>
                   <button>Alternativas</button>
                 </div>
               </mat-cell>
             </div>
-          </th >
+          </th > -->
 
-          <th  matColumnDef="arquivos">
+          <!-- <th  matColumnDef="arquivos">
             <div>
               <mat-header-cell mat-header-cell *matHeaderCellDef>
-                
+
               </mat-header-cell>
-              <mat-cell mat-cell *matCellDef="let pergunta">
+              <mat-cell mat-cell *matCellDef="let alternativa">
                 <div class="flex cursor-pointer">
                   <i class='bx bx-folder-open' ></i>
                   <button>Arquivos</button>
                 </div>
               </mat-cell>
             </div>
-          </th >
+          </th > -->
 
           <th  matColumnDef="status">
             <div>
               <mat-header-cell mat-header-cell *matHeaderCellDef>
                 Status
               </mat-header-cell>
-              <mat-cell mat-cell *matCellDef="let pergunta">
-                {{ pergunta.actived }}
+              <mat-cell mat-cell *matCellDef="let alternativa">
+                {{ alternativa.actived }}
               </mat-cell>
             </div>
           </th >
@@ -142,15 +151,15 @@
           <th  matColumnDef="acoes">
             <mat-header-cell mat-header-cell *matHeaderCellDef>
             </mat-header-cell>
-            <mat-cell mat-cell *matCellDef="let pergunta">
+            <mat-cell mat-cell *matCellDef="let alternativa">
               <div class="flex">
-                <i class="bx bx-info-circle" (click)="info(pergunta)"> </i>
+                <i class="bx bx-info-circle" (click)="info(alternativa)"> </i>
               </div>
-              <div *ngIf="pergunta.actived == 'Ativo' && role == 'ADMIN'"  class="flex">
-                <i class="bx bx-trash" (click)="openDialog(pergunta)"></i>
+              <div *ngIf="alternativa.actived == 'Ativo' && role == 'ADMIN'"  class="flex">
+                <i class="bx bx-trash" (click)="openDialog(alternativa)"></i>
               </div>
-              <div *ngIf="pergunta.actived == 'Desativado' && role == 'ADMIN'" class="flex">
-                <i class="bx bx-check"  (click)="ativar(pergunta)"></i>
+              <div *ngIf="alternativa.actived == 'Desativado' && role == 'ADMIN'" class="flex">
+                <i class="bx bx-check"  (click)="ativar(alternativa)"></i>
               </div>
             </mat-cell>
           </th >

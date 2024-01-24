@@ -1,0 +1,39 @@
+<app-navbar></app-navbar>
+
+<app-sidebar></app-sidebar>
+<div class="home-section">
+  <div class="h-full w-full">
+    <div class="flex justify-between m-5">
+      <div class="">
+        <p class="title text-white font-medium text-lg font-bold">
+          INFORMAÇÕES SOBRE O CANDIDATO
+        </p>
+      </div>
+
+
+    </div>
+
+    <div class="m-5">
+      <div >
+        <p>Inscricao: <span class="font-bold">{{this.inscricao.id}}</span></p>
+
+        <div>
+          <p>Nome: {{this.inscricao.user}}</p>
+          <p>Email: {{this.inscricao.email}}</p>
+          <p>Cpf: {{this.inscricao.cpf}}</p>
+          <p>Pontuação: {{this.inscricao.pontuacao}}</p>
+        </div>
+      </div>
+
+      <div class="mt-5">
+        <p class="title text-white font-medium text-lg font-bold">
+          Questionário
+        </p>
+        <div *ngFor="let p of this.inscricao.inscricaoResposta">
+          <p class="text-base">{{p.pergunta}} </p>
+          <p class="ml-4">{{p.alternativa}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

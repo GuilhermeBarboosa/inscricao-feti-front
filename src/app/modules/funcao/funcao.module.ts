@@ -7,12 +7,18 @@ import { SharedModule } from '../shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
-import { FuncaoTableComponent } from '../../features/funcao/funcao-table/funcao-table.component';
 import { FuncaoRoutes } from './funcao.routing';
+import { FuncaoTableComponent } from 'src/app/features/edital/funcao/funcao-table/funcao-table.component';
+import { CreateFuncaoComponent } from 'src/app/features/edital/funcao/create-funcao/create-funcao.component';
+import { InfoFuncaoComponent } from 'src/app/features/edital/funcao/info-funcao/info-funcao.component';
+import { EditFuncaoComponent } from 'src/app/features/edital/funcao/edit-funcao/edit-funcao.component';
 
 @NgModule({
   declarations: [
     FuncaoTableComponent,
+    CreateFuncaoComponent,
+    InfoFuncaoComponent,
+    EditFuncaoComponent
   ],
   imports: [
     CommonModule,
