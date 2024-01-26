@@ -79,8 +79,10 @@ export class CreateEditalComponent implements OnInit {
         data_inicio: this.formulario.value.data_inicio,
         data_fim: this.formulario.value.data_fim,
         qtd_vagas: this.formulario.value.qtd_vagas,
-        arquivo: this.formulario.value.arquivo,
+        arquivo: this.formulario.get('arquivo')?.value,
       };
+
+      console.log(editalDTO);
 
       editalDTO.data_inicio = this.utilsService.formatarDataToSQL(
         editalDTO.data_inicio
@@ -89,8 +91,8 @@ export class CreateEditalComponent implements OnInit {
         editalDTO.data_fim
       );
 
-      // let arquivo = this.formulario.value.arquivo;
-      // console.log(arquivo);
+      let arquivo = this.formulario.value.arquivo;
+      console.log(arquivo);
       let editalInput = new EditalInput(editalDTO);
 
       this.editalService.create(editalInput).subscribe(

@@ -4,40 +4,79 @@ import { EditEditalComponent } from 'src/app/features/edital/edit-edital/edit-ed
 import { EditalTableComponent } from 'src/app/features/edital/edital-table/edital-table.component';
 import { InfoEditalComponent } from 'src/app/features/edital/info-edital/info-edital.component';
 import { PageEditalComponent } from 'src/app/features/home/page-edital/page-edital.component';
+import { AuthGuardService } from 'src/app/guards/auth-guard.service';
+import { LoginGuardService } from 'src/app/guards/login-guard.service';
+import { roles } from 'src/roles';
 
 export const EditalRoutes: Routes = [
   {
     path: '',
     component: EditalTableComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      rolesArray:[
+         {
+          role: roles.ROLE_ADMIN
+         },
+         {
+          role: roles.ROLE_SECRETARIO
+         }
+      ]
+    },
   },
   {
     path: 'register',
     component: CreateEditalComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      rolesArray:[
+         {
+          role: roles.ROLE_ADMIN
+         },
+         {
+          role: roles.ROLE_SECRETARIO
+         }
+      ]
+    },
   },
   {
     path: 'info/:id',
     component: InfoEditalComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      rolesArray:[
+         {
+          role: roles.ROLE_ADMIN
+         },
+         {
+          role: roles.ROLE_SECRETARIO
+         }
+      ]
+    },
   },
   {
     path: 'edit/:id',
     component: EditEditalComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      rolesArray:[
+         {
+          role: roles.ROLE_ADMIN
+         },
+         {
+          role: roles.ROLE_SECRETARIO
+         }
+      ]
+    },
   },
   {
     path: 'visualizareditais',
     component: PageEditalComponent,
   },
-  // {
-  //   path: 'inscricao',
-  //   loadChildren: () =>
-  //     import('../inscricao/inscricao.module').then(
-  //       (m) => m.InscricaoModule
-  //     ),
-  //     // canActivate: [LoginGuardService],
-  // },
   {
     path: 'perguntas',
     loadChildren: () =>
       import('../pergunta/pergunta.module').then((m) => m.PerguntaModule),
-    // canActivate: [LoginGuardService],
+    canActivate: [LoginGuardService],
   },
 ];

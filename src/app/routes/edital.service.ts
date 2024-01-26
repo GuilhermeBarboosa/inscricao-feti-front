@@ -23,8 +23,19 @@ export class EditalService {
   }
 
   create(edital: EditalInput) {
-    return this.http.post(`${this.urlEdital}`, edital, {
-      headers: this.HttpHeaders,
+
+    // console.log(edital.arquivo)
+
+    // let formData = new FormData();
+    // formData.append('file', edital.arquivo);
+
+
+    // return this.http.post(`${this.urlEdital}/uploadFile`, formData, {
+    //   responseType: 'blob',
+    // });
+
+      return this.http.post(`${this.urlEdital}`, edital, {
+        headers: this.HttpHeaders,
     });
   }
 

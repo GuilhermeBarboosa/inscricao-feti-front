@@ -7,12 +7,16 @@ export class EditalInput {
 
   qtd_vagas: number | undefined;
 
-  arquivo: File | undefined;
-  constructor(funcao: any) {
-    this.edital = funcao.edital;
-    this.data_inicio = funcao.data_inicio;
-    this.data_fim = funcao.data_fim;
-    this.qtd_vagas = funcao.qtd_vagas;
-    this.arquivo = funcao.arquivo;
+  arquivo:  File = new File([], '');
+  constructor(edital: any) {
+    this.edital = edital.edital;
+    this.data_inicio = edital.data_inicio;
+    this.data_fim = edital.data_fim;
+    this.qtd_vagas = edital.qtd_vagas;
+    // this.arquivo = edital.arquivo;
+
+    if (edital.arquivo !== null && edital.arquivo !== undefined) {
+      this.arquivo = edital.arquivo as File;
+    }
   }
 }

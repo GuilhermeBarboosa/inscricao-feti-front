@@ -51,6 +51,6 @@ export class LoginService {
   logout() {
     localStorage.clear();
     this.notifier.showInfo('Você não está logado');
-    this.router.navigate(['/authentication/login/']);
+    this.router.navigate(['/login-candidato/login/']);
   }
 }

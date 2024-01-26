@@ -2,6 +2,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginGuardService } from './guards/login-guard.service';
+import { RoleGuardService } from './guards/role-guard.service';
 
 export const routes: Routes = [
   {
