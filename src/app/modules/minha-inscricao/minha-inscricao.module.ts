@@ -10,8 +10,9 @@ import { MinhaInscricaoComponent } from 'src/app/features/home/minha-inscricao/m
 import { SharedModule } from '../shared.module';
 import { MinhaInscricaoRoutes } from './minhas-inscricao.routing';
 import { InscricoesComponent } from 'src/app/features/home/inscricoes/inscricoes.component';
+import { ListInscricoesComponent } from 'src/app/features/home/list-inscricoes/list-inscricoes.component';
 @NgModule({
-  declarations: [MinhaInscricaoComponent],
+  declarations: [MinhaInscricaoComponent, ListInscricoesComponent],
   imports: [
     CommonModule,
     SharedModule,

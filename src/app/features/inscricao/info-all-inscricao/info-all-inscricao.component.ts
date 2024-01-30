@@ -41,7 +41,6 @@ export class InfoAllInscricaoComponent implements OnInit{
         var inscricaoResponse = JSON.parse(JSON.stringify(data));
         this.inscricao = inscricaoResponse;
 
-        console.log(this.inscricao);
       });
 
 

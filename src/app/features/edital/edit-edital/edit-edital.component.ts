@@ -113,7 +113,6 @@ export class EditEditalComponent implements OnInit {
 
       let editalInput = new EditalInput(editalDTO);
 
-      console.log(editalInput)
 
       this.editalService.edit(editalInput, this.edital!.id!).subscribe(
         (data) => {

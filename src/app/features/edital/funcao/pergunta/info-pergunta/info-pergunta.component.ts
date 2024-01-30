@@ -35,9 +35,6 @@ export class InfoPerguntaComponent implements OnInit{
   ) {}
 
   async ngOnInit() {
-    console.log(this.id)
-    console.log(this.idFuncao)
-    
     this.role = await this.token.getRole();
     this.perguntaService.getById(this.id).subscribe(
       (data) => {

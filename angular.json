@@ -27,7 +27,7 @@
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css",
-              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/ngx-toastr/toastr.css"
               // "src/styles.css",
               // "src/divmon-1.0.0.css",
               // "src/getz-1.0.0.css",

@@ -30,7 +30,6 @@ export class InscricoesComponent implements OnInit {
   user: number = 0;
 
   async ngOnInit() {
-    console.log(this.idEdital);
     await this.funcaoService.getByIdEdital(this.idEdital).subscribe((data) => {
       var funcaoResponse = JSON.parse(JSON.stringify(data));
       this.funcoes = funcaoResponse;
@@ -67,7 +66,6 @@ export class InscricoesComponent implements OnInit {
         }
       },
       (error) =>{
-        console.log(error);
         this.toast.showError("Você já possui uma inscrição para este cargo");
       }
     );

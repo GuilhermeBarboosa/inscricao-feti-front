@@ -1,8 +1,12 @@
 .card{
-  background-color: #eeeeee;
+  background-color: #fdfdfd;
   border-bottom: 2px solid #00bef2;
 }
 
 .font-color-blue{
   color: #002069
+}
+
+.bxs-calendar, .bxs-user{
+  color: #949494;
 }

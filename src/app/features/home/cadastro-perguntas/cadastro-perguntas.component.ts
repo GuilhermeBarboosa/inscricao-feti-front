@@ -44,7 +44,6 @@ export class CadastroPerguntasComponent implements OnInit {
     await this.perguntaWithAlternativaService
       .getPerguntaWithAlternativa(this.idFuncao)
       .subscribe((data) => {
-        console.log(data);
         var response = JSON.parse(JSON.stringify(data));
 
         this.list = response;
@@ -64,7 +63,6 @@ export class CadastroPerguntasComponent implements OnInit {
 
         const prg = this.form as FormArray;
         prg.controls.forEach((element) => {
-          console.log(element);
           const add = element.get('alternativas') as FormArray;
           const id = element.get('idPergunta') as FormArray;
           this.list.forEach((pergunta) => {
@@ -149,7 +147,6 @@ export class CadastroPerguntasComponent implements OnInit {
 
     this.inscricaoService.create(inscricaoInput).subscribe((res) => {
       var response = JSON.parse(JSON.stringify(res));
-      console.log(response);
       this.toast.showSuccess('Inscrição realizada com sucesso');
       this.router.navigate(['/edital/visualizareditais']);
     });

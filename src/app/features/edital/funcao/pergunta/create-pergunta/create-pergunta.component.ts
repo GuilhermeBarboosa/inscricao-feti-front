@@ -67,8 +67,6 @@ export class CreatePerguntaComponent implements OnInit {
 
       let perguntaInput = new PerguntaInput(perguntaDTO);
 
-      console.log(perguntaInput);
-
       this.perguntaService.create(perguntaInput).subscribe(
         (data) => {
           this.notifier.showSuccess('Função cadastrada com sucesso!');

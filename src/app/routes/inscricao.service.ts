@@ -26,7 +26,6 @@ export class InscricaoService{
   }
 
   create(inscricao: InscricaoInput) {
-    console.log(inscricao)
     return this.http.post(`${this.urlInscricao}`, inscricao, {
       headers: this.HttpHeaders,
     });

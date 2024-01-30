@@ -31,9 +31,13 @@ export class PageEditalComponent implements OnInit {
     this.editalService.getAll().subscribe((data) => {
       var editalsResponse = JSON.parse(JSON.stringify(data));
 
+
+      editalsResponse = this.utilsService.ordenarAlfabetico(editalsResponse);
+
       editalsResponse.map((edital: Edital) => {
         this.dateResponseInicio = new Date(edital.data_fim);
         this.dateResponseFim = new Date(edital.data_inicio);
+
 
         if (
           edital.actived &&
@@ -46,6 +50,7 @@ export class PageEditalComponent implements OnInit {
           edital.data_fim = this.utilsService.formatarData(
             this.convertDate(edital.data_fim)
           );
+
 
           this.editalArray.push(edital);
         }

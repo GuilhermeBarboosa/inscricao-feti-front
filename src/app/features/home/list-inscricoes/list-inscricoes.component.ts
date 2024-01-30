@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Inscricao } from 'src/app/interfaces/dto/inscricao';
 import { InscricaoService } from 'src/app/routes/inscricao.service';
 import { LoginService } from 'src/app/routes/login.service';
-import { PerguntaWithAlternativaService } from 'src/app/routes/perguntaWithAlternativa.service';
 import { NotifierService } from 'src/app/services/notifier.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-list-inscricoes',
@@ -13,11 +13,10 @@ import { NotifierService } from 'src/app/services/notifier.service';
 })
 export class ListInscricoesComponent implements OnInit {
   constructor(
-    private activedRouter: ActivatedRoute,
     private inscricaoService: InscricaoService,
     private login: LoginService,
     private router: Router,
-    private toast: NotifierService
+    private utils: UtilsService
   ) {}
 
   user: number = 0;
@@ -32,12 +31,14 @@ export class ListInscricoesComponent implements OnInit {
         var data = JSON.parse(JSON.stringify(res));
         this.inscricao = data;
 
-        console.log(this.inscricao);
+        this.inscricao.forEach((element) => {
+          element.created = this.utils.formatarData(element.created);
+        });
       });
     });
   }
 
   infoInscrica(inscricao: Inscricao) {
-    this.router.navigateByUrl(`/inscricao/info/${inscricao.id}`)
+    this.router.navigateByUrl(`/inscricao/info/${inscricao.id}`);
   }
 }

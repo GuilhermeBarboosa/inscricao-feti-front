@@ -112,8 +112,6 @@ export class AlternativaTableComponent implements OnInit {
       .subscribe((data) => {
         var alternativasResponse = JSON.parse(JSON.stringify(data));
 
-        console.log(alternativasResponse)
-
         alternativasResponse.map((alternativa: Alternativa) => {
           if (alternativa.actived) {
             alternativa.actived = 'Ativo';

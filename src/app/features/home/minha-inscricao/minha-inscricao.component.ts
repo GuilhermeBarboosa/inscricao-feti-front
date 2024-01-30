@@ -20,15 +20,16 @@ export class MinhaInscricaoComponent implements OnInit {
     private toast: NotifierService
   ) {}
 
+  idUser = 0;
   id = this.activedRouter.snapshot.params['id'];
   inscricao!: Inscricao;
 
   async ngOnInit() {
 
-    // await this.login.obterClaims().subscribe((res) => {
-    //   var data = JSON.parse(JSON.stringify(res));
-    //   this.user = data.id
-    // })
+    await this.login.obterClaims().subscribe((res) => {
+      var data = JSON.parse(JSON.stringify(res));
+      this.idUser = data.id
+    })
 
 
 
@@ -37,6 +38,11 @@ export class MinhaInscricaoComponent implements OnInit {
     .subscribe((res) => {
       var data = JSON.parse(JSON.stringify(res));
       this.inscricao = data;
+
+      if(this.inscricao.idUser != this.idUser){
+        this.toast.showWarning('Você não tem permissão para acessar esta página')
+        this.router.navigateByUrl('/inicio')
+      }
     });
   }
 

@@ -56,7 +56,6 @@ export class RegisterCandidatoComponent  implements OnInit{
     ) {
       this.notifier.showError('As senhas não coincidem!');
     } else {
-      console.log(this.registerForm)
       this.getFormValidationErrors();
       if (this.registerForm.valid) {
         let userDTO = {
@@ -74,9 +73,6 @@ export class RegisterCandidatoComponent  implements OnInit{
         };
 
         let userInput = new UserInput(userDTO);
-
-        console.log(userInput)
-
         this.userService.createCandidato(userInput).subscribe(
           (data) => {
             this.notifier.showSuccess('Usuário cadastrado com sucesso!');
