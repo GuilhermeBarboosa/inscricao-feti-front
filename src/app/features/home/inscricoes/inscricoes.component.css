@@ -4,8 +4,11 @@
 
 /* The styling below is custom in that we require the :checked Pseudo class, which Tailwind doesn't offer out of the box. However the styling (border color and box shadow) the below applies is native Tailwind. */
 input:checked + label {
-	border-color: rgb(4, 0, 255);
-	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  color: rgb(4, 0, 255);
+  border: 1px solid #0057ff;
+	border-color: #0057ff;
+  background-color: #0057ff;
+  color : #ffff;
+	box-shadow: 0 7px 10px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  /* color: #0057ff; */
 }
 

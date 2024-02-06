@@ -1,8 +1,8 @@
-<section class="flex items-center h-screen justify-center p-5 bg-gray-100">
+<section class="flex items-center justify-center p-5 bg-gray-100">
   <div
     class="md:w-screen lg:w-screen sm:flex sm:justify-center md:flex md:justify-center"
   >
-    <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
+    <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-4xl xl:p-0">
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
         <h1 class="text-xl font-bold leading-tight tracking-tight md:text-2xl">
           Register
@@ -72,7 +72,9 @@
             </div>
 
             <div class="col">
-              <label for="data_de_nascimento" class="block text-md font-medium text-gray-500"
+              <label
+                for="data_de_nascimento"
+                class="block text-md font-medium text-gray-500"
                 >Data de nascimento</label
               >
               <input
@@ -183,7 +185,22 @@
             />
           </div>
 
-          <div class="flex items-center justify-end">
+          <div class="flex items-center justify-between">
+            <div class="flex items-end">
+
+                <a
+                  routerLink="/login-candidato/login"
+                  routerLinkActive="active"
+                  class="dv-underline dv-blue dv-cursor flex"
+                  ><img
+                    class="dv-vertical-align-middle dv-margin-right-ldpi flex"
+                    src="../../../../assets/icon/blue-back.svg"
+                    width="16"
+                  />Voltar</a
+                >
+
+            </div>
+
             <div class="flex items-end">
               <button
                 (click)="register()"

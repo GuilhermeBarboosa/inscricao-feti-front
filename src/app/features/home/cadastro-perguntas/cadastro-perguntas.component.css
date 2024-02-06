@@ -1,7 +1,183 @@
 /* The styling below is custom in that we require the :checked Pseudo class, which Tailwind doesn't offer out of the box. However the styling (border color and box shadow) the below applies is native Tailwind. */
 input:checked + label {
-	border-color: rgb(4, 0, 255);
-	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-color: rgb(4, 0, 255);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
   color: rgb(4, 0, 255);
 }
 
+input,
+textarea,
+select {
+  border: solid 1px #bdbdbd;
+  outline: none;
+}
+
+input:hover,
+textarea:hover,
+select:hover {
+  border: solid 1px #ffffff;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+  border: solid 1px #0057ff;
+  outline-width: 4px;
+  outline-style: solid;
+  /* outline-color: #bbdefb; */
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  display: none;
+  width: auto;
+}
+
+input[type="checkbox"] + label {
+  position: relative;
+  background: #ffffff;
+  border: solid 1px #bdbdbd;
+  cursor: pointer;
+  user-select: none;
+}
+
+input[type="checkbox"] + label::after {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 16px;
+  height: 16px;
+  background-image: url("/../../../../assets/icon/rectangle.svg");
+  background-size: 16px 16px;
+  content: "";
+  color: #ffffff;
+}
+
+input[type="checkbox"] + label:hover {
+  border: solid 1px #ffffff;
+}
+
+input[type="checkbox"]:checked + label {
+  background: #0057ff;
+  border: solid 1px #0057ff;
+  color: #ffffff;
+}
+
+input[type="checkbox"]:checked + label::after {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 16px;
+  height: 16px;
+  background-image: url("/../../../../assets/icon/check-rectangle-shape.svg");
+  background-size: 16px 16px;
+  content: "";
+  color: #ffffff;
+}
+
+input[type="checkbox"]:checked + label:hover {
+  border: solid 1px #0057ff;
+}
+
+input[type="radio"] + label {
+  position: relative;
+  background: #ffffff;
+  border: solid 1px #bdbdbd;
+  cursor: pointer;
+  user-select: none;
+}
+
+input[type="radio"] + label::after {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 16px;
+  height: 16px;
+  background-image: url("/../../../../assets/icon/circle.svg");
+  background-size: 16px 16px;
+  content: "";
+  color: #ffffff;
+}
+
+input[type="radio"] + label:hover {
+  border: solid 1px #ffffff;
+}
+
+input[type="radio"]:checked + label {
+  background: #0057ff;
+  border: solid 1px #0057ff;
+  color: #ffffff;
+}
+
+input[type="radio"]:checked + label::after {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 16px;
+  height: 16px;
+  background-image: url("/../../../../assets/icon/check-circle-shape.svg");
+  background-size: 16px 16px;
+  content: "";
+  color: #ffffff;
+}
+
+input[type="radio"]:checked + label:hover {
+  border: solid 1px #0057ff;
+}
+
+input[type="file"] {
+  display: none;
+  width: auto;
+}
+
+input[type="file"] + label {
+  position: relative;
+  background: #ffffff;
+  border: solid 1px #bdbdbd;
+  cursor: pointer;
+  user-select: none;
+}
+
+input[type="file"] + label:hover {
+  border: solid 1px #ffffff;
+}
+
+.dv-input-file-label-empty {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 16px;
+  height: 16px;
+  background-image: url("/../../../../assets/icon/rectangle.svg");
+  background-size: 16px 16px;
+  color: #ffffff;
+}
+
+.dv-input-file-label-fill {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 16px;
+  height: 16px;
+  background-image: url("/../../../../assets/icon/check-rectangle-shape.svg");
+  background-size: 16px 16px;
+  color: #ffffff;
+}
+
+label,
+input,
+textarea,
+select {
+  width: 100%;
+  line-height: 160%;
+  border: none !important;
+}
+
+input,
+textarea,
+select {
+  border: solid 1px #bdbdbd;
+  outline: none;
+}

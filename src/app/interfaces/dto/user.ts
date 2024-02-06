@@ -1,10 +1,24 @@
-import { DefaultDto } from "./defaultDto";
-import { Role } from "./role";
+import { DefaultDto } from './defaultDto';
+import { Role } from './role';
 
-export interface User extends DefaultDto{
-    name: string;
-    email: string;
-    password: string;
-    idRole: number;
-    role: string;
+export interface User extends DefaultDto {
+  name: string;
+  email: string;
+  password: string;
+  idRole: number;
+  role: string;
+  //PARTE DE CANDADITOS
+  cpf: string;
+
+  data_de_nascimento: string;
+
+  rua: string;
+
+  bairro: string;
+
+  cep: string;
+
+  cidade: string;
+
+  telefone: string;
 }

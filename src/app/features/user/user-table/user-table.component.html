@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<!-- <app-navbar></app-navbar> -->
 
 <app-sidebar></app-sidebar>
 <div class="home-section">
@@ -136,10 +136,10 @@
                 <i class="bx bx-info-circle" (click)="info(user)"> </i>
               </div>
               <div *ngIf="user.actived == 'Ativo' && role == 'ADMIN'"  class="flex">
-                <i class="bx bx-trash" (click)="openDialog(user)"></i>
+                <i class="bx bx-trash cursor-pointer" (click)="openDialog(user)"></i>
               </div>
               <div *ngIf="user.actived == 'Desativado' && role == 'ADMIN'" class="flex">
-                <i class="bx bx-check"  (click)="ativar(user)"></i>
+                <i class="bx bx-check cursor-pointer"  (click)="ativar(user)"></i>
               </div>
             </mat-cell>
           </th >

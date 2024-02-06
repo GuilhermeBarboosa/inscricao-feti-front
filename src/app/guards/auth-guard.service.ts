@@ -43,7 +43,7 @@ export class AuthGuardService {
       const roleJson = JSON.parse(JSON.stringify(route.data));
       let roleArray = roleJson.rolesArray;
       let permission = false;
-      
+
       roleArray.forEach((element: any) => {
         if (element.role == userRole) {
           permission = true;

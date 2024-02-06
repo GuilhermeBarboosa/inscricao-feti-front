@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
           this.loginService.obterClaims().subscribe(
             (data: any) => {
               var data = JSON.parse(JSON.stringify(data));
+              this.cookieService.setCookie("user", data.user);
               this.notifier.showSuccess('Login efetuado com sucesso!');
               this.router.navigate(['/user']);
             },

@@ -49,6 +49,8 @@ export class LoginCandidatoComponent implements OnInit {
           this.loginService.obterClaims().subscribe(
             (data: any) => {
               var data = JSON.parse(JSON.stringify(data));
+              console.log(data)
+              this.cookieService.setCookie("user", data.name);
               this.notifier.showSuccess('Login efetuado com sucesso!');
               this.router.navigateByUrl('/inicio');
             },

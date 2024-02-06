@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<!--  <app-navbar></app-navbar> --> 
 
 <app-sidebar></app-sidebar>
 <div class="home-section">
@@ -144,14 +144,17 @@
             <mat-header-cell mat-header-cell *matHeaderCellDef>
             </mat-header-cell>
             <mat-cell mat-cell *matCellDef="let edital">
+              <div class="flex cursor-pointer">
+                <i class="bx bx-download" (click)="downloadEdital(edital.id)"> </i>
+              </div>
               <div class="flex">
                 <i class="bx bx-info-circle" (click)="info(edital)"> </i>
               </div>
               <div *ngIf="edital.actived == 'Ativo' && role == 'ADMIN'"  class="flex">
-                <i class="bx bx-trash" (click)="openDialog(edital)"></i>
+                <i class="bx bx-trash cursor-pointer" (click)="openDialog(edital)"></i>
               </div>
               <div *ngIf="edital.actived == 'Desativado' && role == 'ADMIN'" class="flex">
-                <i class="bx bx-check"  (click)="ativar(edital)"></i>
+                <i class="bx bx-check cursor-pointer"  (click)="ativar(edital)"></i>
               </div>
             </mat-cell>
           </th >

@@ -5,6 +5,7 @@ import { UtilsService } from 'src/app/services/utils.service';
 import { UserService } from '../../../routes/user.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/dto/user';
+import { TokenJwtService } from '../../../services/token-jwt.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,6 +16,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private userService: UserService,
     private loginService: LoginService,
+    private token: TokenJwtService,
     private router: Router,
     private formBuilder: FormBuilder,
     private utils: UtilsService

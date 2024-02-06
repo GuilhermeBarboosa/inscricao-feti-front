@@ -25,6 +25,12 @@ export const routes: Routes = [
     canActivate: [LoginGuardService],
   },
   {
+    path: 'politica',
+    loadChildren: () =>
+      import('./modules/politica/politica.module').then((m) => m.PoliticaModule),
+    // canActivate: [LoginGuardService],
+  },
+  {
     path: 'inicio',
     loadChildren: () =>
       import('./modules/inicio/inicio.module').then((m) => m.InicioModule),

@@ -15,5 +15,6 @@ export interface Inscricao extends DefaultDto {
   funcao: string;
   pontuacao: number;
   situacao: string;
+  idSituacao: number;
   inscricaoResposta: InscricaoResposta[];
 }

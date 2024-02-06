@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Router } from '@angular/router';
-import { NotifierService } from '../services/notifier.service';
-import { LoginInput } from '../interfaces/input/loginInput';
 import { environment } from 'src/environment';
+import { LoginInput } from '../interfaces/input/loginInput';
+import { NotifierService } from '../services/notifier.service';
 
 @Injectable({
   providedIn: 'root',
@@ -51,6 +51,8 @@ export class LoginService {
   logout() {
     localStorage.clear();
     this.notifier.showInfo('Você não está logado');
-    this.router.navigate(['/login-candidato/login/']);
+
+      this.router.navigate(['/login-candidato/login/']);
+
   }
 }

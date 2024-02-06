@@ -7,4 +7,5 @@ export interface InscricaoResposta extends DefaultDto {
   pergunta: string;
   idAlternativa: number;
   alternativa: string;
+  pontuacao: number;
 }

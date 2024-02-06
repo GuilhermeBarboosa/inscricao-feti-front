@@ -1,0 +1,15 @@
+label,
+input,
+textarea,
+select {
+  width: 100%;
+  line-height: 160%;
+  border: none !important;
+}
+
+input,
+textarea,
+select {
+  border: solid 1px #bdbdbd;
+  outline: none;
+}

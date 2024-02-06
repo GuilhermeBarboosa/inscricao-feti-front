@@ -20,7 +20,6 @@ export class SidebarComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-
     this.role = await this.token.getRole();
   }
 

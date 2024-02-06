@@ -20,6 +20,7 @@ export class ListInscricoesComponent implements OnInit {
   ) {}
 
   user: number = 0;
+  length = 0;
   inscricao: Inscricao[] = [];
 
   async ngOnInit() {
@@ -31,6 +32,9 @@ export class ListInscricoesComponent implements OnInit {
         var data = JSON.parse(JSON.stringify(res));
         this.inscricao = data;
 
+        if(this.inscricao.length != 0){
+          this.length = this.inscricao.length
+        }
         this.inscricao.forEach((element) => {
           element.created = this.utils.formatarData(element.created);
         });

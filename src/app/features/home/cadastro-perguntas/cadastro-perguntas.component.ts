@@ -1,16 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrModule } from 'ngx-toastr';
 import { PerguntaWithAlternativa } from 'src/app/interfaces/dto/perguntaWithAlternativa';
 import { InscricaoInput } from 'src/app/interfaces/input/inscricaoInput';
 import { PerguntaRespostaInput } from 'src/app/interfaces/input/pergunta_respostaInput';
 import { InscricaoService } from 'src/app/routes/inscricao.service';
 import { LoginService } from 'src/app/routes/login.service';
 import { PerguntaWithAlternativaService } from 'src/app/routes/perguntaWithAlternativa.service';
-import { CookieService } from 'src/app/services/cookie.service';
 import { NotifierService } from 'src/app/services/notifier.service';
-import { TokenJwtService } from 'src/app/services/token-jwt.service';
 
 @Component({
   selector: 'app-cadastro-perguntas',

@@ -125,6 +125,12 @@ export class EditalTableComponent implements OnInit {
     });
   }
 
+  downloadEdital(id: number | undefined) {
+    this.editalService.downloadEdital(id).subscribe((data) => {
+      this.utils.saveArquivo(data);
+    });
+  }
+
   getByInativo() {
     this.editalArray.filter = 'Desativado';
   }

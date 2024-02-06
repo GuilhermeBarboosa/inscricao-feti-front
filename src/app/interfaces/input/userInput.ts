@@ -26,7 +26,7 @@ export class UserInput {
     this.name = user.name;
     this.email = user.email;
     this.password = user.password;
-    this.role = user.role!;
+    this.role = user.role;
 
     //PARTE DE CANDADITOS
     this.cpf = user.cpf;
@@ -36,6 +36,6 @@ export class UserInput {
     this.cep = user.cep;
     this.cidade = user.cidade;
     this.telefone = user.telefone;
-    
+
   }
 }

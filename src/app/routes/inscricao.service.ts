@@ -4,12 +4,9 @@ import { environment } from 'src/environment';
 import { InscricaoInput } from '../interfaces/input/inscricaoInput';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class InscricaoService{
-
-
-
+export class InscricaoService {
   constructor(private http: HttpClient) {}
 
   HttpHeaders = new HttpHeaders({
@@ -27,6 +24,12 @@ export class InscricaoService{
 
   create(inscricao: InscricaoInput) {
     return this.http.post(`${this.urlInscricao}`, inscricao, {
+      headers: this.HttpHeaders,
+    });
+  }
+
+  editPontuacao(editInscricao: any, id: number) {
+    return this.http.put(`${this.urlInscricao}/${id}`, editInscricao ,{
       headers: this.HttpHeaders,
     });
   }
@@ -71,7 +74,7 @@ export class InscricaoService{
     });
   }
 
-  getInscricaoWithPerguntas(id: number){
+  getInscricaoWithPerguntas(id: number) {
     return this.http.get(`${this.urlInscricao}/infoAll/${id}`, {
       headers: this.HttpHeaders,
     });

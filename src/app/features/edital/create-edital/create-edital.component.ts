@@ -54,7 +54,7 @@ export class CreateEditalComponent implements OnInit {
 
   async createTable() {
     this.formulario = this.formBuilder.group({
-      edital: ['fdsfsd', [Validators.required, Validators.minLength(3)]],
+      edital: ['', [Validators.required, Validators.minLength(3)]],
       data_inicio: ['22/11/2025', [Validators.required]],
       data_fim: ['22/11/2025', [Validators.required]],
       qtd_vagas: ['23', Validators.required],
@@ -66,9 +66,17 @@ export class CreateEditalComponent implements OnInit {
     const selectedFile: File = <File>event.target.files[0];
 
     if (selectedFile) {
-      const formData = new FormData();
-      formData.append('file', selectedFile);
-      this.formulario.get("arquivo")!.setValue(formData.get('file'));
+      // Verificar a extensão do arquivo
+      const isPDF = selectedFile.name.toLowerCase().endsWith('.pdf');
+
+      if (isPDF) {
+        const formData = new FormData();
+        formData.append('file', selectedFile);
+        this.formulario.get('arquivo')!.setValue(formData.get('file'));
+      } else {
+        this.notifier.showError('Arquivo inválido! Selecione um arquivo PDF.');
+        this.formulario.get('arquivo')!.setValue(null);
+      }
     }
   }
 
@@ -82,7 +90,6 @@ export class CreateEditalComponent implements OnInit {
         arquivo: this.formulario.get('arquivo')?.value,
       };
 
-
       editalDTO.data_inicio = this.utilsService.formatarDataToSQL(
         editalDTO.data_inicio
       );
@@ -95,11 +102,17 @@ export class CreateEditalComponent implements OnInit {
 
       this.editalService.create(editalInput).subscribe(
         (data) => {
-          this.notifier.showSuccess('Edital cadastrado com sucesso!');
-          this.router.navigateByUrl('/edital');
+          var dataResponse = JSON.parse(JSON.stringify(data));
+
+          this.editalService.uploadFile(this.formulario.get('arquivo')?.value, dataResponse.id).subscribe((response) => {
+
+            this.notifier.showSuccess('Edital cadastrado com sucesso!');
+            this.router.navigateByUrl('/edital');
+          });
         },
         (error) => {
-          this.notifier.showError(error.error);
+          console.log(error)
+          this.notifier.showError(error.error.message);
         }
       );
     } else {

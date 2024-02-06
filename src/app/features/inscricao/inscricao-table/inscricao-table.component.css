@@ -3,3 +3,11 @@
   font-size: 30px;
   padding: 0px 5px 0px 5px;
 }
+
+.bx-edit-alt:hover{
+  color: #007bff;
+}
+
+.Aprovado{
+  color: #28a745;
+}

@@ -28,17 +28,17 @@ export const PerguntaRoutes: Routes = [
   {
     path: 'funcao/:idFuncao',
     component: CadastroPerguntasComponent,
-    canActivate: [AuthGuardService],
-    data: {
-      rolesArray:[
-         {
-          role: roles.ROLE_ADMIN
-         },
-         {
-          role: roles.ROLE_SECRETARIO
-         }
-      ]
-    },
+    // canActivate: [AuthGuardService],
+    // data: {
+    //   rolesArray:[
+    //      {
+    //       role: roles.ROLE_ADMIN
+    //      },
+    //      {
+    //       role: roles.ROLE_SECRETARIO
+    //      }
+    //   ]
+    // },
   },
   {
     path: ':idFuncao/register',

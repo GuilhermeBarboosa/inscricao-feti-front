@@ -11,11 +11,13 @@ import { SharedModule } from '../shared.module';
 import { InscricaoRoutes } from './inscricao.routing';
 import { InscricaoTableComponent } from 'src/app/features/inscricao/inscricao-table/inscricao-table.component';
 import { InfoAllInscricaoComponent } from 'src/app/features/inscricao/info-all-inscricao/info-all-inscricao.component';
+import { EditInscricaoComponent } from 'src/app/features/inscricao/edit-inscricao/edit-inscricao.component';
 @NgModule({
   declarations: [
     InscricoesComponent,
     InscricaoTableComponent,
-    InfoAllInscricaoComponent
+    InfoAllInscricaoComponent,
+    EditInscricaoComponent
   ],
   imports: [
     CommonModule,

@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import * as saveAs from 'file-saver';
+import * as CryptoJS from 'crypto-js';
 
 @Injectable({
   providedIn: 'root',
@@ -78,4 +80,36 @@ export class UtilsService {
 
     return array.slice().sort(compararEdital);
   }
+
+  saveArquivo(data: Blob) {
+    const contentDispositionHeader: string | null = 'file';
+    let hash = this.generateSHA256Hash();
+    const filenameRegex: RegExp = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+    const matches: RegExpMatchArray | null = contentDispositionHeader
+      ? contentDispositionHeader.match(filenameRegex)
+      : null;
+    const filename: string =
+      matches && matches.length > 1 ? matches[1] : `${hash}.pdf`;
+
+    saveAs(data, filename);
+  }
+
+  generateSHA256Hash(): string {
+    const randomWord = this.generateRandomWord();
+    return CryptoJS.SHA256(randomWord).toString(CryptoJS.enc.Hex);
+  }
+
+  private generateRandomWord(): string {
+    const randomWordLength = 10;
+    const characters =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let randomWord = '';
+    for (let i = 0; i < randomWordLength; i++) {
+      randomWord += characters.charAt(
+        Math.floor(Math.random() * characters.length)
+      );
+    }
+    return randomWord;
+  }
+
 }

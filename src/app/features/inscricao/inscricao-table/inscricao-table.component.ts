@@ -26,7 +26,7 @@ export class InscricaoTableComponent implements OnInit {
     'edital',
     'funcao',
     'pontuacao',
-    'status',
+    'situacao',
     'acoes',
   ];
   Adicionar = 'Adicionar';
@@ -74,6 +74,10 @@ export class InscricaoTableComponent implements OnInit {
     this.router.navigateByUrl(`inscricao/infoAll/${inscricao.id}`);
   }
 
+  edit(inscricao: Inscricao) {
+    this.router.navigateByUrl(`inscricao/edit/${inscricao.id}`)
+  }
+
   ativar(inscricao: Inscricao) {
     let inscricaoInput = new InscricaoInput(
       [],
@@ -118,7 +122,6 @@ export class InscricaoTableComponent implements OnInit {
       var inscricaoResponse = JSON.parse(JSON.stringify(data));
 
       inscricaoResponse.map((inscricao: Inscricao) => {
-
         if (inscricao.actived) {
           inscricao.actived = 'Ativo';
         } else {
@@ -137,5 +140,4 @@ export class InscricaoTableComponent implements OnInit {
   getByAtivo() {
     this.inscricaoArray.filter = 'Ativo';
   }
-
 }

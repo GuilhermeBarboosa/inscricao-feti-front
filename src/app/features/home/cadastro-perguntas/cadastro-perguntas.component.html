@@ -1,60 +1,195 @@
-<div class="screen" *ngFor="let p of list; let i = index">
-  <form [formGroup]="getPerguntaForm(i)">
+<app-navbar></app-navbar>
 
-    <div class="hidden">
-      <label for="idPergunta">ID Pergunta:</label>
-      <input type="text" formControlName="idPergunta" />
-      <label for="pergunta">Pergunta:</label>
-      <input type="text" formControlName="pergunta" />
-    </div>
-
-    <p>{{ p.pergunta }}</p>
-
-    <div  class="flex grid grid-cols-10 gap-3" formArrayName="alternativas">
-      <div *ngFor="let a of p.listAlternativas; let j = index" [formGroupName]="j">
-
-        <div class="hidden col">
-          <label for="idAlternativa">ID Alternativa:</label>
-          <input type="text" formControlName="idAlternativa" />
-
-          <label for="alternativa">Alternativa:</label>
-          <input type="text" formControlName="alternativa" />
-
-          <label for="pontuacao">Pontuação:</label>
-          <input type="text" formControlName="pontuacao" />
-
-        </div>
-
-        <div class="col">
-          <input
-            class="hidden"
-            type="radio"
-            name="idAlternativa"
-            id="{{ a.alternativa }}"
-            value="{{ a.id }}"
-            required=""
-            (click)="setResposta(p.idPergunta, a.id, a.pontuacao)"
-          />
-          <label
-            class="flex flex-col text-center items-center p-4 border-2 border-gray-400 cursor-pointer"
-            for="{{ a.alternativa }}"
-          >
-            <!-- <span class="text-xs font-semibold uppercase">Cargo</span> -->
-            <span class="text-xl font-bold mt-2">{{ a.alternativa }}</span>
-          </label>
+<div class="dv-line dv-border-bottom">
+  <div class="dv-column">
+    <div class="dv-center">
+      <div class="dv-line">
+        <div class="dv-column">
+          <div class="dv-padding-hdpi">
+            <p class="dv-gray flex">
+              <span
+                routerLink="/inicio"
+                routerLinkActive="active"
+                class="dv-underline dv-blue dv-cursor flex"
+                ><img
+                  class="dv-vertical-align-middle dv-margin-right-ldpi"
+                  src="/../../../../assets/icon/blue-home.svg"
+                  width="16"
+                />Início</span
+              >
+              /
+              <span
+                routerLink="/edital/visualizareditais"
+                routerLinkActive="active"
+                class="dv-underline dv-blue dv-cursor"
+                >Processos seletivos em aberto</span
+              >
+              /
+              <span
+                routerLink="/inscricao/fazerinscricao/{{ this.idEdital }}"
+                routerLinkActive="active"
+                class="dv-underline dv-blue dv-cursor"
+                >Cargos</span
+              >
+              / Inscrição
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </form>
+  </div>
+</div>
+
+<div class="dv-center">
+  <div class="dv-line">
+    <div class="dv-column">
+      <div
+        class="dv-padding-top-hdpi dv-padding-right-hdpi dv-padding-left-hdpi"
+      >
+        <p
+          class="dv-padding-hdpi dv-blue-border-left dv-blue-light-bg dv-blue flex"
+        >
+          <img
+            class="dv-vertical-align-middle dv-margin-right-ldpi"
+            src="/../../../../assets/icon/blue-info.svg"
+            width="16"
+          />Atenção! Após você concluir a inscrição, não será possível alterar
+          os dados informados.
+        </p>
+
+        <!-- <p class="dv-padding-hdpi dv-blue-border-left dv-blue-light-bg dv-blue"><img class="dv-vertical-align-middle dv-margin-right-ldpi" src="/../../../../assets/icon/blue-info.svg" width="16">IMPORTANTE! será comprovado com o anexo de arquivo, contendo todos os documentos comprobatórios.</p> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dv-line">
+  <div class="dv-column">
+    <div class="dv-center">
+      <div class="dv-line">
+        <div class="dv-column">
+          <div class="dv-padding-hdpi" *ngFor="let p of list; let i = index">
+            <form id="dv-form" [formGroup]="getPerguntaForm(i)">
+              <div class="hidden">
+                <label for="idPergunta">ID Pergunta:</label>
+                <input type="text" formControlName="idPergunta" />
+                <label for="pergunta">Pergunta:</label>
+                <input type="text" formControlName="pergunta" />
+              </div>
+
+              <p class="dv-margin-bottom-mdpi dv-bold">
+                {{ i + 1 }}) {{ p.pergunta }}
+              </p>
+
+              <div formArrayName="alternativas" class=" dv-border-dashed">
+                <div
+                  *ngFor="let a of p.listAlternativas; let j = index"
+                  [formGroupName]="j"
+                  class="dv-margin-bottom-ldpi dv-margin-ldpi dv-text-align-center dv-radius dv-border"
+                >
+                  <div class="hidden col">
+                    <label for="idAlternativa">ID Alternativa:</label>
+                    <input type="text" formControlName="idAlternativa" />
+
+                    <label for="alternativa">Alternativa:</label>
+                    <input type="text" formControlName="alternativa" />
+
+                    <label for="pontuacao">Pontuação:</label>
+                    <input type="text" formControlName="pontuacao" />
+                  </div>
+
+                  <div class="">
+                    <div class="dv-line">
+                      <div class="dv-column">
+                        <div class="dv-line dv-full-height">
+                          <div class="dv-column dv-text-align-center">
+                            <div class="dv-padding-ldpi">
+                              <input
+                                class="hidden"
+                                type="radio"
+                                name="idAlternativa"
+                                id="{{ a.alternativa }}"
+                                value="{{ a.id }}"
+                                required=""
+                                (click)="
+                                  setResposta(p.idPergunta, a.id, a.pontuacao)
+                                "
+                              />
+
+                              <label
+                                class="dv-display-inline dv-padding-top-mdpi dv-padding-right-hdpi dv-padding-bottom-mdpi dv-padding-left-hdpi dv-radius"
+                                for="{{ a.alternativa }}"
+                                >{{ a.alternativa }}</label
+                              >
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="dv-line">
+            <div class="dv-column">
+              <div
+                class="dv-padding-bottom-hdpi dv-padding-right-hdpi dv-padding-left-hdpi"
+              >
+                <p
+                  class="dv-padding-hdpi dv-blue-border-left dv-blue-light-bg dv-radius dv-blue flex"
+                >
+                  <img
+                    class="dv-vertical-align-middle dv-margin-right-ldpi"
+                    src="/../../../../assets/icon/blue-upload.svg"
+                    width="16"
+                  />
+
+                  Para concluir a inscrição, anexar a documentação conforme o
+                  edital.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="dv-line dv-padding-right-hdpi">
+            <div class="dv-column dv-horizontal-align-right">
+              <div class="dv-padding-bottom-mdpi">
+                <button
+                  type="submit"
+                  class="flex items-center dv-padding-mdpi dv-text-align-center dv-radius dv-blue-border dv-blue-bg dv-white dv-underline dv-cursor"
+                >
+                  <img
+                    class="dv-vertical-align-middle dv-margin-right-ldpi"
+                    src="/../../../../assets/icon/white-check.svg"
+                    width="16"
+                  />Inserir documentos
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="dv-line dv-padding-right-hdpi dv-padding-bottom-hdpi">
+            <div class="dv-column dv-text-align-right">
+              <div class="">
+                <a routerLink="/inicio" routerLinkActive="active" class="">
+                  <p class="justify-end dv-cursor dv-underline dv-red flex">
+                    <img
+                      class="dv-vertical-align-middle dv-margin-right-ldpi"
+                      src="/../../../../assets/icon/red-close.svg"
+                      width="16"
+                    />Cancelar a operação
+                  </p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 
-<div class="flex justify-end">
-  <button
-    (click)="realizarInscricao()"
-    type="button"
-    class="w-20 flex justify-center text-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none"
-  >
-    Realizar cadastro
-  </button>
-</div>
+
+<app-footer></app-footer>

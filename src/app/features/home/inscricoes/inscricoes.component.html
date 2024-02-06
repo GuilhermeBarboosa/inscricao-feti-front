@@ -1,41 +1,106 @@
-<div
-  class="min-h-screen flex justify-center items-center"
->
-  <div class="m-5">
-    <form
-      class="grid grid-cols-3 gap-2 w-full"
-      [formGroup]="formulario"
-      *ngIf="formulario"
-    >
-      <div *ngFor="let f of funcoes">
-        <div class="">
-          <input
-            class="hidden"
-            type="radio"
-            formControlName="idFuncao"
-            id="{{ f.funcao }}"
-            value="{{ f.id }}"
-            required=""
-          />
-          <label
-            class="flex flex-col block p-6 bg-white border rounded-lg shadow hover:bg-gray-100 border-2 border-gray-400 cursor-pointer"
-            for="{{ f.funcao }}"
-          >
-            <span class="text-xs font-semibold">Cargo</span>
-            <span class="text-xl font-bold mt-2">{{ f.funcao }}</span>
-          </label>
+<app-navbar></app-navbar>
+<div class="dv-line dv-border-bottom">
+  <div class="dv-column">
+    <div class="dv-center">
+      <div class="dv-line">
+        <div class="dv-column">
+          <div class="dv-padding-hdpi">
+            <p class="dv-gray flex">
+              <span
+                routerLink="/inicio" routerLinkActive="active"
+                class="dv-underline dv-blue dv-cursor flex"
+                ><img
+                  class="flex dv-vertical-align-middle dv-margin-right-ldpi"
+                  src="./../../../assets/icon/blue-home.svg"
+                  width="16"
+                />Início</span
+              >
+              /
+              <span
+              routerLink="/edital/visualizareditais" routerLinkActive="active"
+                class="dv-underline dv-blue dv-cursor"
+                >Processos seletivos em aberto</span
+              >
+              / Cargos
+            </p>
+          </div>
         </div>
       </div>
-    </form>
-
-    <div class="flex justify-end">
-      <button
-        (click)="realizarInscricao()"
-        type="button"
-        class="w-20 flex justify-center text-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 m-5 focus:outline-none"
-      >
-        Realizar cadastro
-      </button>
     </div>
   </div>
 </div>
+
+<div class="dv-line">
+  <div class="dv-column">
+    <div class="dv-center">
+      <div class="dv-line">
+        <div class="dv-column">
+          <div class="dv-padding-mdpi">
+            <div class="dv-line">
+              <div class="dv-column">
+                <div class="dv-padding-mdpi">
+                  <div class="dv-line">
+                    <div class="dv-column dv-border dv-radius">
+                      <div class="dv-padding-hdpi">
+                        <div class="dv-line">
+                          <div class="dv-column">
+                            <div class="m-5">
+
+                              <p class="mb-2">Selecione a função: </p>
+                              <form
+                                class="grid grid-cols-3 gap-2 w-full"
+                                [formGroup]="formulario"
+                                *ngIf="formulario"
+                              >
+                                <div *ngFor="let f of funcoes">
+                                  <div class="">
+                                    <input
+                                      class="hidden"
+                                      type="radio"
+                                      formControlName="idFuncao"
+                                      id="{{ f.funcao }}"
+                                      value="{{ f.id }}"
+                                      required=""
+                                    />
+                                    <label
+                                      class="flex flex-col block p-6 bg-white border rounded-lg shadow hover:bg-gray-100 border-2 border-gray-200 cursor-pointer"
+                                      for="{{ f.funcao }}"
+                                    >
+                                      <span class="text-xs font-semibold"
+                                        >Cargo</span
+                                      >
+                                      <span class="text-xl font-bold mt-2">{{
+                                        f.funcao
+                                      }}</span>
+                                    </label>
+                                  </div>
+                                </div>
+                              </form>
+
+                              <div class="flex justify-end">
+                                <button
+                                  (click)="realizarInscricao()"
+                                  type="button"
+                                  class=" flex justify-center text-center text-white blue-codiub hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mt-5 focus:outline-none"
+                                >
+                                  Realizar cadastro
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<app-footer></app-footer>

@@ -62,7 +62,6 @@ export class InscricoesComponent implements OnInit {
           this.router.navigate([`/edital/perguntas/funcao/${idFuncao}`]);
         } catch (e) {
           console.error(e);
-          // this.toast.showSuccess("Inscrição permitida");
         }
       },
       (error) =>{

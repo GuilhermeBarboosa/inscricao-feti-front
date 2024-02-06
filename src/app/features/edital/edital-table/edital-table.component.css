@@ -3,3 +3,11 @@
   font-size: 30px;
   padding: 0px 5px 0px 5px;
 }
+
+.bx-download{
+  color: #007bff;
+}
+
+.bx-download:hover{
+  color: #0056b3;
+}

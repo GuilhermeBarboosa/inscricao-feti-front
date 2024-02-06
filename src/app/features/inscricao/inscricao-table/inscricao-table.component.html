@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<!-- <app-navbar></app-navbar> -->
 
 <app-sidebar></app-sidebar>
 <div class="home-section">
@@ -127,13 +127,13 @@
             </mat-cell>
           </th >
 
-          <th  matColumnDef="status">
+          <th  matColumnDef="situacao">
             <div>
               <mat-header-cell mat-header-cell *matHeaderCellDef>
-                Status
+                Situação
               </mat-header-cell>
               <mat-cell mat-cell *matCellDef="let inscricao">
-                {{ inscricao.actived }}
+                {{ inscricao.situacao }}
               </mat-cell>
             </div>
           </th >
@@ -143,13 +143,16 @@
             </mat-header-cell>
             <mat-cell mat-cell *matCellDef="let inscricao">
               <div class="flex">
+                <i class="bx bx-edit-alt" (click)="edit(inscricao)"> </i>
+              </div>
+              <div class="flex">
                 <i class="bx bx-info-circle" (click)="info(inscricao)"> </i>
               </div>
               <div *ngIf="inscricao.actived == 'Ativo' && role == 'ADMIN'"  class="flex">
-                <i class="bx bx-trash" (click)="openDialog(inscricao)"></i>
+                <i class="bx bx-trash cursor-pointer" (click)="openDialog(inscricao)"></i>
               </div>
               <div *ngIf="inscricao.actived == 'Desativado' && role == 'ADMIN'" class="flex">
-                <i class="bx bx-check"  (click)="ativar(inscricao)"></i>
+                <i class="bx bx-check cursor-pointer"  (click)="ativar(inscricao)"></i>
               </div>
             </mat-cell>
           </th >

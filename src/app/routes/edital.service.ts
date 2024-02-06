@@ -7,6 +7,7 @@ import { EditalInput } from '../interfaces/input/editalInput';
   providedIn: 'root',
 })
 export class EditalService {
+
   constructor(private http: HttpClient) {}
 
   HttpHeaders = new HttpHeaders({
@@ -22,20 +23,26 @@ export class EditalService {
     });
   }
 
+  downloadEdital(id: number | undefined) {
+    return this.http.get(`${this.urlEdital}/downloadEdital/` + id, {
+      responseType: 'blob',
+    });
+  }
+
   create(edital: EditalInput) {
+    return this.http.post(`${this.urlEdital}`, edital, {
+      headers: this.HttpHeaders,
+    });
+  }
 
-    // console.log(edital.arquivo)
+  uploadFile(arquivo: any, id: any) {
+    console.log(arquivo);
 
-    // let formData = new FormData();
-    // formData.append('file', edital.arquivo);
+    let formData = new FormData();
+    formData.append('file', arquivo);
 
-
-    // return this.http.post(`${this.urlEdital}/uploadFile`, formData, {
-    //   responseType: 'blob',
-    // });
-
-      return this.http.post(`${this.urlEdital}`, edital, {
-        headers: this.HttpHeaders,
+    return this.http.post(`${this.urlEdital}/uploadFile/${id}`, formData, {
+      responseType: 'blob',
     });
   }
 

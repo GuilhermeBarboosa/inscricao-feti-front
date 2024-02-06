@@ -7,6 +7,7 @@ import { ButtonGreenComponent } from '../components/button-green/button-green.co
 import { ButtonRedComponent } from '../components/button-red/button-red.component';
 import { ButtonYellowComponent } from '../components/button-yellow/button-yellow.component';
 import { DialogComponent } from '../components/dialog/dialog.component';
+import { FooterComponent } from '../components/footer/footer.component';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 import { SidebarComponent } from '../components/sidebar/sidebar.component';
 
@@ -22,6 +23,7 @@ import { SidebarComponent } from '../components/sidebar/sidebar.component';
     SidebarComponent,
     DialogComponent,
     NavbarComponent,
+    FooterComponent,
     ButtonGreenComponent,
     ButtonRedComponent,
     ButtonYellowComponent,
@@ -32,6 +34,7 @@ import { SidebarComponent } from '../components/sidebar/sidebar.component';
     SidebarComponent,
     DialogComponent,
     NavbarComponent,
+    FooterComponent,
     ButtonGreenComponent,
     ButtonRedComponent,
     ButtonYellowComponent,

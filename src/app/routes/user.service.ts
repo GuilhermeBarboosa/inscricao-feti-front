@@ -50,7 +50,7 @@ export class UserService {
     });
   }
 
-  edit(user: UserInput, id: number) {
+  edit(user: UserInput, id: number | undefined) {
     return this.http.put(`${this.urlUser}/${id}`, user, {
       headers: this.HttpHeaders,
     });
