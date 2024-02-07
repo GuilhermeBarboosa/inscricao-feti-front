@@ -1,7 +1,7 @@
-<div [ngStyle]="{ 'background-color': bg_primary_color }" class="sidebar">
+<div [ngStyle]="{ 'background-color': styleService.colorVariables['bg_primary_color']}" class="sidebar">
   <div class="logo-details">
     <!-- <i class='bx bxl-angular'></i> -->
-    <div class="logo_name">Nome do sistema</div>
+    <div class="logo_name" [ngStyle]="{ 'color': styleService.colorVariables['font_color']}" >Nome do sistema</div>
     <i (click)="openMenu()" class="bx bx-menu" id="btn"></i>
   </div>
   <li>
@@ -11,28 +11,28 @@
   </li>
   <ul class="nav-list"   id="nav-list">
     <li>
-      <a  [ngStyle]="{ 'background-color': bg_secundary_color }" routerLink="/profile" routerLinkActive="active">
+      <a  [ngStyle]="{ 'background-color': styleService.colorVariables['bg_secundary_color']}" routerLink="/profile" routerLinkActive="active">
         <i class="bx bx-user"></i>
         <span class="links_name">Perfil</span>
       </a>
       <p class="tooltip">Perfil</p>
     </li>
     <li>
-      <a [ngStyle]="{ 'background-color': bg_secundary_color }" routerLink="/user" routerLinkActive="active">
+      <a [ngStyle]="{ 'background-color': styleService.colorVariables['bg_secundary_color']}" routerLink="/user" routerLinkActive="active">
         <i class="bx bxs-user-detail"></i>
         <span class="links_name">Usuários</span>
       </a>
       <p class="tooltip">Usuários</p>
     </li>
     <li>
-      <a [ngStyle]="{ 'background-color': bg_secundary_color }" routerLink="/edital" routerLinkActive="active">
+      <a [ngStyle]="{ 'background-color': styleService.colorVariables['bg_secundary_color']}" routerLink="/edital" routerLinkActive="active">
         <i class='bx bx-folder-open'></i>
         <span class="links_name">Edital</span>
       </a>
       <p class="tooltip">Edital</p>
     </li>
     <li>
-      <a [ngStyle]="{ 'background-color': bg_secundary_color }" routerLink="/inscricao" routerLinkActive="active">
+      <a [ngStyle]="{ 'background-color': styleService.colorVariables['bg_secundary_color']}" routerLink="/inscricao" routerLinkActive="active">
         <i class='bx bx-edit-alt'></i>
         <span class="links_name">Inscrição</span>
       </a>

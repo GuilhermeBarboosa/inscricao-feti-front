@@ -54,7 +54,6 @@ export class LoginService {
     localStorage.removeItem('token');
     localStorage.removeItem('email');
     localStorage.removeItem('user');
-
     this.notifier.showInfo('Você não está logado');
     this.router.navigate(['/login-candidato/login/']);
   }

@@ -4,6 +4,7 @@ import { NotifierService } from 'src/app/services/notifier.service';
 import { TokenJwtService } from '../../services/token-jwt.service';
 import { CookieService } from 'src/app/services/cookie.service';
 import { LoginService } from 'src/app/routes/login.service';
+import { StyleService } from 'src/app/services/style.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,15 +15,10 @@ export class SidebarComponent implements OnInit {
   role = '';
   isSidebarOpen: boolean = false;
   sideListOriginal: any;
-
-  bg_primary_color = localStorage.getItem('bg-primary-color');
-  bg_secundary_color = localStorage.getItem('bg-secundary-color');
-
   constructor(
-    private router: Router,
-    private notifier: NotifierService,
+    public styleService: StyleService,
     private token: TokenJwtService,
-    private loginService: LoginService
+    private loginService: LoginService,
   ) {}
 
   async ngOnInit() {

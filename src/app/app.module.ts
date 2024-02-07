@@ -1,4 +1,4 @@
-import { NgModule, OnInit } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { CommonModule } from '@angular/common';
@@ -7,14 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EditInscricaoComponent } from './features/inscricao/edit-inscricao/edit-inscricao.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { TermosDeUsoComponent } from './features/politica/termos-de-uso/termos-de-uso.component';
-import { saveAs } from 'file-saver';
-import { NavbarLoginComponent } from './components/navbar-login/navbar-login.component';
-import { NotifierService } from './services/notifier.service';
-import { ColorsService } from './routes/colors.service';
-import { CookieService } from './services/cookie.service';
+import { StyleService } from './services/style.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,19 +19,9 @@ import { CookieService } from './services/cookie.service';
     AppRoutingModule,
     ToastrModule.forRoot(),
   ],
-  providers: [],
+  providers: [StyleService],
   bootstrap: [AppComponent],
 })
 export class AppModule {
-  constructor(
-    private colorsService: ColorsService
-  ) {
-    this.colorsService.getAll().subscribe((data: any) => {
-      var response = JSON.parse(JSON.stringify(data));
-      response.forEach((element: any) => {
-        localStorage.setItem(`${element.tipo}`, element.cor);
-      });
-    });
-  }
-
+  constructor() {}
 }
