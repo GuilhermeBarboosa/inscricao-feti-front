@@ -5,7 +5,7 @@ import { RoleGuardService } from './guards/role-guard.service';
 
 export const routes: Routes = [
   {
-    path: 'authentication',
+    path: 'cms',
     loadChildren: () =>
       import('./modules/authentication/authentication.module').then(
         (m) => m.AuthenticationModule

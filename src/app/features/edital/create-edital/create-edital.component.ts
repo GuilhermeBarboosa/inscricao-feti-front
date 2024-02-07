@@ -111,7 +111,6 @@ export class CreateEditalComponent implements OnInit {
           });
         },
         (error) => {
-          console.log(error)
           this.notifier.showError(error.error.message);
         }
       );

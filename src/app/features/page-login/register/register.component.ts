@@ -83,7 +83,7 @@ export class RegisterComponent implements OnInit {
 
             localStorage.setItem('email', userDTO.email);
 
-            this.router.navigateByUrl('/authentication/login');
+            this.router.navigateByUrl('/cms/login');
           },
           (error) => {
             this.notifier.showError(error.error);

@@ -50,8 +50,6 @@ export class EditInscricaoComponent {
       .subscribe((data) => {
         var inscricaoResponse = JSON.parse(JSON.stringify(data));
         this.inscricao = inscricaoResponse;
-
-        console.log(this.inscricao)
         this.createTable();
       });
   }

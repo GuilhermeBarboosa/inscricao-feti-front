@@ -1,8 +1,8 @@
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { NotifierService } from 'src/app/services/notifier.service';
 import { LoginService } from 'src/app/routes/login.service';
 import { CookieService } from 'src/app/services/cookie.service';
+import { NotifierService } from 'src/app/services/notifier.service';
 import { TokenJwtService } from 'src/app/services/token-jwt.service';
 
 @Component({
@@ -12,20 +12,21 @@ import { TokenJwtService } from 'src/app/services/token-jwt.service';
 })
 export class NavbarComponent implements OnInit {
   Logout = 'Logout';
-  nameUser: any = "";
-  role = ''
+  nameUser: any = '';
+  role = '';
 
   constructor(
-    private token: TokenJwtService,
+    private router: Router,
+    private notifier: NotifierService,
     private loginService: LoginService,
-    private cookie: CookieService
+    private token: TokenJwtService
   ) {}
 
   async ngOnInit() {
-    this.nameUser = await this.cookie.getCookie('user');
+    this.nameUser = localStorage.getItem('user');
   }
 
-  logout() {
+  async logout() {
     this.loginService.logout();
   }
 }

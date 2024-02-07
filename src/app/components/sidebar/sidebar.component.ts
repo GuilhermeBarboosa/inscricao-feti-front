@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from 'src/app/routes/login.service';
+import { Router } from '@angular/router';
+import { NotifierService } from 'src/app/services/notifier.service';
 import { TokenJwtService } from '../../services/token-jwt.service';
+import { CookieService } from 'src/app/services/cookie.service';
+import { LoginService } from 'src/app/routes/login.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,11 +15,14 @@ export class SidebarComponent implements OnInit {
   isSidebarOpen: boolean = false;
   sideListOriginal: any;
 
-
+  bg_primary_color = localStorage.getItem('bg-primary-color');
+  bg_secundary_color = localStorage.getItem('bg-secundary-color');
 
   constructor(
-    private loginService: LoginService,
-    private token: TokenJwtService
+    private router: Router,
+    private notifier: NotifierService,
+    private token: TokenJwtService,
+    private loginService: LoginService
   ) {}
 
   async ngOnInit() {
@@ -46,13 +52,11 @@ export class SidebarComponent implements OnInit {
     filterValue = filterValue.trim().toLowerCase();
     let sideList = document.querySelector('#nav-list');
 
-    var lis = sideList?.querySelectorAll("li")
+    var lis = sideList?.querySelectorAll('li');
     for (var i = 0; i < lis!.length; i++) {
-        var name = lis![i].innerText.toLowerCase();
-        if (name.includes(filterValue))
-            lis![i].style.display = 'list-item';
-        else
-            lis![i].style.display = 'none';
+      var name = lis![i].innerText.toLowerCase();
+      if (name.includes(filterValue)) lis![i].style.display = 'list-item';
+      else lis![i].style.display = 'none';
     }
   }
 
@@ -60,7 +64,7 @@ export class SidebarComponent implements OnInit {
     this.isSidebarOpen = !this.isSidebarOpen;
   }
 
-  logout() {
+  async logout() {
     this.loginService.logout();
   }
 }

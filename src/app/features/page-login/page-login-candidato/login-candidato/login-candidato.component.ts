@@ -10,13 +10,12 @@ import { CookieService } from 'src/app/services/cookie.service';
 @Component({
   selector: 'app-login-candidato',
   templateUrl: './login-candidato.component.html',
-  styleUrls: ['./login-candidato.component.css']
+  styleUrls: ['./login-candidato.component.css'],
 })
 export class LoginCandidatoComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private tokenJwtService: TokenJwtService,
-    private cookieService: CookieService,
     private router: Router,
     private formBuilder: FormBuilder,
     private notifier: NotifierService
@@ -49,8 +48,7 @@ export class LoginCandidatoComponent implements OnInit {
           this.loginService.obterClaims().subscribe(
             (data: any) => {
               var data = JSON.parse(JSON.stringify(data));
-              console.log(data)
-              this.cookieService.setCookie("user", data.name);
+              localStorage.setItem('user', data.name);
               this.notifier.showSuccess('Login efetuado com sucesso!');
               this.router.navigateByUrl('/inicio');
             },

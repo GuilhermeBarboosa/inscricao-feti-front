@@ -17,13 +17,13 @@ export class LoginComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private tokenJwtService: TokenJwtService,
-    private cookieService: CookieService,
     private router: Router,
     private formBuilder: FormBuilder,
     private notifier: NotifierService
   ) {}
 
   loginForm!: FormGroup;
+  tipoPagina = 'USER';
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
           this.loginService.obterClaims().subscribe(
             (data: any) => {
               var data = JSON.parse(JSON.stringify(data));
-              this.cookieService.setCookie("user", data.user);
+              localStorage.setItem("user", data.user);
               this.notifier.showSuccess('Login efetuado com sucesso!');
               this.router.navigate(['/user']);
             },

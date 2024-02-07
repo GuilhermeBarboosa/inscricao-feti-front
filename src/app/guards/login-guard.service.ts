@@ -35,7 +35,6 @@ export class LoginGuardService {
         (res) => {
           this.loginService.obterClaims().subscribe( (data) => {
             var response = JSON.parse(JSON.stringify(data));
-            console.log(response)
             this.cookieService.setCookie('user', response.name);
           }, (err) => {
             this.loginService.logout();

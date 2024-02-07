@@ -1,0 +1,13 @@
+<div   [ngStyle]="{ 'background-color': bg_primary_color }" class="full-width">
+   <div *ngIf="value == 'CMS'">
+    <div class="flex items-end justify-end">
+      <img class="m-5" src="../../../assets/logopmu.png" alt="" width="10%">
+   </div>
+   </div>
+
+   <div *ngIf="value != 'CMS'">
+    <div class="max-w-2xl flex items-center justify-center">
+      <img src="../../../assets/logopmu.png" alt="" width="35%">
+   </div>
+   </div>
+</div>

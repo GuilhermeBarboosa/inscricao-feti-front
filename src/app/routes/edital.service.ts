@@ -36,7 +36,6 @@ export class EditalService {
   }
 
   uploadFile(arquivo: any, id: any) {
-    console.log(arquivo);
 
     let formData = new FormData();
     formData.append('file', arquivo);

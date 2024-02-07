@@ -8,6 +8,7 @@ import { ButtonRedComponent } from '../components/button-red/button-red.componen
 import { ButtonYellowComponent } from '../components/button-yellow/button-yellow.component';
 import { DialogComponent } from '../components/dialog/dialog.component';
 import { FooterComponent } from '../components/footer/footer.component';
+import { NavbarLoginComponent } from '../components/navbar-login/navbar-login.component';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 import { SidebarComponent } from '../components/sidebar/sidebar.component';
 
@@ -27,6 +28,7 @@ import { SidebarComponent } from '../components/sidebar/sidebar.component';
     ButtonGreenComponent,
     ButtonRedComponent,
     ButtonYellowComponent,
+    NavbarLoginComponent,
     ReactiveFormsModule,
     RouterModule
   ],
@@ -36,6 +38,7 @@ import { SidebarComponent } from '../components/sidebar/sidebar.component';
     NavbarComponent,
     FooterComponent,
     ButtonGreenComponent,
+    NavbarLoginComponent,
     ButtonRedComponent,
     ButtonYellowComponent,
   ]

@@ -60,7 +60,6 @@ export class MinhaContaComponent implements OnInit {
   }
 
   createTable() {
-    console.log('user', this.user?.name);
     this.formulario = this.formBuilder.group({
       name: [
         { value: this.user?.name, disabled: this.isDisabled },
@@ -121,7 +120,6 @@ export class MinhaContaComponent implements OnInit {
       };
 
       let userInput = new UserInput(userDTO);
-      console.log(userInput)
       this.userService.edit(userInput, this.user!.id).subscribe(
         (data) => {
           this.notifier.showSuccess('Usuário atualizado com sucesso!');

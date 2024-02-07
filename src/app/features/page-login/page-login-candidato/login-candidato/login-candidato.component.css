@@ -48,5 +48,13 @@ hr {
 }
 
 .bx-show{
-  color: rgb(76, 76, 76);
+  color: #00bef2;
+}
+
+.register{
+  color: #00bef2;
+}
+
+.register:hover{
+  color: #0099c4;
 }

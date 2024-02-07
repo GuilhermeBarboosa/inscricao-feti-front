@@ -3,7 +3,6 @@
 <app-sidebar></app-sidebar>
 
 <div class="home-section">
-
   <div class="p-4 bg-white p-3 m-5 shadow-sm rounded-sm">
     <div
       class="flex items-center space-x-2 font-semibold text-gray-900 leading-8"
@@ -27,27 +26,314 @@
       <span class="tracking-wide">Sobre</span>
     </div>
     <div class="text-gray-700">
-      <div class="text-sm">
-        <div class="grid grid-cols-2">
-          <div class="px-4 py-2 font-semibold">Nome</div>
-          <div class="px-4 py-2">{{ user?.name }}</div>
-        </div>
-        <div class="grid grid-cols-2">
-          <div class="px-4 py-2 font-semibold">Email</div>
-          <div class="px-4 py-2">
-            <a class="text-blue-800" href="mailto:{{user?.email}}">{{
-              user?.email
-            }}</a>
+          <div class="dv-padding-mdpi">
+            <form [formGroup]="userForm" *ngIf="userForm">
+              <div class="dv-line ">
+                <div class="dv-column">
+                  <div class="dv-padding-mdpi ">
+                    <p class="dv-margin-bottom-ldpi">Nome completo</p>
+
+                    <input
+                      class="dv-padding-mdpi w-full dv-radius default-input"
+                      type="text"
+                      id="usuario"
+                      formControlName="name"
+                      autocomplete="off"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="dv-line">
+                <div class="dv-column">
+                  <div class="dv-padding-mdpi">
+                    <p class="dv-margin-bottom-ldpi">CPF</p>
+
+                    <input
+                      class="dv-padding-mdpi w-full dv-radius default-input dv-cpf dv-required"
+                      type="text"
+                      id="cpf"
+                      formControlName="cpf"
+                      autocomplete="off"
+                      placeholder="___.___.___-__"
+                      mask="000.000.000-00"
+                    />
+                  </div>
+                </div>
+
+                <!-- <div class="dv-column">
+                        <div class="dv-padding-mdpi">
+                          <p class="dv-margin-bottom-ldpi">RG</p>
+
+                          <input
+                            class="dv-padding-mdpi w-full dv-radius default-input dv-required"
+                            type="text"
+                            id="rg"
+                            name="rg"
+                            autocomplete="off"
+                          />
+                        </div>
+                      </div> -->
+
+                <div class="dv-column">
+                  <div class="dv-padding-mdpi">
+                    <p class="dv-margin-bottom-ldpi">Data de nascimento</p>
+
+                    <input
+                      class="dv-padding-mdpi w-full dv-radius default-input dv-date dv-required"
+                      type="text"
+                      id="data_de_nascimento"
+                      formControlName="data_de_nascimento"
+                      placeholder="00/00/0000"
+                      autocomplete="off"
+                      mask="00/00/0000"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="dv-line">
+                <div class="dv-column">
+                  <div class="dv-padding-mdpi">
+                    <p class="dv-margin-bottom-ldpi">E-mail</p>
+
+                    <input
+                      class="dv-padding-mdpi w-full dv-radius default-input dv-required"
+                      type="text"
+                      id="email"
+                      formControlName="email"
+                      autocomplete="off"
+                      value=""
+                    />
+                  </div>
+                </div>
+
+                <div class="dv-column">
+                  <div class="dv-padding-mdpi">
+                    <p class="dv-margin-bottom-ldpi">Celular</p>
+
+                    <input
+                      class="dv-padding-mdpi w-full dv-radius default-input dv-cellphone dv-required"
+                      type="text"
+                      id="telefone"
+                      formControlName="telefone"
+                      autocomplete="off"
+                      placeholder="__ _____-____"
+                      mask="00 00000-0000"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="dv-line">
+                <div class="dv-column-four">
+                  <div class="dv-padding-mdpi">
+                    <p class="dv-margin-bottom-ldpi">CEP</p>
+
+                    <input
+                      class="dv-padding-mdpi w-full dv-radius default-input dv-cep dv-required"
+                      type="text"
+                      id="cep"
+                      autocomplete="off"
+                      formControlName="cep"
+                      placeholder="_____-___"
+                      mask="00000-000"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="dv-line">
+                <div class="dv-column">
+                  <div class="dv-padding-mdpi">
+                    <p class="dv-margin-bottom-ldpi">Logradouro</p>
+
+                    <input
+                      class="dv-padding-mdpi w-full dv-radius default-input dv-required"
+                      type="text"
+                      id="rua"
+                      formControlName="rua"
+                      autocomplete="off"
+                    />
+                  </div>
+                </div>
+
+                <!-- <div class="dv-column-four">
+                        <div class="dv-padding-mdpi">
+                          <p class="dv-margin-bottom-ldpi">Número</p>
+
+                          <input
+                            class="dv-padding-mdpi w-full dv-radius default-input dv-integer dv-required"
+                            type="text"
+                            id="numero"
+                            formControlName="numero"
+                            autocomplete="off"
+                          />
+                        </div>
+                      </div> -->
+
+                <!-- <div class="dv-column-four">
+                        <div class="dv-padding-mdpi">
+                          <p class="dv-margin-bottom-ldpi">Complemento</p>
+
+                          <input
+                            class="dv-padding-mdpi w-full dv-radius default-input"
+                            type="text"
+                            id="complemento"
+                            name="complemento"
+                            autocomplete="off"
+                            value=""
+                          />
+                        </div>
+                      </div> -->
+              </div>
+
+              <div class="dv-line">
+                <div class="dv-column">
+                  <div class="dv-padding-mdpi">
+                    <p class="dv-margin-bottom-ldpi">Bairro</p>
+
+                    <input
+                      class="dv-padding-mdpi w-full dv-radius default-input dv-required"
+                      type="text"
+                      id="bairro"
+                      formControlName="bairro"
+                      autocomplete="off"
+                    />
+                  </div>
+                </div>
+
+                <div class="dv-column">
+                  <div class="dv-padding-mdpi">
+                    <p class="dv-margin-bottom-ldpi">Cidade</p>
+
+                    <input
+                      class="dv-padding-mdpi w-full dv-radius default-input dv-required"
+                      type="text"
+                      id="cidade"
+                      formControlName="cidade"
+                      autocomplete="off"
+                    />
+                  </div>
+                </div>
+
+                <!-- <div class="dv-column">
+                        <div class="dv-padding-mdpi">
+                          <p class="dv-margin-bottom-ldpi">Estado</p>
+
+                          <input
+                            class="dv-padding-mdpi w-full dv-radius default-input dv-required"
+                            type="text"
+                            id="estado"
+                            formControlName="cidade"
+                            autocomplete="off"
+                          />
+                        </div>
+                      </div> -->
+              </div>
+
+              <!-- <div class="dv-line">
+
+                        <div class="dv-column">
+
+                          <div class="dv-padding-mdpi">
+
+                            <p class="flex dv-padding-hdpi dv-blue-border-left dv-blue-light-bg dv-radius dv-blue"><img class="dv-vertical-align-middle dv-margin-right-ldpi" src="../../../../assets/icon/blue-info.svg" width="16">Atenção! Caso você tenha menos de 18 anos, informe os dados do seu responsável legal.</p>
+
+                          </div>
+
+                        </div>
+
+                      </div> -->
+
+              <!--       <div class="dv-line">
+
+                        <div class="dv-column">
+
+                          <div class="dv-padding-mdpi">
+
+                            <p class="dv-margin-bottom-ldpi">Nome completo do responsável</p>
+
+                            <input pattern="^([a-zA-Zà-úÀ-Ú]+){2,}\s([a-zA-Zà-úÀ-Ú]+){2,}$" class="dv-padding-mdpi w-full dv-radius default-input" type="text" id="responsavel" name="responsavel" autocomplete="off" value="">
+
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                      <div class="dv-line">
+
+                        <div class="dv-column">
+
+                          <div class="dv-padding-mdpi">
+
+                            <p class="dv-margin-bottom-ldpi">E-mail do responsável</p>
+
+                            <input class="dv-padding-mdpi w-full dv-radius default-input" type="text" id="email_responsavel" name="email_responsavel" autocomplete="off" value="">
+
+                          </div>
+
+                        </div>
+
+                        <div class="dv-column">
+
+                          <div class="dv-padding-mdpi">
+
+                            <p class="dv-margin-bottom-ldpi">Celular do responsável</p>
+
+                            <input class="dv-padding-mdpi w-full dv-radius default-input dv-cellphone" type="text" id="celular_responsavel" name="celular_responsavel" autocomplete="off" value="" placeholder="__ _____-____" oninput="maskMe(this, event, &quot;__ _____-____&quot;);" onblur="isMask(this, &quot;__ _____-____&quot;); ">
+
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                      <div class="dv-line">
+
+                        <div class="dv-column dv-horizontal-align-right">
+
+                          <div class="dv-padding-mdpi">
+
+                            <button type="submit" class="dv-padding-mdpi dv-text-align-center dv-radius dv-blue-border dv-blue-bg dv-white dv-underline dv-cursor"><img class="dv-vertical-align-middle dv-margin-right-ldpi" src="../../../../assets/icon/white-check.svg" width="16">Salvar o registro</button>
+
+                          </div>
+
+                        </div>
+
+                      </div> -->
+
+              <!--
+                      <div class="dv-line">
+
+                        <div class="dv-column dv-text-align-right">
+
+                          <div class="dv-padding-mdpi">
+
+                            <a href="/processoseletivo/inicio">
+
+                              <p class="dv-display-inline dv-cursor dv-underline dv-red"><img class="dv-vertical-align-middle dv-margin-right-ldpi" src="../../../../assets/icon/red-close.svg" width="16">Cancelar a operação</p>
+
+                            </a>
+
+                          </div>
+
+                        </div>
+
+                      </div> -->
+            </form>
           </div>
-        </div>
-      </div>
+
+
     </div>
     <div class="w-full flex justify-end">
-      <a (click)="editProfile()"
-      class="cursor-pointer text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4"
+      <a
+        (click)="editProfile()"
+        class="cursor-pointer text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4"
       >
-      Editar informações
-    </a>
+        Editar informações
+      </a>
     </div>
   </div>
 </div>

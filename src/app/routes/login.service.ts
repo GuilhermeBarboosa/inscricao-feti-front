@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environment';
 import { LoginInput } from '../interfaces/input/loginInput';
 import { NotifierService } from '../services/notifier.service';
+import { TokenJwtService } from '../services/token-jwt.service';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,10 @@ export class LoginService {
   }
 
   verifyToken() {
-    return this.http.post(`${environment.api}/auth/verifyToken`, localStorage.getItem('token'));
+    return this.http.post(
+      `${environment.api}/auth/verifyToken`,
+      localStorage.getItem('token')
+    );
   }
 
   obterClaims() {
@@ -33,8 +37,7 @@ export class LoginService {
 
   isLogin() {
     this.verifyToken().subscribe(
-      (res) => {
-      },
+      (res) => {},
       (err) => {
         this.logout();
       }
@@ -47,12 +50,13 @@ export class LoginService {
     return false;
   }
 
-
   logout() {
-    localStorage.clear();
+    localStorage.removeItem('token');
+    localStorage.removeItem('email');
+    localStorage.removeItem('user');
+
     this.notifier.showInfo('Você não está logado');
-
-      this.router.navigate(['/login-candidato/login/']);
-
+    this.router.navigate(['/login-candidato/login/']);
   }
+
 }

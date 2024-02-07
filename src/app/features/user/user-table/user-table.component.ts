@@ -29,6 +29,7 @@ export class UserTableComponent implements OnInit, AfterViewInit {
   ];
   Adicionar = 'Adicionar';
   Info = 'Info';
+  tipoPagina = 'CMS';
   role = '';
 
   usersArray = new MatTableDataSource<User>();
