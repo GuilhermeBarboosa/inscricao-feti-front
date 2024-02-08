@@ -22,6 +22,7 @@ export class InfoAlternativaComponent  implements OnInit {
   idPergunta = this.activedRouter.snapshot.params['idPergunta'];
   Editar = 'Editar';
   Voltar = 'Voltar';
+  tipoPagina = 'CMS';
   role = '';
   constructor(
     private activedRouter: ActivatedRoute,

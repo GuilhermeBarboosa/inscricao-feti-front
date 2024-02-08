@@ -31,6 +31,7 @@ export class EditalTableComponent implements OnInit {
   ];
   Adicionar = 'Adicionar';
   Info = 'Info';
+  tipoPagina = 'CMS';
   role = '';
 
   editalArray = new MatTableDataSource<Edital>();

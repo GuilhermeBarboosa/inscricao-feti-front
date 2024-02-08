@@ -20,7 +20,8 @@ export class InfoAllInscricaoComponent implements OnInit{
   value?: String;
   role = '';
   id = this.activedRouter.snapshot.params['id'];
-  inscricao!: Inscricao
+  inscricao!: Inscricao;
+  tipoPagina = 'CMS';
 
   constructor(
     private inscricaoService: InscricaoService,

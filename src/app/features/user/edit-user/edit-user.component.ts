@@ -29,6 +29,7 @@ export class EditUserComponent implements OnInit {
   id = this.activedRouter.snapshot.params['id'];
   Sim = 'Sim';
   Nao = 'Não';
+  tipoPagina = 'CMS';
   @ViewChild('inputCep') inputCep!: ElementRef;
 
   constructor(

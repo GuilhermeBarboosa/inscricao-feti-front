@@ -26,6 +26,7 @@ export class CreateUserComponent implements OnInit {
   formulario!: FormGroup;
   Sim = 'Sim';
   Nao = 'Não';
+  tipoPagina = 'CMS';
   @ViewChild('inputCep') inputCep!: ElementRef;
   @ViewChild('inputCpf') inputCpf!: ElementRef;
 

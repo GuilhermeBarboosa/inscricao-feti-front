@@ -31,6 +31,7 @@ export class InscricaoTableComponent implements OnInit {
   ];
   Adicionar = 'Adicionar';
   Info = 'Info';
+  tipoPagina = 'CMS';
   role = '';
 
   inscricaoArray = new MatTableDataSource<Inscricao>();

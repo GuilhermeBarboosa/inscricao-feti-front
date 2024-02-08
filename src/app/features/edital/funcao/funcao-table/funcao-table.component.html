@@ -1,4 +1,4 @@
-<!-- <app-navbar></app-navbar> -->
+<app-navbar-login [value] = 'tipoPagina'></app-navbar-login>
 
 <app-sidebar></app-sidebar>
 <div class="home-section">
@@ -105,7 +105,7 @@
               </mat-header-cell>
               <mat-cell mat-cell *matCellDef="let funcao">
                 <div class="flex cursor-pointer" (click)="getByPerguntas(funcao.id)">
-                  <i class='bx bx-folder-open' ></i>
+                  <i class='bx bxs-folder' ></i>
                   <button>Perguntas</button>
                 </div>
               </mat-cell>

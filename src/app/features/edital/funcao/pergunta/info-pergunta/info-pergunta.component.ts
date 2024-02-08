@@ -23,6 +23,7 @@ export class InfoPerguntaComponent implements OnInit{
   idFuncao = this.activedRouter.snapshot.params['idFuncao'];
   Editar = 'Editar';
   Voltar = 'Voltar';
+  tipoPagina = 'CMS';
   role = '';
   constructor(
     private activedRouter: ActivatedRoute,

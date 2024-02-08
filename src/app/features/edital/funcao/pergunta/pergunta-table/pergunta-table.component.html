@@ -1,4 +1,4 @@
-<!-- <app-navbar></app-navbar> -->
+<app-navbar-login [value] = 'tipoPagina'></app-navbar-login>
 
 <app-sidebar></app-sidebar>
 <div class="home-section">
@@ -107,7 +107,7 @@
               </mat-header-cell>
               <mat-cell mat-cell *matCellDef="let pergunta">
                 <div class="flex cursor-pointer" (click)="getAlternativaByPergunta(pergunta.id)">
-                  <i class='bx bx-folder-open folder' ></i>
+                  <i class='bx bxs-folder folder' ></i>
                   <button>Alternativas</button>
                 </div>
               </mat-cell>
@@ -121,7 +121,7 @@
               </mat-header-cell>
               <mat-cell mat-cell *matCellDef="let pergunta">
                 <div class="flex cursor-pointer">
-                  <i class='bx bx-folder-open' ></i>
+                  <i class='bx bxs-folder' ></i>
                   <button>Arquivos</button>
                 </div>
               </mat-cell>

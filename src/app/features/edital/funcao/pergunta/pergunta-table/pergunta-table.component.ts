@@ -28,6 +28,7 @@ export class PerguntaTableComponent implements OnInit {
     'acoes',
   ];
   Adicionar = 'Adicionar';
+  tipoPagina = 'CMS';
   Info = 'Info';
   role = '';
   idFuncao = this.activedRouter.snapshot.params['idFuncao'];

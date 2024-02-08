@@ -148,8 +148,14 @@ table {
   color: #00a800;
 }
 
-.bx-folder-open {
+.bxs-folder {
   color: #0000ff;
+}
+
+
+.bx {
+  font-size: 25px !important;
+  padding: 0px 5px 0px 5px;
 }
 
 table {

@@ -23,6 +23,7 @@ export class FuncaoTableComponent implements OnInit {
   Adicionar = 'Adicionar';
   Info = 'Info';
   role = '';
+  tipoPagina = 'CMS';
   idEdital = this.activedRouter.snapshot.params['id'];
 
   funcaoArray = new MatTableDataSource<Funcao>();

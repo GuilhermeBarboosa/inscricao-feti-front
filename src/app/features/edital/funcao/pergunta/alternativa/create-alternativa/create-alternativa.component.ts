@@ -24,6 +24,7 @@ export class CreateAlternativaComponent implements OnInit{
   roles?: Role[];
   formulario!: FormGroup;
   Sim = 'Sim';
+  tipoPagina = 'CMS';
   Nao = 'Não';
   idPergunta = this.activedRouter.snapshot.params['idPergunta'];
 

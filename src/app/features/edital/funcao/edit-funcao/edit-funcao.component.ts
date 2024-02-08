@@ -29,6 +29,7 @@ export class EditFuncaoComponent implements OnInit {
   idEdital = this.activedRouter.snapshot.params['idEdital'];
   Sim = 'Sim';
   Nao = 'Não';
+  tipoPagina = 'CMS';
   @ViewChild('inputCep') inputCep!: ElementRef;
 
   constructor(

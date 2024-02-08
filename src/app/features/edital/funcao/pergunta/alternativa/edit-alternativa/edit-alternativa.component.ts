@@ -29,6 +29,7 @@ export class EditAlternativaComponent implements OnInit {
   idPergunta = this.activedRouter.snapshot.params['idPergunta'];
   Sim = 'Sim';
   Nao = 'Não';
+  tipoPagina = 'CMS';
   @ViewChild('inputCep') inputCep!: ElementRef;
 
   constructor(

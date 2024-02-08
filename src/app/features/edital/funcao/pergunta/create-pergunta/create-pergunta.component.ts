@@ -26,6 +26,7 @@ export class CreatePerguntaComponent implements OnInit {
   formulario!: FormGroup;
   Sim = 'Sim';
   Nao = 'Não';
+  tipoPagina = 'CMS';
   idFuncao = this.activedRouter.snapshot.params['idFuncao'];
 
   constructor(

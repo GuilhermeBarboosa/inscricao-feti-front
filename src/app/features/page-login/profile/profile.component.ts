@@ -26,6 +26,7 @@ export class ProfileComponent implements OnInit {
   userForm!: FormGroup;
   jogadorForm!: FormGroup;
   isDisabled = true;
+  tipoPagina = 'CMS';
 
   ngOnInit() {
     this.loginService.obterClaims().subscribe(

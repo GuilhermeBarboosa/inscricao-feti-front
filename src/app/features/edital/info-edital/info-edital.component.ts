@@ -22,6 +22,7 @@ export class InfoEditalComponent implements OnInit{
   id = this.activedRouter.snapshot.params['id'];
   Editar = 'Editar';
   Voltar = 'Voltar';
+  tipoPagina = 'CMS';
   role = '';
   constructor(
     private activedRouter: ActivatedRoute,

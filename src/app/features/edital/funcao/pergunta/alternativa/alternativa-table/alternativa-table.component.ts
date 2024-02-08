@@ -28,6 +28,7 @@ export class AlternativaTableComponent implements OnInit {
   ];
   Adicionar = 'Adicionar';
   Info = 'Info';
+  tipoPagina = 'CMS';
   role = '';
   idPergunta = this.activedRouter.snapshot.params['idPergunta'];
 
