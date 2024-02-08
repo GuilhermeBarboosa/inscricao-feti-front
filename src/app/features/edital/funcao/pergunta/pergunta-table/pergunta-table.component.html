@@ -1,6 +1,7 @@
 <app-navbar-login [value] = 'tipoPagina'></app-navbar-login>
 
-<app-sidebar></app-sidebar>
+<div class="flex">
+  <app-sidebar></app-sidebar>
 <div class="home-section">
   <div class="h-full w-full">
     <div class="flex justify-between m-5">
@@ -82,16 +83,16 @@
 
     <div class="">
       <div class="example-container p-2 relative overflow-x-auto">
-        <table mat-table [dataSource]="perguntasArray" class="mat-elevation-z2">
+        <table mat-table [dataSource]="perguntasArray" class="mat-elevation-z2" matSort (matSortChange)="announceSortChange($event)">
           <th  matColumnDef="id">
-            <mat-header-cell mat-header-cell *matHeaderCellDef>
+            <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>
               Id
             </mat-header-cell>
             <mat-cell mat-cell *matCellDef="let pergunta"> {{ pergunta.id }} </mat-cell>
           </th >
 
           <th  matColumnDef="pergunta">
-            <mat-header-cell mat-header-cell *matHeaderCellDef>
+            <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>
               Pergunta
             </mat-header-cell>
             <mat-cell mat-cell *matCellDef="let pergunta">
@@ -102,7 +103,7 @@
 
           <th  matColumnDef="alternativas">
             <div>
-              <mat-header-cell mat-header-cell *matHeaderCellDef>
+              <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>
 
               </mat-header-cell>
               <mat-cell mat-cell *matCellDef="let pergunta">
@@ -116,7 +117,7 @@
 
           <!-- <th  matColumnDef="arquivos">
             <div>
-              <mat-header-cell mat-header-cell *matHeaderCellDef>
+              <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>
 
               </mat-header-cell>
               <mat-cell mat-cell *matCellDef="let pergunta">
@@ -130,7 +131,7 @@
 
           <th  matColumnDef="status">
             <div>
-              <mat-header-cell mat-header-cell *matHeaderCellDef>
+              <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>
                 Status
               </mat-header-cell>
               <mat-cell mat-cell *matCellDef="let pergunta">
@@ -140,7 +141,7 @@
           </th >
 
           <th  matColumnDef="acoes">
-            <mat-header-cell mat-header-cell *matHeaderCellDef>
+            <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>
             </mat-header-cell>
             <mat-cell mat-cell *matCellDef="let pergunta">
               <div class="flex">
@@ -171,4 +172,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

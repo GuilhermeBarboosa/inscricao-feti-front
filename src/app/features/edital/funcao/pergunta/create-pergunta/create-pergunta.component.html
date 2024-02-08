@@ -1,11 +1,12 @@
 <app-navbar-login [value] = 'tipoPagina'></app-navbar-login>
 
-<app-sidebar></app-sidebar>
+<div class="flex">
+  <app-sidebar></app-sidebar>
 <div class="home-section">
   <form class="m-5" [formGroup]="formulario" *ngIf="formulario">
     <div class="flex justify-between">
       <p class="text-black font-medium justify-start text-lg font-bold">
-        REGISTRE A FUNÇÃO
+        REGISTRE A PERGUNTA
       </p>
     </div>
 
@@ -37,4 +38,5 @@
       </div>
     </div>
   </form>
+</div>
 </div>

@@ -1,6 +1,7 @@
 <app-navbar-login [value] = 'tipoPagina'></app-navbar-login>
 
-<app-sidebar></app-sidebar>
+<div class="flex">
+  <app-sidebar></app-sidebar>
 <div class="home-section">
   <div class="h-full w-full">
     <div class="flex justify-between m-5">
@@ -82,16 +83,16 @@
 
     <div class="">
       <div class="example-container p-2 relative overflow-x-auto">
-        <table mat-table [dataSource]="inscricaoArray" class="mat-elevation-z2">
+        <table mat-table [dataSource]="inscricaoArray" class="mat-elevation-z2" matSort (matSortChange)="announceSortChange($event)" matSort (matSortChange)="announceSortChange($event)">
           <th  matColumnDef="id">
-            <mat-header-cell mat-header-cell *matHeaderCellDef>
+            <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header sortActionDescription="Sort by number">
               Id
             </mat-header-cell>
             <mat-cell mat-cell *matCellDef="let inscricao"> {{ inscricao.id }} </mat-cell>
           </th >
 
           <th  matColumnDef="usuario">
-            <mat-header-cell mat-header-cell *matHeaderCellDef>
+            <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header sortActionDescription="Sort by user">
               Candidato
             </mat-header-cell>
             <mat-cell mat-cell *matCellDef="let inscricao">
@@ -100,7 +101,7 @@
           </th >
 
           <th  matColumnDef="edital">
-            <mat-header-cell mat-header-cell *matHeaderCellDef>
+            <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header sortActionDescription="Sort by edital">
               Edital
             </mat-header-cell>
             <mat-cell mat-cell *matCellDef="let inscricao">
@@ -110,7 +111,7 @@
 
 
           <th  matColumnDef="funcao">
-            <mat-header-cell mat-header-cell *matHeaderCellDef>
+            <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header sortActionDescription="Sort by funcao">
               Função
             </mat-header-cell>
             <mat-cell mat-cell *matCellDef="let inscricao">
@@ -119,7 +120,7 @@
           </th >
 
           <th  matColumnDef="pontuacao">
-            <mat-header-cell mat-header-cell *matHeaderCellDef>
+            <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header sortActionDescription="Sort by pontuacao">
               Pontuação
             </mat-header-cell>
             <mat-cell mat-cell *matCellDef="let inscricao">
@@ -129,7 +130,7 @@
 
           <th  matColumnDef="situacao">
             <div>
-              <mat-header-cell mat-header-cell *matHeaderCellDef>
+              <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header sortActionDescription="Sort by situacao">
                 Situação
               </mat-header-cell>
               <mat-cell mat-cell *matCellDef="let inscricao">
@@ -139,7 +140,7 @@
           </th >
 
           <th  matColumnDef="acoes">
-            <mat-header-cell mat-header-cell *matHeaderCellDef>
+            <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>
             </mat-header-cell>
             <mat-cell mat-cell *matCellDef="let inscricao">
               <div class="flex">
@@ -173,4 +174,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

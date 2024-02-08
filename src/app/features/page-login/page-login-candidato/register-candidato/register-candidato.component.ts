@@ -1,11 +1,13 @@
 import {
   Component,
-  ElementRef,
-  OnInit,
-  Renderer2,
-  ViewChild,
+  OnInit
 } from '@angular/core';
-import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/dto/user';
 import { UserInput } from 'src/app/interfaces/input/userInput';
@@ -13,13 +15,12 @@ import { UserService } from 'src/app/routes/user.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
-
 @Component({
   selector: 'app-register-candidato',
   templateUrl: './register-candidato.component.html',
-  styleUrls: ['./register-candidato.component.css']
+  styleUrls: ['./register-candidato.component.css'],
 })
-export class RegisterCandidatoComponent  implements OnInit{
+export class RegisterCandidatoComponent implements OnInit {
   constructor(
     private router: Router,
     private userService: UserService,
@@ -30,12 +31,18 @@ export class RegisterCandidatoComponent  implements OnInit{
 
   user!: User;
   registerForm!: FormGroup;
-  role = 2 //CANDIDATO
+  role = 2; //CANDIDATO
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      name: ['Guilherme Barbosa Rocha', [Validators.required, Validators.minLength(3)]],
-      email: ['guilherme.strg@gmail.com', [Validators.required, Validators.email]],
+      name: [
+        'Guilherme Barbosa Rocha',
+        [Validators.required, Validators.minLength(3)],
+      ],
+      email: [
+        'guilherme.strg@gmail.com',
+        [Validators.required, Validators.email],
+      ],
       telefone: ['(34) 98403-9344', [Validators.required]],
       cep: ['38035-205', [Validators.required]],
       rua: ['Rua Arnaldo Augusto dos Reis', [Validators.required]],
@@ -63,7 +70,9 @@ export class RegisterCandidatoComponent  implements OnInit{
           cpf: this.registerForm.get('cpf')?.value,
           email: this.registerForm.get('email')?.value,
           telefone: this.registerForm.get('telefone')?.value,
-          data_de_nascimento : this.utils.formatarDataToSQL(this.registerForm.get('data_de_nascimento')?.value),
+          data_de_nascimento: this.utils.formatarDataToSQL(
+            this.registerForm.get('data_de_nascimento')?.value
+          ),
           cep: this.registerForm.get('cep')?.value,
           rua: this.registerForm.get('rua')?.value,
           cidade: this.registerForm.get('cidade')?.value,
@@ -92,18 +101,23 @@ export class RegisterCandidatoComponent  implements OnInit{
   }
 
   getFormValidationErrors() {
-    Object.keys(this.registerForm.controls).forEach(key => {
+    Object.keys(this.registerForm.controls).forEach((key) => {
       const control = this.registerForm.get(key);
       if (control) {
         const controlErrors: ValidationErrors | null = control.errors;
         if (controlErrors != null) {
-          Object.keys(controlErrors).forEach(keyError => {
-           console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
+          Object.keys(controlErrors).forEach((keyError) => {
+            console.log(
+              'Key control: ' +
+                key +
+                ', keyError: ' +
+                keyError +
+                ', err value: ',
+              controlErrors[keyError]
+            );
           });
         }
       }
-
     });
   }
-
 }

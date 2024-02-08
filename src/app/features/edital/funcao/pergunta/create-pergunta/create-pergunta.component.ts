@@ -83,6 +83,6 @@ export class CreatePerguntaComponent implements OnInit {
   }
 
   return() {
-    this.router.navigateByUrl(`/pergunta/`);
+    this.router.navigateByUrl(`/pergunta/${this.idFuncao}`);
   }
 }

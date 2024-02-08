@@ -1,4 +1,4 @@
-<div [ngStyle]="{ 'background-color': styleService.colorVariables['bg_primary_color']}" class="sidebar">
+<div [ngStyle]="{ 'background-color': styleService.colorVariables['bg_primary_color']}" class="sidebar open">
   <div class="logo-details">
     <!-- <i class='bx bxl-angular'></i> -->
     <div class="logo_name" [ngStyle]="{ 'color': styleService.colorVariables['font_color']}" >Nome do sistema</div>
@@ -9,7 +9,7 @@
     <input type="text" placeholder="Search..." (keyup)="applyFilter($event)" />
     <span class="tooltip">Search</span>
   </li>
-  <ul class="nav-list"   id="nav-list">
+  <ul  id="nav-list">
     <li>
       <a  [ngStyle]="{ 'background-color': styleService.colorVariables['bg_secundary_color']}" routerLink="/profile" routerLinkActive="active">
         <i class="bx bx-user"></i>

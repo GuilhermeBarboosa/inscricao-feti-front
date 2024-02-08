@@ -1,93 +1,98 @@
 <app-sidebar></app-sidebar>
 
-<div class="home-section">
-  <form class="h-full m-5" [formGroup]="formulario" *ngIf="formulario">
-    <div class="flex justify-between">
-      <p class="text-black font-medium justify-start text-lg font-bold">
-        EDITAR A INSCRIÇÃO
-      </p>
-    </div>
+<div class="flex">
+  <app-sidebar></app-sidebar>
 
-    <div class="">
-      <label class="block text-sm" for="id">Código</label>
-      <input
-        formControlName="id"
-        class="default-input disabled p-2.5 text-center"
-        type="text"
-        id="id"
-        required
-      />
-    </div>
+  <div class="home-section">
+    <form class="h-full m-5" [formGroup]="formulario" *ngIf="formulario">
+      <div class="flex justify-between">
+        <p class="text-black font-medium justify-start text-lg font-bold">
+          EDITAR A INSCRIÇÃO
+        </p>
+      </div>
 
-    <form class="h-full" [formGroup]="formulario" *ngIf="formulario">
-      <div>
-        <div class="grid grid-cols-2">
-          <div class="col mr-4">
-            <label class="block text-sm" for="name">Nome</label>
-            <input
-              formControlName="name"
-              class="default-input disabled w-full p-2.5"
-              type="text"
-              id="name"
-              aria-label="name"
-              required
-            />
+      <div class="">
+        <label class="block text-sm" for="id">Código</label>
+        <input
+          formControlName="id"
+          class="default-input disabled p-2.5 text-center"
+          type="text"
+          id="id"
+          required
+        />
+      </div>
+
+      <form class="h-full" [formGroup]="formulario" *ngIf="formulario">
+        <div>
+          <div class="grid grid-cols-2">
+            <div class="col mr-4">
+              <label class="block text-sm" for="name">Nome</label>
+              <input
+                formControlName="name"
+                class="default-input disabled w-full p-2.5"
+                type="text"
+                id="name"
+                aria-label="name"
+                required
+              />
+            </div>
+            <div class="col">
+              <label class="block text-sm" for="cpf">Cpf</label>
+              <input
+                formControlName="cpf"
+                class="default-input disabled w-full p-2.5"
+                type="text"
+                id="cpf"
+                aria-label="cpf"
+                required
+              />
+            </div>
+
           </div>
-          <div class="col">
-            <label class="block text-sm" for="cpf">Cpf</label>
-            <input
-              formControlName="cpf"
-              class="default-input disabled w-full p-2.5"
-              type="text"
-              id="cpf"
-              aria-label="cpf"
-              required
-            />
+
+          <div class="grid grid-cols-2 mt-4">
+
+            <div class="col mr-4">
+
+              <label class="block text-sm" for="pontuacao">Pontuação</label>
+              <input
+                formControlName="pontuacao"
+                class="default-input w-full p-2.5"
+                type="text"
+                id="pontuacao"
+                aria-label="pontuacao"
+                required
+              />
+            </div>
+
+            <div class="col">
+              <label class="block text-sm" for="situacao">Situacao</label>
+              <select
+                id="situacao"
+                formControlName="situacao"
+                class="default-input w-full p-2.5"
+              >
+                <option value="" disabled selected>Selecione a permissão</option>
+                <option *ngFor="let situacao of situacaoArray" [value]="situacao.id">
+                  {{ situacao.situacao }}
+                </option>
+              </select>
+            </div>
           </div>
 
         </div>
+      </form>
 
-        <div class="grid grid-cols-2 mt-4">
-
-          <div class="col mr-4">
-
-            <label class="block text-sm" for="pontuacao">Pontuação</label>
-            <input
-              formControlName="pontuacao"
-              class="default-input w-full p-2.5"
-              type="text"
-              id="pontuacao"
-              aria-label="pontuacao"
-              required
-            />
-          </div>
-
-          <div class="col">
-            <label class="block text-sm" for="situacao">Situacao</label>
-            <select
-              id="situacao"
-              formControlName="situacao"
-              class="default-input w-full p-2.5"
-            >
-              <option value="" disabled selected>Selecione a permissão</option>
-              <option *ngFor="let situacao of situacaoArray" [value]="situacao.id">
-                {{ situacao.situacao }}
-              </option>
-            </select>
-          </div>
+      <div class="items-center flex justify-between my-2">
+        <div class="align-end">
+          <app-button-red [value]="Nao" (click)="return()"></app-button-red>
         </div>
 
+        <div>
+          <app-button-green [value]="Sim" (click)="edit()"></app-button-green>
+        </div>
       </div>
     </form>
+  </div>
 
-    <div class="items-center flex justify-between my-2">
-      <div class="align-end">
-        <app-button-red [value]="Nao" (click)="return()"></app-button-red>
-      </div>
-
-      <div>
-        <app-button-green [value]="Sim" (click)="edit()"></app-button-green>
-      </div>
-    </div>
-  </form>
 </div>

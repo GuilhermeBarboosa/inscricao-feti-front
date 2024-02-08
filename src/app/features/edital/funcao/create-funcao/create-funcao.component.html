@@ -1,6 +1,7 @@
 <app-navbar-login [value] = 'tipoPagina'></app-navbar-login>
 
-<app-sidebar></app-sidebar>
+<div class="flex">
+  <app-sidebar></app-sidebar>
 <div class="home-section">
   <form class="m-5" [formGroup]="formulario" *ngIf="formulario">
     <div class="flex justify-between">
@@ -37,4 +38,5 @@
       </div>
     </div>
   </form>
+</div>
 </div>

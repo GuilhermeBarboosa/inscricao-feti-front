@@ -1,6 +1,8 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
@@ -28,6 +30,7 @@ export class FuncaoTableComponent implements OnInit {
 
   funcaoArray = new MatTableDataSource<Funcao>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+@ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private funcaoService: FuncaoService,
@@ -35,7 +38,8 @@ export class FuncaoTableComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     private notifier: NotifierService,
-    private token: TokenJwtService
+    private token: TokenJwtService,
+    private _liveAnnouncer: LiveAnnouncer
   ) {}
 
   async ngOnInit() {
@@ -54,6 +58,7 @@ export class FuncaoTableComponent implements OnInit {
 
   ngAfterViewInit() {
     this.funcaoArray.paginator = this.paginator;
+    this.funcaoArray.sort = this.sort;
   }
 
   applyFilter(event: Event) {
@@ -94,9 +99,17 @@ export class FuncaoTableComponent implements OnInit {
           (error) => {
             this.notifier.showError('Erro ao excluir usuário!');
           }
-        );
+         );
       }
     });
+  }
+
+  announceSortChange(sort: Sort) {
+    if (sort.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sort.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
   }
 
   initTable() {

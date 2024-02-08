@@ -1,6 +1,8 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
@@ -36,6 +38,7 @@ export class PerguntaTableComponent implements OnInit {
 
   perguntasArray = new MatTableDataSource<Pergunta>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private perguntaService: PerguntaService,
@@ -43,7 +46,8 @@ export class PerguntaTableComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     private notifier: NotifierService,
-    private token: TokenJwtService
+    private token: TokenJwtService,
+    private _liveAnnouncer: LiveAnnouncer
   ) {}
 
   async ngOnInit() {
@@ -62,6 +66,7 @@ export class PerguntaTableComponent implements OnInit {
 
   ngAfterViewInit() {
     this.perguntasArray.paginator = this.paginator;
+    this.perguntasArray.sort = this.sort;
   }
 
   applyFilter(event: Event) {
@@ -109,20 +114,30 @@ export class PerguntaTableComponent implements OnInit {
     });
   }
 
-  initTable() {
-    this.perguntaService.getIdPerguntaByFuncao(this.idFuncao).subscribe((data) => {
-      var perguntasResponse = JSON.parse(JSON.stringify(data));
+  announceSortChange(sort: Sort) {
+    if (sort.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sort.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
 
-      perguntasResponse.map((pergunta: Pergunta) => {
-        if (pergunta.actived) {
-          pergunta.actived = 'Ativo';
-        } else {
-          pergunta.actived = 'Desativado';
-        }
+  initTable() {
+    this.perguntaService
+      .getIdPerguntaByFuncao(this.idFuncao)
+      .subscribe((data) => {
+        var perguntasResponse = JSON.parse(JSON.stringify(data));
+
+        perguntasResponse.map((pergunta: Pergunta) => {
+          if (pergunta.actived) {
+            pergunta.actived = 'Ativo';
+          } else {
+            pergunta.actived = 'Desativado';
+          }
+        });
+        this.perguntasArray.data = perguntasResponse;
+        this.perguntasArray.filter = 'Ativo';
       });
-      this.perguntasArray.data = perguntasResponse;
-      this.perguntasArray.filter = 'Ativo';
-    });
   }
 
   getByInativo() {

@@ -1,6 +1,8 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
@@ -9,6 +11,7 @@ import { UserInput } from 'src/app/interfaces/input/userInput';
 import { UserService } from 'src/app/routes/user.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { TokenJwtService } from 'src/app/services/token-jwt.service';
+import { MatSortModule } from '@angular/material/sort'
 
 @Component({
   selector: 'app-user-table',
@@ -34,13 +37,15 @@ export class UserTableComponent implements OnInit, AfterViewInit {
 
   usersArray = new MatTableDataSource<User>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private userService: UserService,
     public dialog: MatDialog,
     private router: Router,
     private notifier: NotifierService,
-    private token: TokenJwtService
+    private token: TokenJwtService,
+    private _liveAnnouncer: LiveAnnouncer
   ) {}
 
   async ngOnInit() {
@@ -59,6 +64,7 @@ export class UserTableComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.usersArray.paginator = this.paginator;
+    this.usersArray.sort = this.sort;
   }
 
   applyFilter(event: Event) {
@@ -99,9 +105,17 @@ export class UserTableComponent implements OnInit, AfterViewInit {
           (error) => {
             this.notifier.showError('Erro ao excluir usuário!');
           }
-        );
+         );
       }
     });
+  }
+
+  announceSortChange(sort: Sort) {
+    if (sort.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sort.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
   }
 
   initTable() {

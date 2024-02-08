@@ -11,6 +11,7 @@ import { FooterComponent } from '../components/footer/footer.component';
 import { NavbarLoginComponent } from '../components/navbar-login/navbar-login.component';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 import { SidebarComponent } from '../components/sidebar/sidebar.component';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { SidebarComponent } from '../components/sidebar/sidebar.component';
     CommonModule,
     MatDialogModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    MatSortModule,
   ],
   exports: [
     SidebarComponent,
@@ -30,7 +32,8 @@ import { SidebarComponent } from '../components/sidebar/sidebar.component';
     ButtonYellowComponent,
     NavbarLoginComponent,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    MatSortModule,
   ],
   declarations:[
     SidebarComponent,

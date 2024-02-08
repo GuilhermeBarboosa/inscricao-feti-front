@@ -1,7 +1,8 @@
 <app-navbar-login [value] = 'tipoPagina'></app-navbar-login>
 
 
-<app-sidebar></app-sidebar>
+<div class="flex">
+  <app-sidebar></app-sidebar>
 <div class="home-section">
   <div class="h-full w-full">
     <div class="flex justify-between m-5">
@@ -83,16 +84,16 @@
 
     <div class="">
       <div class="example-container p-2 relative overflow-x-auto">
-        <table mat-table [dataSource]="editalArray" class="mat-elevation-z2">
+        <table mat-table [dataSource]="editalArray" class="mat-elevation-z2" matSort (matSortChange)="announceSortChange($event)">
           <th  matColumnDef="id">
-            <mat-header-cell mat-header-cell *matHeaderCellDef>
+            <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
               Id
             </mat-header-cell>
             <mat-cell mat-cell *matCellDef="let edital"> {{ edital.id }} </mat-cell>
           </th >
 
           <th  matColumnDef="edital">
-            <mat-header-cell mat-header-cell *matHeaderCellDef>
+            <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
               Edital
             </mat-header-cell>
             <mat-cell mat-cell *matCellDef="let edital">
@@ -101,7 +102,7 @@
           </th >
 
           <th  matColumnDef="qtd_inicio">
-            <mat-header-cell mat-header-cell *matHeaderCellDef>
+            <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
               Inicio
             </mat-header-cell>
             <mat-cell mat-cell *matCellDef="let edital" class="text-green-600">
@@ -110,7 +111,7 @@
           </th >
 
           <th  matColumnDef="qtd_fim">
-            <mat-header-cell mat-header-cell *matHeaderCellDef>
+            <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
               Fim
             </mat-header-cell>
             <mat-cell mat-cell *matCellDef="let edital" class="text-red-600">
@@ -119,7 +120,7 @@
           </th >
 
           <th  matColumnDef="funcao">
-            <mat-header-cell mat-header-cell *matHeaderCellDef>
+            <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
               Funções
             </mat-header-cell>
             <mat-cell mat-cell *matCellDef="let edital">
@@ -132,7 +133,7 @@
 
           <th  matColumnDef="status">
             <div>
-              <mat-header-cell mat-header-cell *matHeaderCellDef>
+              <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
                 Status
               </mat-header-cell>
               <mat-cell mat-cell *matCellDef="let edital">
@@ -176,4 +177,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

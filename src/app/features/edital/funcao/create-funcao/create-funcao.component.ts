@@ -83,6 +83,6 @@ export class CreateFuncaoComponent implements OnInit {
   }
 
   return() {
-    this.router.navigateByUrl(`/funcao/`);
+    this.router.navigateByUrl(`/funcao/${this.id}`);
   }
 }

@@ -1,6 +1,8 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
@@ -36,6 +38,7 @@ export class EditalTableComponent implements OnInit {
 
   editalArray = new MatTableDataSource<Edital>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private editalService: EditalService,
@@ -43,7 +46,8 @@ export class EditalTableComponent implements OnInit {
     private router: Router,
     private notifier: NotifierService,
     private token: TokenJwtService,
-    private utils: UtilsService
+    private utils: UtilsService,
+    private _liveAnnouncer: LiveAnnouncer
   ) {}
 
   async ngOnInit() {
@@ -62,6 +66,7 @@ export class EditalTableComponent implements OnInit {
 
   ngAfterViewInit() {
     this.editalArray.paginator = this.paginator;
+    this.editalArray.sort = this.sort;
   }
 
   applyFilter(event: Event) {
@@ -107,6 +112,14 @@ export class EditalTableComponent implements OnInit {
     });
   }
 
+  announceSortChange(sort: Sort) {
+    if (sort.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sort.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
+
   initTable() {
     this.editalService.getAll().subscribe((data) => {
       var editalResponse = JSON.parse(JSON.stringify(data));
@@ -141,6 +154,6 @@ export class EditalTableComponent implements OnInit {
   }
 
   getByFuncao(id: any) {
-    this.router.navigateByUrl(`/funcao/${id}`)
+    this.router.navigateByUrl(`/funcao/${id}`);
   }
 }

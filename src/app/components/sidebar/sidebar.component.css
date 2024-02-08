@@ -15,7 +15,7 @@
   font-family: 'Poppins', sans-serif;
 }
 .sidebar {
-  position: fixed;
+  position: flex;
   left: 0;
   top: 0;
   height: 100%;
@@ -23,7 +23,7 @@
   background: #00216c;
   padding: 6px 14px;
   z-index: 99;
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
   -webkit-box-shadow: 1px 0px 9px 0px rgba(0,0,0,0.25);
   -moz-box-shadow: 1px 0px 9px 0px rgba(0,0,0,0.25);
   box-shadow: 1px 0px 9px 0px rgba(0,0,0,0.25);
@@ -39,14 +39,14 @@
 }
 .sidebar .logo-details .icon {
   opacity: 0;
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
 }
 .sidebar .logo-details .logo_name {
   color: #fff;
   font-size: 20px;
   font-weight: 600;
   opacity: 0;
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
 }
 .sidebar.open .logo-details .icon,
 .sidebar.open .logo-details .logo_name {
@@ -60,7 +60,7 @@
   font-size: 23px;
   text-align: center;
   cursor: pointer;
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
 }
 .sidebar.open .logo-details #btn {
   text-align: right;
@@ -118,7 +118,7 @@
   width: 50px;
   border: none;
   border-radius: 12px;
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
   background: #00217c;
 }
 .sidebar.open input {
@@ -170,7 +170,7 @@
 }
 .sidebar li a:hover .links_name,
 .sidebar li a:hover i {
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
   color: #11101d;
 }
 .sidebar li i {
@@ -187,7 +187,7 @@
   bottom: -8px;
   padding: 10px 14px;
   background: #1d1b31;
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
   overflow: hidden;
 }
 .sidebar.open li.profile {
@@ -239,7 +239,7 @@
   height: 60px;
   line-height: 60px;
   border-radius: 0px;
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
 }
 .sidebar.open .profile #log_out {
   width: 50px;
@@ -250,4 +250,8 @@
   .sidebar li .tooltip {
     display: none;
   }
+}
+
+.hidden{
+  display: none;
 }

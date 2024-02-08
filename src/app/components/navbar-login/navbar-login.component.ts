@@ -8,6 +8,8 @@ import { StyleService } from 'src/app/services/style.service';
   styleUrls: ['./navbar-login.component.css'],
 })
 export class NavbarLoginComponent implements OnInit {
+
+  nameUser = localStorage.getItem("user")
   @Input() value: String | undefined;
   ngOnInit(): void {
   }

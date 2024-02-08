@@ -1,6 +1,8 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
@@ -34,6 +36,7 @@ export class AlternativaTableComponent implements OnInit {
 
   alternativasArray = new MatTableDataSource<Alternativa>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private alternativaService: AlternativaService,
@@ -41,7 +44,8 @@ export class AlternativaTableComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     private notifier: NotifierService,
-    private token: TokenJwtService
+    private token: TokenJwtService,
+    private _liveAnnouncer: LiveAnnouncer
   ) {}
 
   async ngOnInit() {
@@ -60,6 +64,7 @@ export class AlternativaTableComponent implements OnInit {
 
   ngAfterViewInit() {
     this.alternativasArray.paginator = this.paginator;
+    this.alternativasArray.sort = this.sort;
   }
 
   applyFilter(event: Event) {
@@ -70,7 +75,9 @@ export class AlternativaTableComponent implements OnInit {
   }
 
   info(alternativa: Alternativa) {
-    this.router.navigateByUrl(`alternativa/${this.idPergunta}/info/${alternativa.id}`);
+    this.router.navigateByUrl(
+      `alternativa/${this.idPergunta}/info/${alternativa.id}`
+    );
   }
 
   ativar(alternativa: Alternativa) {
@@ -105,6 +112,14 @@ export class AlternativaTableComponent implements OnInit {
         );
       }
     });
+  }
+
+  announceSortChange(sort: Sort) {
+    if (sort.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sort.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
   }
 
   initTable() {

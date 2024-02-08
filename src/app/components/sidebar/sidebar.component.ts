@@ -18,7 +18,7 @@ export class SidebarComponent implements OnInit {
   constructor(
     public styleService: StyleService,
     private token: TokenJwtService,
-    private loginService: LoginService,
+    private loginService: LoginService
   ) {}
 
   async ngOnInit() {
@@ -28,7 +28,6 @@ export class SidebarComponent implements OnInit {
   openMenu() {
     let sidebar = document.querySelector('.sidebar');
     let closeBtn = document.querySelector('#btn');
-    let searchBtn = document.querySelector('.bx-search');
     sidebar!.classList.toggle('open');
     this.menuBtnChange(sidebar, closeBtn);
   }
@@ -37,10 +36,14 @@ export class SidebarComponent implements OnInit {
     sidebar: Element | null | undefined,
     closeBtn: Element | null | undefined
   ) {
+    let logoName = document.querySelector('.logo_name');
+
     if (sidebar!.classList.contains('open')) {
       closeBtn!.classList.replace('bx-menu', 'bx-menu-alt-right');
+      logoName!.classList.remove('hidden');
     } else {
       closeBtn!.classList.replace('bx-menu-alt-right', 'bx-menu');
+      logoName!.classList.add('hidden');
     }
   }
   applyFilter(event: Event) {

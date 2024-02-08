@@ -51,7 +51,6 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-
   createTable() {
     this.userForm = this.formBuilder.group({
       name: [

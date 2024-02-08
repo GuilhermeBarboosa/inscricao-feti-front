@@ -92,7 +92,7 @@ label {
 
 .home-section {
   padding: 20px;
-  position: relative;
+  position: block;
   min-height: 100vh;
   top: 0;
   left: 78px;

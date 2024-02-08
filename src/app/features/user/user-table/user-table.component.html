@@ -1,8 +1,10 @@
 <app-navbar-login [value] = 'tipoPagina'></app-navbar-login>
 
-<app-sidebar></app-sidebar>
+
+<div class="flex">
+  <app-sidebar></app-sidebar>
 <div class="home-section">
-  <div class="h-full w-full">
+  <div class="h-full">
     <div class="flex justify-between m-5">
       <div class="">
         <p class="title text-white font-medium text-lg font-bold">
@@ -82,16 +84,16 @@
 
     <div class="">
       <div class="example-container p-2 relative overflow-x-auto">
-        <table mat-table [dataSource]="usersArray" class="mat-elevation-z2">
+        <table mat-table [dataSource]="usersArray" class="mat-elevation-z2" matSort (matSortChange)="announceSortChange($event)">
           <th  matColumnDef="id">
-            <mat-header-cell mat-header-cell *matHeaderCellDef>
+            <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
               Id
             </mat-header-cell>
             <mat-cell mat-cell *matCellDef="let user"> {{ user.id }} </mat-cell>
           </th >
 
           <th  matColumnDef="name">
-            <mat-header-cell mat-header-cell *matHeaderCellDef>
+            <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
               Nome
             </mat-header-cell>
             <mat-cell mat-cell *matCellDef="let user">
@@ -99,8 +101,8 @@
             </mat-cell>
           </th >
 
-          <th  matColumnDef="email">
-            <mat-header-cell mat-header-cell *matHeaderCellDef>
+          <th  matColumnDef="email" >
+            <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by email">
               Email
             </mat-header-cell>
             <mat-cell mat-cell *matCellDef="let user">
@@ -109,7 +111,7 @@
           </th >
 
           <th  matColumnDef="role">
-            <mat-header-cell mat-header-cell *matHeaderCellDef>
+            <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by role">
               Tipo
             </mat-header-cell>
             <mat-cell mat-cell *matCellDef="let user">
@@ -117,9 +119,9 @@
             </mat-cell>
           </th >
 
-          <th  matColumnDef="status">
+          <th  matColumnDef="status" >
             <div>
-              <mat-header-cell mat-header-cell *matHeaderCellDef>
+              <mat-header-cell mat-header-cell *matHeaderCellDef  mat-sort-header sortActionDescription="Sort by status">
                 Status
               </mat-header-cell>
               <mat-cell mat-cell *matCellDef="let user">
@@ -129,7 +131,7 @@
           </th >
 
           <th  matColumnDef="acoes">
-            <mat-header-cell mat-header-cell *matHeaderCellDef>
+            <mat-header-cell mat-header-cell *matHeaderCellDef >
             </mat-header-cell>
             <mat-cell mat-cell *matCellDef="let user">
               <div class="flex">
@@ -160,6 +162,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <!-- <div class="fixed bottom-0 right-0 p-4 justify-end flex">
