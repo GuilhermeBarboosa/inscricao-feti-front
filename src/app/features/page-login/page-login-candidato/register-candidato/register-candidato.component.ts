@@ -26,7 +26,7 @@ export class RegisterCandidatoComponent implements OnInit {
     private userService: UserService,
     private formBuilder: FormBuilder,
     private notifier: NotifierService,
-    private utils: UtilsService
+    private utilsService: UtilsService
   ) {}
 
   user!: User;
@@ -70,7 +70,7 @@ export class RegisterCandidatoComponent implements OnInit {
           cpf: this.registerForm.get('cpf')?.value,
           email: this.registerForm.get('email')?.value,
           telefone: this.registerForm.get('telefone')?.value,
-          data_de_nascimento: this.utils.formatarDataToSQL(
+          data_de_nascimento: this.utilsService.formatarDataToSQL(
             this.registerForm.get('data_de_nascimento')?.value
           ),
           cep: this.registerForm.get('cep')?.value,
@@ -95,7 +95,7 @@ export class RegisterCandidatoComponent implements OnInit {
           }
         );
       } else {
-        this.notifier.showError('Formulário inválido!');
+        this.utilsService.getFormValidationErrors(this.registerForm)
       }
     }
   }

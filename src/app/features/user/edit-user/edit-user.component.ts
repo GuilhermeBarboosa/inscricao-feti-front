@@ -37,7 +37,7 @@ export class EditUserComponent implements OnInit {
     private userService: UserService,
     private roleService: RoleService,
     private router: Router,
-    private utils: UtilsService,
+    private utilsService: UtilsService,
     private formBuilder: FormBuilder,
     private notifier: NotifierService,
     // private enderecoService: EnderecoService,
@@ -53,8 +53,8 @@ export class EditUserComponent implements OnInit {
     this.userService.getById(this.id).subscribe((res) => {
       var userResponse = JSON.parse(JSON.stringify(res));
 
-      userResponse.created = this.utils.formatarData(userResponse.created);
-      userResponse.updated = this.utils.formatarData(userResponse.updated);
+      userResponse.created = this.utilsService.formatarData(userResponse.created);
+      userResponse.updated = this.utilsService.formatarData(userResponse.updated);
 
       this.user = userResponse;
 
@@ -123,7 +123,7 @@ export class EditUserComponent implements OnInit {
         }
       );
     } else {
-      this.notifier.showInfo('Preencha todos os campos!');
+      this.utilsService.getFormValidationErrors(this.formulario);
     }
   }
 

@@ -37,7 +37,7 @@ export class EditAlternativaComponent implements OnInit {
     private alternativaService: AlternativaService,
     private roleService: RoleService,
     private router: Router,
-    private utils: UtilsService,
+    private utilsService: UtilsService,
     private formBuilder: FormBuilder,
     private notifier: NotifierService
   ) {}
@@ -51,8 +51,8 @@ export class EditAlternativaComponent implements OnInit {
     this.alternativaService.getById(this.id).subscribe((res) => {
       var alternativaResponse = JSON.parse(JSON.stringify(res));
 
-      alternativaResponse.created = this.utils.formatarData(alternativaResponse.created);
-      alternativaResponse.updated = this.utils.formatarData(alternativaResponse.updated);
+      alternativaResponse.created = this.utilsService.formatarData(alternativaResponse.created);
+      alternativaResponse.updated = this.utilsService.formatarData(alternativaResponse.updated);
 
       this.alternativa = alternativaResponse;
 
@@ -103,7 +103,7 @@ export class EditAlternativaComponent implements OnInit {
         }
       );
     } else {
-      this.notifier.showInfo('Preencha todos os campos!');
+      this.utilsService.getFormValidationErrors(this.formulario);
     }
   }
 

@@ -15,7 +15,7 @@ export class ListInscricoesComponent implements OnInit {
     private inscricaoService: InscricaoService,
     private login: LoginService,
     private router: Router,
-    private utils: UtilsService
+    private utilsService: UtilsService
   ) {}
 
   user: number = 0;
@@ -35,7 +35,7 @@ export class ListInscricoesComponent implements OnInit {
           this.length = this.inscricao.length;
         }
         this.inscricao.forEach((element) => {
-          element.created = this.utils.formatarData(element.created);
+          element.created = this.utilsService.formatarData(element.created);
         });
       });
     });

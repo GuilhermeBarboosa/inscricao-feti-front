@@ -46,7 +46,7 @@ export class EditalTableComponent implements OnInit {
     private router: Router,
     private notifier: NotifierService,
     private token: TokenJwtService,
-    private utils: UtilsService,
+    private utilsService: UtilsService,
     private _liveAnnouncer: LiveAnnouncer
   ) {}
 
@@ -125,8 +125,8 @@ export class EditalTableComponent implements OnInit {
       var editalResponse = JSON.parse(JSON.stringify(data));
 
       editalResponse.map((edital: Edital) => {
-        edital.data_inicio = this.utils.formatarData(edital.data_inicio);
-        edital.data_fim = this.utils.formatarData(edital.data_fim);
+        edital.data_inicio = this.utilsService.formatarData(edital.data_inicio);
+        edital.data_fim = this.utilsService.formatarData(edital.data_fim);
 
         if (edital.actived) {
           edital.actived = 'Ativo';
@@ -141,7 +141,7 @@ export class EditalTableComponent implements OnInit {
 
   downloadEdital(id: number | undefined) {
     this.editalService.downloadEdital(id).subscribe((data) => {
-      this.utils.saveArquivo(data);
+      this.utilsService.saveArquivo(data);
     });
   }
 

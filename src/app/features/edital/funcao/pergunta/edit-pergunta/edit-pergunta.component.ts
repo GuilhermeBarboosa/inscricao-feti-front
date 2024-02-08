@@ -37,7 +37,7 @@ export class EditPerguntaComponent implements OnInit {
     private perguntaService: PerguntaService,
     private roleService: RoleService,
     private router: Router,
-    private utils: UtilsService,
+    private utilsService: UtilsService,
     private formBuilder: FormBuilder,
     private notifier: NotifierService
   ) {}
@@ -51,8 +51,8 @@ export class EditPerguntaComponent implements OnInit {
     this.perguntaService.getById(this.id).subscribe((res) => {
       var perguntaResponse = JSON.parse(JSON.stringify(res));
 
-      perguntaResponse.created = this.utils.formatarData(perguntaResponse.created);
-      perguntaResponse.updated = this.utils.formatarData(perguntaResponse.updated);
+      perguntaResponse.created = this.utilsService.formatarData(perguntaResponse.created);
+      perguntaResponse.updated = this.utilsService.formatarData(perguntaResponse.updated);
 
       this.pergunta = perguntaResponse;
 
@@ -98,11 +98,11 @@ export class EditPerguntaComponent implements OnInit {
         }
       );
     } else {
-      this.notifier.showInfo('Preencha todos os campos!');
+      this.utilsService.getFormValidationErrors(this.formulario);
     }
   }
 
   return() {
-    this.router.navigateByUrl(`/pergunta/info/${this.pergunta?.id}/${this.idFuncao}`);
+    this.router.navigateByUrl(`/pergunta/${this.idFuncao}/info/${this.pergunta?.id}`);
   }
 }

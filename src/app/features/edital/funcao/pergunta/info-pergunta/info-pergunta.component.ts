@@ -29,7 +29,7 @@ export class InfoPerguntaComponent implements OnInit{
     private activedRouter: ActivatedRoute,
     private perguntaService: PerguntaService,
     private router: Router,
-    private utils: UtilsService,
+    private utilsService: UtilsService,
     private formBuilder: FormBuilder,
     private notifier: NotifierService,
     private token: TokenJwtService
@@ -42,8 +42,8 @@ export class InfoPerguntaComponent implements OnInit{
         var perguntaResponse = JSON.parse(JSON.stringify(data));
         this.pergunta = perguntaResponse;
 
-        this.pergunta!.created = this.utils.formatarData(this.pergunta!.created);
-        this.pergunta!.updated = this.utils.formatarData(this.pergunta!.updated);
+        this.pergunta!.created = this.utilsService.formatarData(this.pergunta!.created);
+        this.pergunta!.updated = this.utilsService.formatarData(this.pergunta!.updated);
 
         this.createTable();
       },

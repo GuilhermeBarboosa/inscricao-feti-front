@@ -28,7 +28,7 @@ export class InfoUserComponent implements OnInit {
     private activedRouter: ActivatedRoute,
     private userService: UserService,
     private router: Router,
-    private utils: UtilsService,
+    private utilsService: UtilsService,
     private formBuilder: FormBuilder,
     private notifier: NotifierService,
     private token: TokenJwtService
@@ -41,8 +41,8 @@ export class InfoUserComponent implements OnInit {
         var userResponse = JSON.parse(JSON.stringify(data));
         this.user = userResponse;
 
-        this.user!.created = this.utils.formatarData(this.user!.created);
-        this.user!.updated = this.utils.formatarData(this.user!.updated);
+        this.user!.created = this.utilsService.formatarData(this.user!.created);
+        this.user!.updated = this.utilsService.formatarData(this.user!.updated);
 
         this.createTable();
       },

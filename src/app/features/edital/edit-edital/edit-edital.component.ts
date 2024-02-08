@@ -36,7 +36,7 @@ export class EditEditalComponent implements OnInit {
     private editalService: EditalService,
     private roleService: RoleService,
     private router: Router,
-    private utils: UtilsService,
+    private utilsService: UtilsService,
     private formBuilder: FormBuilder,
     private notifier: NotifierService
   ) {}
@@ -50,14 +50,14 @@ export class EditEditalComponent implements OnInit {
     this.editalService.getById(this.id).subscribe((res) => {
       var editalResponse = JSON.parse(JSON.stringify(res));
 
-      editalResponse.data_inicio = this.utils.formatarData(
+      editalResponse.data_inicio = this.utilsService.formatarData(
         editalResponse.data_inicio
       );
-      editalResponse.data_fim = this.utils.formatarData(
+      editalResponse.data_fim = this.utilsService.formatarData(
         editalResponse.data_fim
       );
-      editalResponse.created = this.utils.formatarData(editalResponse.created);
-      editalResponse.updated = this.utils.formatarData(editalResponse.updated);
+      editalResponse.created = this.utilsService.formatarData(editalResponse.created);
+      editalResponse.updated = this.utilsService.formatarData(editalResponse.updated);
 
       this.edital = editalResponse;
 
@@ -104,10 +104,10 @@ export class EditEditalComponent implements OnInit {
         qtd_vagas: this.formulario.get('qtd_vagas')?.value,
       };
 
-      editalDTO.data_inicio = this.utils.formatarDataToSQL(
+      editalDTO.data_inicio = this.utilsService.formatarDataToSQL(
         editalDTO.data_inicio
       );
-      editalDTO.data_fim = this.utils.formatarDataToSQL(
+      editalDTO.data_fim = this.utilsService.formatarDataToSQL(
         editalDTO.data_fim
       );
 
@@ -126,7 +126,7 @@ export class EditEditalComponent implements OnInit {
         }
       );
     } else {
-      this.notifier.showInfo('Preencha todos os campos!');
+      this.utilsService.getFormValidationErrors(this.formulario);
     }
   }
 

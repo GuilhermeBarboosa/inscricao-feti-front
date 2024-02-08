@@ -37,7 +37,7 @@ export class EditFuncaoComponent implements OnInit {
     private funcaoService: FuncaoService,
     private roleService: RoleService,
     private router: Router,
-    private utils: UtilsService,
+    private utilsService: UtilsService,
     private formBuilder: FormBuilder,
     private notifier: NotifierService
   ) {}
@@ -51,8 +51,8 @@ export class EditFuncaoComponent implements OnInit {
     this.funcaoService.getById(this.id).subscribe((res) => {
       var funcaoResponse = JSON.parse(JSON.stringify(res));
 
-      funcaoResponse.created = this.utils.formatarData(funcaoResponse.created);
-      funcaoResponse.updated = this.utils.formatarData(funcaoResponse.updated);
+      funcaoResponse.created = this.utilsService.formatarData(funcaoResponse.created);
+      funcaoResponse.updated = this.utilsService.formatarData(funcaoResponse.updated);
 
       this.funcao = funcaoResponse;
 
@@ -98,7 +98,7 @@ export class EditFuncaoComponent implements OnInit {
         }
       );
     } else {
-      this.notifier.showInfo('Preencha todos os campos!');
+      this.utilsService.getFormValidationErrors(this.formulario);
     }
   }
 

@@ -11,6 +11,7 @@ import { User } from 'src/app/interfaces/dto/user';
 import { UserInput } from 'src/app/interfaces/input/userInput';
 import { UserService } from 'src/app/routes/user.service';
 import { NotifierService } from 'src/app/services/notifier.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +24,8 @@ export class RegisterComponent implements OnInit {
     private userService: UserService,
     private formBuilder: FormBuilder,
     private notifier: NotifierService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private utilsService: UtilsService
   ) {}
 
   user!: User;
@@ -90,7 +92,7 @@ export class RegisterComponent implements OnInit {
           }
         );
       } else {
-        this.notifier.showError('Formulário inválido!');
+        this.utilsService.getFormValidationErrors(this.registerForm)
       }
     }
   }

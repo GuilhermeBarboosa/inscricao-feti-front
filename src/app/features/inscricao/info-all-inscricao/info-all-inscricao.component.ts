@@ -32,7 +32,7 @@ export class InfoAllInscricaoComponent implements OnInit{
     private activedRouter: ActivatedRoute,
     private notifier: NotifierService,
     private token: TokenJwtService,
-    private utils: UtilsService,
+    private utilsService: UtilsService,
  private _liveAnnouncer: LiveAnnouncer
   ) {}
 

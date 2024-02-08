@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import * as saveAs from 'file-saver';
 import * as CryptoJS from 'crypto-js';
+import { Form, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
+import { NotifierService } from './notifier.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UtilsService {
-  constructor() {}
+  constructor(private toast: NotifierService) {}
 
   formatarData(data: any) {
     const date = new Date(data);
@@ -110,6 +112,29 @@ export class UtilsService {
       );
     }
     return randomWord;
+  }
+
+  getFormValidationErrors(form: FormGroup) {
+    Object.keys(form.controls).forEach((key) => {
+      const control = form.get(key);
+      if (control) {
+        const controlErrors: ValidationErrors | null = control.errors;
+        if (controlErrors != null) {
+          Object.keys(controlErrors).forEach((keyError) => {
+            console.log(
+              'Key control: ' +
+                key +
+                ', keyError: ' +
+                keyError +
+                ', err value: ',
+              controlErrors[keyError]
+            );
+
+            this.toast.showError(`O campo ${key} está incorreto`)
+          });
+        }
+      }
+    });
   }
 
 }

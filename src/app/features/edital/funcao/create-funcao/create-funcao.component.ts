@@ -78,7 +78,7 @@ export class CreateFuncaoComponent implements OnInit {
         }
       );
     } else {
-      this.notifier.showError('Formulário inválido!');
+      this.utilsService.getFormValidationErrors(this.formulario)
     }
   }
 

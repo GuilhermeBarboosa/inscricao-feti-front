@@ -46,7 +46,7 @@ export class InscricaoTableComponent implements OnInit {
     private router: Router,
     private notifier: NotifierService,
     private token: TokenJwtService,
-    private utils: UtilsService,
+    private utilsService: UtilsService,
     private _liveAnnouncer: LiveAnnouncer
   ) {}
 

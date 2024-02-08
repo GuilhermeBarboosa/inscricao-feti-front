@@ -1,75 +1,87 @@
 <div class="h-screen">
-
   <app-navbar-login></app-navbar-login>
 
-  <section
-  class="flex items-center justify-center w-full h-4/5"
->
-  <div class="max-sm:w-full max-sm:m-5 sm:w-full sm:m-5 sm:flex sm:justify-center">
+  <section class="flex items-center justify-center w-full h-4/5">
     <div
-      class="bg-white w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 "
+      class="max-sm:w-screen max-sm:m-5 sm:w-screen sm:m-5 sm:flex sm:justify-center"
     >
+      <div
+        class="bg-white w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-3xl xl:p-0"
+      >
+        <div class="flex items-center justify-center">
+          <img
+            class="m-7 mb-0"
+            src="../../../../../assets/codiub-logo.png"
+            alt=""
+            width="30%"
+          />
+        </div>
 
-    <div class="flex items-center justify-center">
-      <img class="m-7 mb-0" src="../../../../../assets/codiub-logo.png" alt="" width="30%">
-    </div>
-
-      <div >
-        <!-- <div class="">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div
-            class="border text-black font-bold leading-tight tracking-tight md:text-2xl "
+            class="col p-6 space-y-4 md:space-y-6 sm:p-8 max-sm:hidden max-lg:block lg:block md:block sm:hidden"
+            id="sobreSistema"
           >
-            Sistema FETI
-          </div>
-        </div> -->
+            <div
+              class="text-black font-bold leading-tight tracking-tight md:text-2xl"
+            >
+              Sistema FETI
+            </div>
 
-        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-          <h1
-            class="text-black font-bold leading-tight tracking-tight md:text-2xl "
-          >
-            Login
-          </h1>
-          <form class="space-y-4 md:space-y-6" [formGroup]="loginForm">
             <div>
-              <label for="email" class="block text-md font-medium text-black"
-                >Email</label
-              >
-              <input
-                formControlName="email"
-                type="email"
-                name="email"
-                id="email"
-                class="default-input block w-full p-2.5"
-                required=""
-              />
+              <p class="pt-2 space-y-4 md:space-y-6">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Consequatur velit a eligendi blanditiis molestiae deleniti
+                magnam at quos minima similique perferendis harum ex
+                exercitationem odit pariatur voluptatum, vitae quam sit.
+              </p>
             </div>
-            <div class="">
-              <label
-                for="password"
-                class="block text-md font-medium text-black"
-                >Password</label
+          </div>
+
+          <div class="col">
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+              <h1
+                class="text-black font-bold leading-tight tracking-tight md:text-2xl"
               >
-              <div class="relative">
+                Login
+              </h1>
+              <form class="space-y-4 md:space-y-6" [formGroup]="loginForm">
+                <div>
+                  <label
+                    for="email"
+                    class="block text-md font-medium text-black"
+                    >Email</label
+                  >
+                  <input
+                    formControlName="email"
+                    type="email"
+                    name="email"
+                    id="email"
+                    class="default-input block w-full p-2.5"
+                    required=""
+                  />
+                </div>
+                <div class="">
+                  <label
+                    for="password"
+                    class="block text-md font-medium text-black"
+                    >Password</label
+                  >
 
-                <input
-                  formControlName="password"
-                  type="password"
-                  name="password"
-                  id="password"
-                  class="default-input block w-full p-2.5"
-                  required=""
-                />
-
-                <div
-                class="absolute inset-y-0 left flex items-center cursor-pointer"
-              >
-                <i class='bx bx-show' (click)="showPassword()"></i>
-              </div>
-
-              </div>
-            </div>
-            <div class="flex items-center justify-end">
-              <!-- <div class="flex items-start">
+                  <div class="w-full relative">
+                    <input
+                      formControlName="password"
+                      type="password"
+                      name="password"
+                      id="password"
+                      class="default-input block w-full p-2.5 pr-10"
+                      required=""
+                    />
+                    <i class="bx bx-show absolute items-center cursor-pointer" (click)="showPassword()"></i>
+                  </div>
+                </div>
+                <div class="flex items-center justify-end">
+                  <!-- <div class="flex items-start">
                 <a
                   routerLink="/cms/register"
                   routerLinkActive="active"
@@ -78,23 +90,21 @@
                 >
               </div> -->
 
-              <div class="flex items-end">
-                <button
-                  (click)="login()"
-                  type="button"
-                  class="rounded-lg text-white bg-default font-medium text-sm px-5 py-2.5 text-center mr-2 mb-2"
-                >
-                  Entrar
-                </button>
-              </div>
+                  <div class="flex items-end">
+                    <button
+                      (click)="login()"
+                      type="button"
+                      class="rounded-lg text-white bg-default font-medium text-sm px-5 py-2.5 text-center mb-2"
+                    >
+                      Entrar
+                    </button>
+                  </div>
+                </div>
+              </form>
             </div>
-
-
-          </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
+  </section>
 </div>

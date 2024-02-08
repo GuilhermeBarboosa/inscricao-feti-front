@@ -28,7 +28,7 @@ export class InfoFuncaoComponent implements OnInit {
     private activedRouter: ActivatedRoute,
     private funcaoService: FuncaoService,
     private router: Router,
-    private utils: UtilsService,
+    private utilsService: UtilsService,
     private formBuilder: FormBuilder,
     private notifier: NotifierService,
     private token: TokenJwtService
@@ -41,8 +41,8 @@ export class InfoFuncaoComponent implements OnInit {
         var funcaoResponse = JSON.parse(JSON.stringify(data));
         this.funcao = funcaoResponse;
 
-        this.funcao!.created = this.utils.formatarData(this.funcao!.created);
-        this.funcao!.updated = this.utils.formatarData(this.funcao!.updated);
+        this.funcao!.created = this.utilsService.formatarData(this.funcao!.created);
+        this.funcao!.updated = this.utilsService.formatarData(this.funcao!.updated);
 
         this.createTable();
       },

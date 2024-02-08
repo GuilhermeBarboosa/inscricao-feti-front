@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CookieService } from 'src/app/services/cookie.service';
 import { StyleService } from 'src/app/services/style.service';
 
 @Component({
@@ -8,10 +7,11 @@ import { StyleService } from 'src/app/services/style.service';
   styleUrls: ['./navbar-login.component.css'],
 })
 export class NavbarLoginComponent implements OnInit {
+  nameUser: any = '';
 
-  nameUser = localStorage.getItem("user")
   @Input() value: String | undefined;
   ngOnInit(): void {
+    this.nameUser = localStorage.getItem('user');
   }
 
   constructor(public styleService: StyleService) {}

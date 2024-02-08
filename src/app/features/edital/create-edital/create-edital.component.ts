@@ -59,7 +59,7 @@ export class CreateEditalComponent implements OnInit {
       data_inicio: ['22/11/2025', [Validators.required]],
       data_fim: ['22/11/2025', [Validators.required]],
       qtd_vagas: ['23', Validators.required],
-      arquivo: [null],
+      arquivo: [null, Validators.required],
     });
   }
 
@@ -116,7 +116,7 @@ export class CreateEditalComponent implements OnInit {
         }
       );
     } else {
-      this.notifier.showError('Formulário inválido!');
+      this.utilsService.getFormValidationErrors(this.formulario)
     }
   }
 

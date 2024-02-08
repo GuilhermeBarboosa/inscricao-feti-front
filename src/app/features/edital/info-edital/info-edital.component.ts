@@ -28,7 +28,7 @@ export class InfoEditalComponent implements OnInit{
     private activedRouter: ActivatedRoute,
     private editalService: EditalService,
     private router: Router,
-    private utils: UtilsService,
+    private utilsService: UtilsService,
     private formBuilder: FormBuilder,
     private notifier: NotifierService,
     private token: TokenJwtService
@@ -41,10 +41,10 @@ export class InfoEditalComponent implements OnInit{
         var editalResponse = JSON.parse(JSON.stringify(data));
         this.edital = editalResponse;
 
-        this.edital!.data_inicio = this.utils.formatarData(this.edital?.data_inicio);
-        this.edital!.data_fim = this.utils.formatarData(this.edital?.data_fim);
-        this.edital!.created = this.utils.formatarData(this.edital!.created);
-        this.edital!.updated = this.utils.formatarData(this.edital!.updated);
+        this.edital!.data_inicio = this.utilsService.formatarData(this.edital?.data_inicio);
+        this.edital!.data_fim = this.utilsService.formatarData(this.edital?.data_fim);
+        this.edital!.created = this.utilsService.formatarData(this.edital!.created);
+        this.edital!.updated = this.utilsService.formatarData(this.edital!.updated);
 
         this.createTable();
       },

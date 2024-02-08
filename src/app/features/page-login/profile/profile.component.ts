@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
     private token: TokenJwtService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private utils: UtilsService
+    private utilsService: UtilsService
   ) {}
 
   user?: User;
@@ -36,11 +36,11 @@ export class ProfileComponent implements OnInit {
           var userResponse = JSON.parse(JSON.stringify(res));
           this.user = userResponse;
 
-          this.user!.name = this.utils.formatterString(this.user!.name);
+          this.user!.name = this.utilsService.formatterString(this.user!.name);
 
-          this.user!.created = this.utils.formatarData(this.user!.created);
+          this.user!.created = this.utilsService.formatarData(this.user!.created);
 
-          this.user!.updated = this.utils.formatarData(this.user!.updated);
+          this.user!.updated = this.utilsService.formatarData(this.user!.updated);
 
           this.createTable();
         });

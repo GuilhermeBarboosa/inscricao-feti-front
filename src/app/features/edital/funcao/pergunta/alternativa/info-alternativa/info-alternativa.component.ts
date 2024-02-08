@@ -28,7 +28,7 @@ export class InfoAlternativaComponent  implements OnInit {
     private activedRouter: ActivatedRoute,
     private alternativaService: AlternativaService,
     private router: Router,
-    private utils: UtilsService,
+    private utilsService: UtilsService,
     private formBuilder: FormBuilder,
     private notifier: NotifierService,
     private token: TokenJwtService
@@ -41,8 +41,8 @@ export class InfoAlternativaComponent  implements OnInit {
         var alternativaResponse = JSON.parse(JSON.stringify(data));
         this.alternativa = alternativaResponse;
 
-        this.alternativa!.created = this.utils.formatarData(this.alternativa!.created);
-        this.alternativa!.updated = this.utils.formatarData(this.alternativa!.updated);
+        this.alternativa!.created = this.utilsService.formatarData(this.alternativa!.created);
+        this.alternativa!.updated = this.utilsService.formatarData(this.alternativa!.updated);
 
         this.createTable();
       },

@@ -32,7 +32,7 @@ export class MinhaContaComponent implements OnInit {
     private activedRouter: ActivatedRoute,
     private userService: UserService,
     private router: Router,
-    private utils: UtilsService,
+    private utilsService: UtilsService,
     private formBuilder: FormBuilder,
     private notifier: NotifierService,
     private token: TokenJwtService
@@ -47,7 +47,7 @@ export class MinhaContaComponent implements OnInit {
         var userResponse = JSON.parse(JSON.stringify(data));
         this.user = userResponse;
 
-        this.user!.data_de_nascimento = this.utils.formatarData(
+        this.user!.data_de_nascimento = this.utilsService.formatarData(
           this.user?.data_de_nascimento
         );
 
@@ -108,7 +108,7 @@ export class MinhaContaComponent implements OnInit {
         cpf: this.formulario.get('cpf')?.value,
         email: this.formulario.get('email')?.value,
         telefone: this.formulario.get('telefone')?.value,
-        data_de_nascimento: this.utils.formatarDataToSQL(
+        data_de_nascimento: this.utilsService.formatarDataToSQL(
           this.formulario.get('data_de_nascimento')?.value
         ),
         cep: this.formulario.get('cep')?.value,

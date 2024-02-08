@@ -34,7 +34,7 @@ export class EditInscricaoComponent {
     private notifier: NotifierService,
     private situacaoService: SituacaoService,
     private token: TokenJwtService,
-    private utils: UtilsService
+    private utilsService: UtilsService
   ) {}
 
   async ngOnInit() {
@@ -96,7 +96,7 @@ export class EditInscricaoComponent {
           }
         );
     } else {
-      this.notifier.showInfo('Preencha todos os campos!');
+      this.utilsService.getFormValidationErrors(this.formulario);
     }
   }
 
