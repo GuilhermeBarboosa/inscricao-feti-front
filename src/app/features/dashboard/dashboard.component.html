@@ -11,6 +11,54 @@
           </p>
         </div>
       </div>
+
+      <div class="grid grid-cols-3 gap-5 m-5">
+        <div class="col border rounded aspect-w-1 aspect-h-1 items-center justify-center flex">
+          <div class="block max-w-sm p-6 bg-white rounded-lg">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+              Quantidade de Usuários
+            </h5>
+            <p class="font-bold text-6xl text-gray-700 items-center justify-center flex">
+              {{ this.getInfo.qtdUser }}
+            </p>
+          </div>
+        </div>
+
+        <div class="col border rounded aspect-w-1 aspect-h-1 items-center justify-center flex">
+          <div class="block max-w-sm p-6 bg-white rounded-lg">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+              Quantidade de Editais
+            </h5>
+            <p class="font-bold text-6xl text-gray-700 items-center justify-center flex">
+              {{ this.getInfo.qtdEdital }}
+            </p>
+          </div>
+        </div>
+
+        <div class="col border rounded aspect-w-1 aspect-h-1 items-center justify-center flex">
+          <div class="block max-w-sm p-6 bg-white rounded-lg">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+              Quantidade de Inscritos
+            </h5>
+            <p class="font-bold text-6xl text-gray-700 items-center justify-center flex">
+              {{ this.getInfo.qtdInscricao }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 m-5 ">
+        <div class="col border rounded items-center justify-center flex h-95">
+          <canvas id="inscricaoChart">{{ inscricaoChart }}</canvas>
+        </div>
+
+        <div class="col border rounded items-center justify-center flex">
+          <canvas id="userChart">{{ usersChart }}</canvas>
+        </div>
+      </div>
+
+
     </div>
   </div>
 </div>
