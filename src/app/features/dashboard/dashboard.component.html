@@ -13,52 +13,100 @@
       </div>
 
       <div class="grid grid-cols-3 gap-5 m-5">
-        <div class="col border rounded aspect-w-1 aspect-h-1 items-center justify-center flex">
+        <div
+          class="col border rounded aspect-w-1 aspect-h-1 items-center justify-center flex"
+        >
           <div class="block max-w-sm p-6 bg-white rounded-lg">
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
               Quantidade de Usuários
             </h5>
-            <p class="font-bold text-6xl text-gray-700 items-center justify-center flex">
+            <p
+              class="font-bold text-6xl text-gray-700 items-center justify-center flex"
+            >
               {{ this.getInfo.qtdUser }}
             </p>
           </div>
         </div>
 
-        <div class="col border rounded aspect-w-1 aspect-h-1 items-center justify-center flex">
+        <div
+          class="col border rounded aspect-w-1 aspect-h-1 items-center justify-center flex"
+        >
           <div class="block max-w-sm p-6 bg-white rounded-lg">
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
               Quantidade de Editais
             </h5>
-            <p class="font-bold text-6xl text-gray-700 items-center justify-center flex">
+            <p
+              class="font-bold text-6xl text-gray-700 items-center justify-center flex"
+            >
               {{ this.getInfo.qtdEdital }}
             </p>
           </div>
         </div>
 
-        <div class="col border rounded aspect-w-1 aspect-h-1 items-center justify-center flex">
+        <div
+          class="col border rounded aspect-w-1 aspect-h-1 items-center justify-center flex"
+        >
           <div class="block max-w-sm p-6 bg-white rounded-lg">
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
               Quantidade de Inscritos
             </h5>
-            <p class="font-bold text-6xl text-gray-700 items-center justify-center flex">
+            <p
+              class="font-bold text-6xl text-gray-700 items-center justify-center flex"
+            >
               {{ this.getInfo.qtdInscricao }}
             </p>
           </div>
         </div>
       </div>
 
+      <div class="">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 m-5 mb-0">
+          <div class="col border rounded items-center justify-center flex">
+            <canvas id="inscricaoChart">{{ inscricaoChart }}</canvas>
+          </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 m-5 ">
-        <div class="col border rounded items-center justify-center flex h-95">
-          <canvas id="inscricaoChart">{{ inscricaoChart }}</canvas>
-        </div>
-
-        <div class="col border rounded items-center justify-center flex">
-          <canvas id="userChart">{{ usersChart }}</canvas>
+          <div class="col border rounded items-center justify-center flex">
+            <canvas id="userChart">{{ usersChart }}</canvas>
+          </div>
         </div>
       </div>
 
+      <div class="grid grid-cols-2 gap-5 ">
+       <div class="col border rounded">
+        <div class="m-5">
+          <p>Insira qual edital deseja:</p>
 
+          <div *ngFor="let e of this.editalArray">
+            <div class="flex items-center mb-2">
+              <input
+                id="{{e.id}}"
+                type="radio"
+                value="{{e.id}}"
+                name="default-radio"
+                (click)="getInfoByEdital(e.id)"
+                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
+              />
+              <label
+                for="{{e.id}}"
+                class="ms-2 text-sm font-medium text-gray-900"
+                >{{e.edital}}</label
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="m-5 ">
+         <div class="">
+          <canvas id="qtdFuncaoByEdital">{{ qtdFuncaoByEdital }}</canvas>
+         </div>
+        </div>
+       </div>
+
+        <div class="col border rounded">
+            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim qui consectetur impedit perspiciatis minima rem, magnam nihil in facere vitae nam necessitatibus molestias voluptas temporibus esse inventore unde, culpa aperiam!</p> -->
+        </div>
+
+      </div>
     </div>
   </div>
 </div>

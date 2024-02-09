@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
               var data = JSON.parse(JSON.stringify(data));
               localStorage.setItem("user", data.user);
               this.notifier.showSuccess('Login efetuado com sucesso!');
-              this.router.navigate(['/user']);
+              this.router.navigate(['/dashboard']);
             },
             (error: any) => {
               this.notifier.showError('Login ou senha incorretos!');

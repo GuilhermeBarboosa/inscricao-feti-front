@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, plugins, registerables } from 'chart.js';
+import { Edital } from 'src/app/interfaces/dto/edital';
 import { DashboardService } from 'src/app/routes/dashboard.service';
+import { EditalService } from 'src/app/routes/edital.service';
 import { UtilsService } from 'src/app/services/utils.service';
 Chart.register(...registerables);
 
@@ -14,10 +16,14 @@ export class DashboardComponent implements OnInit {
 
   inscricaoChart: any = [];
   usersChart: any = [];
+  qtdFuncaoByEdital: any = [];
   getInfo: any;
+
+  editalArray!: Edital[];
   constructor(
     private dashboard: DashboardService,
-    private utils: UtilsService
+    private utils: UtilsService,
+    private editalService: EditalService
   ) {}
 
   ngOnInit() {
@@ -28,6 +34,12 @@ export class DashboardComponent implements OnInit {
       this.generateLineUsers(json.quantidadeUserByMesOutput);
       this.getInfo = json.quantidadeAllOutput
     });
+
+    this.editalService.getAll().subscribe((data) =>{
+      this.editalArray = JSON.parse(JSON.stringify(data));
+
+      console.log(this.editalArray)
+    })
   }
 
   private generatePieInscricao(json: any) {
@@ -55,9 +67,11 @@ export class DashboardComponent implements OnInit {
     };
 
     this.inscricaoChart = new Chart('inscricaoChart', {
-      type: 'doughnut',
+      type: 'pie',
       data: data,
       options: {
+        responsive: true,  // Tornar o gráfico responsivo
+        maintainAspectRatio: false,  // Não manter a proporção de aspecto
         plugins: {
           title: {
             display: true,
@@ -124,4 +138,65 @@ export class DashboardComponent implements OnInit {
       },
     });
   }
+
+  private generatePieFuncaoByEdital(json: any) {
+    let labels: any = [];
+    let qtdInscritos: any = [];
+    let colors: any = [];
+
+    json.forEach((element: any) => {
+      labels.push(element.funcao);
+      qtdInscritos.push(element.qtdInscritos);
+      colors.push(this.utils.generateColors());
+    });
+
+    if (this.qtdFuncaoByEdital && this.qtdFuncaoByEdital.length !== 0) {
+      this.qtdFuncaoByEdital.destroy();
+      this.qtdFuncaoByEdital = null;
+    }
+
+    let data = {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Quantidade',
+          data: qtdInscritos,
+          backgroundColor: colors,
+          borderColor: colors,
+          borderWidth: 1,
+        },
+      ],
+    };
+
+    this.qtdFuncaoByEdital = new Chart('qtdFuncaoByEdital', {
+      type: 'pie',
+      data: data,
+      options: {
+        responsive: true,  // Tornar o gráfico responsivo
+        maintainAspectRatio: false,  // Não manter a proporção de aspecto
+        plugins: {
+          title: {
+            display: true,
+            text: `Qtd inscrito no edital`,
+          },
+          legend: {
+            display: true,
+            labels: {
+              font: {
+                size: 14,
+              },
+            },
+          },
+        },
+      },
+    });
+  }
+
+
+  getInfoByEdital(id: any){
+    this.dashboard.getQtdFuncaoByEdital(id).subscribe((data) => {
+      var json = JSON.parse(JSON.stringify(data));
+      this.generatePieFuncaoByEdital(json)
+    })
+  };
 }

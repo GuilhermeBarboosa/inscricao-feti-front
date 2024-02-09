@@ -22,6 +22,8 @@ export class EditInscricaoComponent {
   role = '';
   Sim = 'Sim';
   Nao = 'Não';
+  tipoPagina = 'CMS';
+
   id = this.activedRouter.snapshot.params['id'];
   inscricao!: Inscricao;
 

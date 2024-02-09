@@ -20,5 +20,9 @@ export class DashboardService {
     return this.http.get(`${this.urlDashboard}`);
   }
 
+  getQtdFuncaoByEdital(id: any) {
+    return this.http.get(`${this.urlDashboard}/inscricaoFuncaoByEdital/` + id);
+  }
+
 
 }
