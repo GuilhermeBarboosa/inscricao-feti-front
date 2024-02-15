@@ -37,7 +37,6 @@ export class DashboardComponent implements OnInit {
 
     this.editalService.getAll().subscribe((data) =>{
       this.editalArray = JSON.parse(JSON.stringify(data));
-
     })
   }
 
@@ -121,6 +120,9 @@ export class DashboardComponent implements OnInit {
         responsive: true,  // Tornar o gráfico responsivo
         maintainAspectRatio: false,  // Não manter a proporção de aspecto
         plugins: {
+          decimation: {
+            enabled: false
+          },
           title: {
             display: true,
             text: 'Qtd de usuarios',
@@ -190,7 +192,6 @@ export class DashboardComponent implements OnInit {
       },
     });
   }
-
 
   getInfoByEdital(id: any){
     this.dashboard.getQtdFuncaoByEdital(id).subscribe((data) => {

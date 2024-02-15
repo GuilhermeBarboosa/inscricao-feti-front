@@ -7,20 +7,14 @@
   <form class="m-5" [formGroup]="formulario" *ngIf="formulario">
     <div class="flex justify-between">
       <p class="text-black font-medium justify-start text-lg font-bold">
-        INFO DO USUÁRIO
+        INFO DO EDITAL
       </p>
     </div>
 
-    <div class="">
-      <label class="block text-sm " for="nome">Código</label>
-      <input
-        formControlName="id"
-        class="default-input text-center p-2.5 input-cod"
-        type="text"
-        id="name"
-        required
-      />
-    </div>
+      <div class="">
+        <label class="block text-sm input-cod" for="nome">Código</label>
+        <input formControlName="id" class="default-input text-center p-2.5" type="text" id="name" required>
+      </div>
 
     <form class="h-full w-full" [formGroup]="formulario" *ngIf="formulario">
       <div>
@@ -38,8 +32,8 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-3">
-          <div class="col mr-4">
+        <div class="grid gap-5 grid-cols-3">
+          <div class="col ">
             <label class="block text-sm" for="data_inicio"
               >Data de inicio</label
             >
@@ -54,7 +48,7 @@
             />
           </div>
 
-          <div class="col mr-4">
+          <div class="col ">
             <label class="block text-sm" for="data_fim">Data de termino</label>
             <input
               formControlName="data_fim"

@@ -38,8 +38,8 @@
           </div>
         </div>
 
-        <div class="grid" [ngClass]="{'grid-cols-3': this.user?.role == 'ADMIN', 'grid-cols-2' : this.user?.role != 'ADMIN'}">
-          <div class="col mr-4">
+        <div class="grid gap-5" [ngClass]="{'grid-cols-3': this.user?.role == 'ADMIN', 'grid-cols-2' : this.user?.role != 'ADMIN'}">
+          <div class="col ">
             <label class="block text-sm" for="email">E-mail</label>
             <input
               formControlName="email"
@@ -51,7 +51,7 @@
             />
           </div>
 
-          <div class="col" [ngClass]="{'mr-4': this.user?.role == 'ADMIN'}">
+          <div class="col" [ngClass]="{'': this.user?.role == 'ADMIN'}">
             <label class="block text-sm" for="password">Senha</label>
             <input
               formControlName="password"

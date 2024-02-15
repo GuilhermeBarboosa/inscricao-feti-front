@@ -15,7 +15,6 @@ export class StyleService {
       response.forEach((element: any) => {
         this.colorVariables[element.tipo] = element.cor;
       });
-      console.log(response);
     });
   }
 
