@@ -51,8 +51,9 @@ export class RegisterCandidatoComponent implements OnInit {
       bairro: ['Jardim', [Validators.required]],
       password: ['1234', [Validators.required, Validators.minLength(3)]],
       passwordConfirm: ['1234', [Validators.required, Validators.minLength(3)]],
-      cpf: ['019.733.946-85', [Validators.required]],
+      cpf: ['019.756.946-85', [Validators.required]],
       role: [this.role, Validators.required],
+      valid: [false],
     });
   }
 
@@ -63,40 +64,46 @@ export class RegisterCandidatoComponent implements OnInit {
     ) {
       this.notifier.showError('As senhas não coincidem!');
     } else {
-      this.getFormValidationErrors();
-      if (this.registerForm.valid) {
-        let userDTO = {
-          name: this.registerForm.get('name')?.value,
-          cpf: this.registerForm.get('cpf')?.value,
-          email: this.registerForm.get('email')?.value,
-          telefone: this.registerForm.get('telefone')?.value,
-          data_de_nascimento: this.utilsService.formatarDataToSQL(
-            this.registerForm.get('data_de_nascimento')?.value
-          ),
-          cep: this.registerForm.get('cep')?.value,
-          rua: this.registerForm.get('rua')?.value,
-          cidade: this.registerForm.get('cidade')?.value,
-          bairro: this.registerForm.get('bairro')?.value,
-          password: this.registerForm.get('password')?.value,
-          role: this.registerForm.get('role')?.value,
-        };
+      console.log(this.registerForm.get("valid")?.value)
+      if(!this.registerForm.get("valid")?.value){
+        this.notifier.showError("Você precisa aceitar os termos de uso")
+      }else{
+        this.getFormValidationErrors();
+        if (this.registerForm.valid) {
+          let userDTO = {
+            name: this.registerForm.get('name')?.value,
+            cpf: this.registerForm.get('cpf')?.value,
+            email: this.registerForm.get('email')?.value,
+            telefone: this.registerForm.get('telefone')?.value,
+            data_de_nascimento: this.utilsService.formatarDataToSQL(
+              this.registerForm.get('data_de_nascimento')?.value
+            ),
+            cep: this.registerForm.get('cep')?.value,
+            rua: this.registerForm.get('rua')?.value,
+            cidade: this.registerForm.get('cidade')?.value,
+            bairro: this.registerForm.get('bairro')?.value,
+            password: this.registerForm.get('password')?.value,
+            role: this.registerForm.get('role')?.value,
+          };
 
-        let userInput = new UserInput(userDTO);
-        this.userService.createCandidato(userInput).subscribe(
-          (data) => {
-            this.notifier.showSuccess('Usuário cadastrado com sucesso!');
+          let userInput = new UserInput(userDTO);
+          this.userService.createCandidato(userInput).subscribe(
+            (data) => {
+              this.notifier.showSuccess('Usuário cadastrado com sucesso!');
 
-            localStorage.setItem('email', userDTO.email);
+              localStorage.setItem('email', userDTO.email);
 
-            this.router.navigateByUrl('/login-candidato/login');
-          },
-          (error) => {
-            this.notifier.showError(error.error);
-          }
-        );
-      } else {
-        this.utilsService.getFormValidationErrors(this.registerForm)
+              this.router.navigateByUrl('/login-candidato/login');
+            },
+            (error) => {
+              this.notifier.showError(error.error);
+            }
+          );
+        } else {
+          this.utilsService.getFormValidationErrors(this.registerForm)
+        }
       }
+
     }
   }
 
