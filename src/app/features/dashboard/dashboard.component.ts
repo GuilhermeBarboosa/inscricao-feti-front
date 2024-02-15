@@ -38,7 +38,6 @@ export class DashboardComponent implements OnInit {
     this.editalService.getAll().subscribe((data) =>{
       this.editalArray = JSON.parse(JSON.stringify(data));
 
-      console.log(this.editalArray)
     })
   }
 
@@ -116,9 +115,11 @@ export class DashboardComponent implements OnInit {
     };
 
     this.usersChart = new Chart('userChart', {
-      type: 'line',
+      type: 'bar',
       data: data,
       options: {
+        responsive: true,  // Tornar o gráfico responsivo
+        maintainAspectRatio: false,  // Não manter a proporção de aspecto
         plugins: {
           title: {
             display: true,
@@ -126,9 +127,7 @@ export class DashboardComponent implements OnInit {
           },
           legend: {
             display: true,
-
             labels: {
-              // This more specific font property overrides the global property
               font: {
                 size: 15,
               },
