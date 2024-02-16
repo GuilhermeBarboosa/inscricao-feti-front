@@ -32,12 +32,12 @@ export class DashboardComponent implements OnInit {
 
       this.generatePieInscricao(json.quantidadeInscricaoOutput);
       this.generateLineUsers(json.quantidadeUserByMesOutput);
-      this.getInfo = json.quantidadeAllOutput
+      this.getInfo = json.quantidadeAllOutput;
     });
 
-    this.editalService.getAll().subscribe((data) =>{
+    this.editalService.getAll().subscribe((data) => {
       this.editalArray = JSON.parse(JSON.stringify(data));
-    })
+    });
   }
 
   private generatePieInscricao(json: any) {
@@ -68,17 +68,16 @@ export class DashboardComponent implements OnInit {
       type: 'pie',
       data: data,
       options: {
-        responsive: true,  // Tornar o gráfico responsivo
-        maintainAspectRatio: false,  // Não manter a proporção de aspecto
+        responsive: true,
+        maintainAspectRatio: false,
         plugins: {
           title: {
             display: true,
-            text: 'Qtd inscrito por edital',
+            text: 'Quantidade inscrito por edital',
           },
           legend: {
             display: true,
             labels: {
-              // This more specific font property overrides the global property
               font: {
                 size: 14,
               },
@@ -117,15 +116,15 @@ export class DashboardComponent implements OnInit {
       type: 'bar',
       data: data,
       options: {
-        responsive: true,  // Tornar o gráfico responsivo
-        maintainAspectRatio: false,  // Não manter a proporção de aspecto
+        responsive: true,
+        maintainAspectRatio: false,
         plugins: {
           decimation: {
-            enabled: false
+            enabled: false,
           },
           title: {
             display: true,
-            text: 'Qtd de usuarios',
+            text: 'Quantidade de usuarios',
           },
           legend: {
             display: true,
@@ -173,12 +172,12 @@ export class DashboardComponent implements OnInit {
       type: 'pie',
       data: data,
       options: {
-        responsive: true,  // Tornar o gráfico responsivo
-        maintainAspectRatio: false,  // Não manter a proporção de aspecto
+        responsive: true,
+        maintainAspectRatio: false,
         plugins: {
           title: {
             display: true,
-            text: `Qtd inscrito no edital`,
+            text: `Quantidade de inscrito no edital`,
           },
           legend: {
             display: true,
@@ -193,10 +192,10 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  getInfoByEdital(id: any){
+  getInfoByEdital(id: any) {
     this.dashboard.getQtdFuncaoByEdital(id).subscribe((data) => {
       var json = JSON.parse(JSON.stringify(data));
-      this.generatePieFuncaoByEdital(json)
-    })
-  };
+      this.generatePieFuncaoByEdital(json);
+    });
+  }
 }

@@ -10,7 +10,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Role } from 'src/app/interfaces/dto/role';
 import { Pergunta } from 'src/app/interfaces/dto/pergunta';
 import { PerguntaInput } from 'src/app/interfaces/input/perguntaInput';
-// import { EnderecoService } from 'src/app/routes/endereco.service';
 import { RoleService } from 'src/app/routes/role.service';
 import { PerguntaService } from 'src/app/routes/pergunta.service';
 import { NotifierService } from 'src/app/services/notifier.service';

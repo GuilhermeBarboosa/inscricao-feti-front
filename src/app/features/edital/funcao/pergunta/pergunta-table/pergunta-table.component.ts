@@ -25,7 +25,6 @@ export class PerguntaTableComponent implements OnInit {
     'id',
     'pergunta',
     'alternativas',
-    // 'arquivos',
     'status',
     'acoes',
   ];

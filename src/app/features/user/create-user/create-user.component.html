@@ -1,33 +1,34 @@
-<app-navbar-login [value] = 'tipoPagina'></app-navbar-login>
+<app-navbar-login [value]="tipoPagina"></app-navbar-login>
 
 <div class="flex">
   <app-sidebar></app-sidebar>
-<div class="home-section">
-  <form class="m-5" [formGroup]="formulario" *ngIf="formulario">
-    <div class="flex justify-between">
-      <p class="text-black font-medium justify-start text-lg font-bold">
-        REGISTRE O USUÁRIO
-      </p>
-    </div>
+  <div class="home-section">
+    <form class="m-5" [formGroup]="formulario" *ngIf="formulario">
+      <div class="flex justify-between">
+        <p class="text-black font-medium justify-start text-lg font-bold">
+          REGISTRE O USUÁRIO
+        </p>
+      </div>
 
-    <form class="h-full w-full" [formGroup]="formulario" *ngIf="formulario">
-      <div>
-        <div class="">
-          <div class="col-span-3">
-            <label class="block text-sm" for="nome">Nome</label>
-            <input
-              formControlName="name"
-              class="default-input w-full p-2.5"
-              type="text"
-              id="name"
-              aria-label="name"
-              required
-            />
-          </div>
+      <form
+        class="w-full "
+        [formGroup]="formulario"
+        *ngIf="formulario"
+      >
+        <div class="mb-4">
+          <label class="block text-sm" for="nome">Nome</label>
+          <input
+            formControlName="name"
+            class="default-input w-full p-2.5"
+            type="text"
+            id="name"
+            aria-label="name"
+            required
+          />
         </div>
 
-        <div class="grid gap-5 grid-cols-3">
-          <div class="col">
+        <div class="grid gap-4 grid-cols-1 sm:grid-cols-3">
+          <div>
             <label class="block text-sm" for="email">E-mail</label>
             <input
               formControlName="email"
@@ -39,7 +40,7 @@
             />
           </div>
 
-          <div class="col">
+          <div>
             <label class="block text-sm" for="password">Senha</label>
             <input
               formControlName="password"
@@ -51,7 +52,7 @@
             />
           </div>
 
-          <div class="col">
+          <div>
             <label class="block text-sm" for="role">Permissão</label>
             <select
               id="role"
@@ -65,20 +66,17 @@
             </select>
           </div>
         </div>
+      </form>
 
+      <div class="items-center flex justify-between my-2">
+        <div>
+          <app-button-red [value]="Nao" (click)="return()"></app-button-red>
+        </div>
+
+        <div class="align-end">
+          <app-button-green [value]="Sim" (click)="save()"></app-button-green>
+        </div>
       </div>
     </form>
-
-    <div class="items-center flex justify-between my-2">
-      <div>
-        <app-button-red [value]="Nao" (click)="return()"></app-button-red>
-      </div>
-
-      <div class="align-end">
-        <app-button-green [value]="Sim" (click)="save()"></app-button-green>
-      </div>
-    </div>
-  </form>
-</div>
-
+  </div>
 </div>

@@ -141,16 +141,11 @@ export class UtilsService {
     var o = Math.round,
       r = Math.random,
       s = 255;
-    return (
-      'rgba(' +
-      o(r() * s) +
-      ',' +
-      o(r() * s) +
-      ',' +
-      o(r() * s) +
-      ',' +
-      0.6+
-      ')'
-    );
+      
+    var blue = o(r() * s);
+    var green = o(r() * 5);
+    var red = o(r() * 5);
+
+    return 'rgba(' + red + ',' + green + ',' + blue + ',' + 0.75 + ')';
   }
 }

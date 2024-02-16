@@ -34,49 +34,46 @@ export class CadastroPerguntasComponent implements OnInit {
 
   async ngOnInit() {
     await this.login.obterClaims().subscribe((res) => {
-      var data = JSON.parse(JSON.stringify(res));
-      this.user = data.id
-    })
+      const data = JSON.parse(JSON.stringify(res));
+      this.user = data.id;
+    });
 
     await this.perguntaWithAlternativaService
       .getPerguntaWithAlternativa(this.idFuncao)
       .subscribe((data) => {
-        var response = JSON.parse(JSON.stringify(data));
-
+        const response = JSON.parse(JSON.stringify(data));
         this.list = response;
-
-        this.form = this.fb.array([]);
-
-        this.list.forEach((element) => {
-          const prg = this.form as FormArray;
-          prg.push(
-            this.fb.group({
-              idPergunta: [element.idPergunta],
-              pergunta: [element.pergunta],
-              alternativas: this.fb.array([]),
-            })
-          );
-        });
-
-        const prg = this.form as FormArray;
-        prg.controls.forEach((element) => {
-          const add = element.get('alternativas') as FormArray;
-          const id = element.get('idPergunta') as FormArray;
-          this.list.forEach((pergunta) => {
-            pergunta.listAlternativas.forEach((alternativa) => {
-              if (id.value === alternativa.idPergunta) {
-                add.push(
-                  this.fb.group({
-                    idAlternativa: [alternativa.id],
-                    alternativa: [alternativa.alternativa],
-                    pontuacao: [alternativa.pontuacao],
-                  })
-                );
-              }
-            });
-          });
-        });
+        this.initializeForm();
       });
+  }
+
+  initializeForm() {
+    this.form = this.fb.array([]);
+
+    this.list.forEach((element) => {
+      const perguntaGroup = this.fb.group({
+        idPergunta: [element.idPergunta],
+        pergunta: [element.pergunta],
+        alternativas: this.fb.array([]),
+      });
+
+      this.populateAlternativas(element, perguntaGroup);
+      this.form.push(perguntaGroup);
+    });
+  }
+
+  populateAlternativas(pergunta: any, perguntaGroup: any) {
+    const alternativasArray = perguntaGroup.get('alternativas') as FormArray;
+
+    pergunta.listAlternativas.forEach((alternativa: any) => {
+      alternativasArray.push(
+        this.fb.group({
+          idAlternativa: [alternativa.id],
+          alternativa: [alternativa.alternativa],
+          pontuacao: [alternativa.pontuacao],
+        })
+      );
+    });
   }
 
   createArray() {
@@ -107,7 +104,11 @@ export class CadastroPerguntasComponent implements OnInit {
     });
   }
 
-  setResposta(pergunta: number, alternativa: number | undefined, pontuacao :  number) {
+  setResposta(
+    pergunta: number,
+    alternativa: number | undefined,
+    pontuacao: number
+  ) {
     if (this.listPerguntaResposta.length > 0) {
       let found = false;
 
@@ -126,11 +127,15 @@ export class CadastroPerguntasComponent implements OnInit {
     }
   }
 
-  private setListInscricao(pergunta: number, alternativa: number | undefined, pontuacao: number) {
+  private setListInscricao(
+    pergunta: number,
+    alternativa: number | undefined,
+    pontuacao: number
+  ) {
     this.listPerguntaResposta.push({
       pergunta: pergunta,
       alternativa: alternativa,
-      pontuacao : pontuacao
+      pontuacao: pontuacao,
     });
   }
 

@@ -67,7 +67,6 @@ export class CreateEditalComponent implements OnInit {
     const selectedFile: File = <File>event.target.files[0];
 
     if (selectedFile) {
-      // Verificar a extensão do arquivo
       const isPDF = selectedFile.name.toLowerCase().endsWith('.pdf');
 
       if (isPDF) {

@@ -64,7 +64,6 @@ export class RegisterCandidatoComponent implements OnInit {
     ) {
       this.notifier.showError('As senhas não coincidem!');
     } else {
-      console.log(this.registerForm.get("valid")?.value)
       if(!this.registerForm.get("valid")?.value){
         this.notifier.showError("Você precisa aceitar os termos de uso")
       }else{
