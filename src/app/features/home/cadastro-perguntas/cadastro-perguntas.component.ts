@@ -147,9 +147,10 @@ export class CadastroPerguntasComponent implements OnInit {
       this.idFuncao,
       this.user
     );
-
-    localStorage.setItem('inscricao', JSON.stringify(inscricaoInput));
+    this.inscricaoService.enviarInscricao(inscricaoInput);
 
     this.router.navigate(['/inserirdoc']);
   }
+
+
 }

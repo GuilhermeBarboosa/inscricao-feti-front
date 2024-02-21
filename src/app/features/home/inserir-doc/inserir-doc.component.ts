@@ -24,15 +24,16 @@ export class InserirDocComponent implements OnInit {
     private arquivoService: ArquivoService // private utilsService: UtilsService
   ) {}
 
-  ngOnInit() {
-    this.inscricaoInput = localStorage.getItem('inscricao');
-
+  async ngOnInit() {
     this.form = this.formBuilder.array([]);
+
+    await this.inscricaoService.inscricaoInput$.subscribe((data) => {
+      this.inscricaoInput = data;
+      console.log(this.inscricaoInput)
+    });
   }
 
   createArquivo() {
-    console.log('Arquivo criado');
-
     const arquivoGroup = this.formBuilder.group({
       nome_arquivo: [],
       arquivo: [],
@@ -64,47 +65,47 @@ export class InserirDocComponent implements OnInit {
   }
 
   realizarInscricao() {
-   if(this.listArquivos.length == 0){
-     this.notifier.showError('Selecione um arquivo para enviar');
-     return;
-   }else{
-    this.inscricaoService.create(this.inscricaoInput).subscribe(
-      (dataInscricao) => {
-        var responseInscricao = JSON.parse(JSON.stringify(dataInscricao));
-        let idInscricao = responseInscricao.id;
+    if (this.listArquivos.length == 0) {
+      this.notifier.showError('Selecione um arquivo para enviar');
+      return;
+    } else {
+      this.inscricaoService.create(this.inscricaoInput).subscribe(
+        (dataInscricao) => {
+          var responseInscricao = JSON.parse(JSON.stringify(dataInscricao));
+          let idInscricao = responseInscricao.id;
 
-        this.toast.showSuccess('Inscrição realizada com sucesso');
+          this.toast.showSuccess('Inscrição realizada com sucesso');
 
-        let arquivoInput: ArquivoInput[] = [];
-        this.form.value.forEach((element: any) => {
-          arquivoInput.push(new ArquivoInput(element, idInscricao));
-        });
+          let arquivoInput: ArquivoInput[] = [];
+          this.form.value.forEach((element: any) => {
+            arquivoInput.push(new ArquivoInput(element, idInscricao));
+          });
 
-        this.arquivoService.create(arquivoInput).subscribe(
-          (dataArquivo) => {
-            var responseArquivo = JSON.parse(JSON.stringify(dataArquivo));
+          this.arquivoService.create(arquivoInput).subscribe(
+            (dataArquivo) => {
+              var responseArquivo = JSON.parse(JSON.stringify(dataArquivo));
 
-            this.arquivoService
-              .uploadFile(this.listArquivos, responseArquivo, idInscricao)
-              .subscribe(
-                (data) => {
-                  this.toast.showSuccess('Arquivo enviado com sucesso');
-                  this.router.navigateByUrl('/minha-inscricao');
-                },
-                (error) => {
-                  this.toast.showError('Erro ao realizar inscrição');
-                }
-              );
-          },
-          (error) => {
-            this.toast.showError('Erro ao realizar inscrição');
-          }
-        );
-      },
-      (error) => {
-        this.toast.showError('Erro ao realizar inscrição');
-      }
-    );
-   }
+              this.arquivoService
+                .uploadFile(this.listArquivos, responseArquivo, idInscricao)
+                .subscribe(
+                  (data) => {
+                    this.toast.showSuccess('Arquivo enviado com sucesso');
+                    this.router.navigateByUrl('/minha-inscricao');
+                  },
+                  (error) => {
+                    this.toast.showError('Erro ao realizar inscrição');
+                  }
+                );
+            },
+            (error) => {
+              this.toast.showError('Erro ao realizar inscrição');
+            }
+          );
+        },
+        (error) => {
+          this.toast.showError('Erro ao realizar inscrição');
+        }
+      );
+    }
   }
 }

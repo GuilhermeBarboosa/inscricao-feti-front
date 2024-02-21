@@ -57,8 +57,6 @@ export class ArquivoService {
 
 
   getFile(idInscricao: number, nome: string) {
-    console.log(idInscricao)
-    console.log(nome)
     return this.http.get(`${this.urlArquivo}/findFile/${idInscricao}/nome/${nome}`, { responseType: 'blob' });
   }
 

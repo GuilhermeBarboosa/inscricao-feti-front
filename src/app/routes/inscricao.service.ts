@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environment';
 import { InscricaoInput } from '../interfaces/input/inscricaoInput';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -78,5 +79,12 @@ export class InscricaoService {
     return this.http.get(`${this.urlInscricao}/infoAll/${id}`, {
       headers: this.HttpHeaders,
     });
+  }
+
+  private inscricaoInputSubject = new BehaviorSubject<InscricaoInput | null>(null);
+  inscricaoInput$: Observable<InscricaoInput | null> = this.inscricaoInputSubject.asObservable();
+
+  enviarInscricao(inscricaoInput: InscricaoInput) {
+    this.inscricaoInputSubject.next(inscricaoInput);
   }
 }
