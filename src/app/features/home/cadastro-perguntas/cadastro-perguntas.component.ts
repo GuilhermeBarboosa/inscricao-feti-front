@@ -8,6 +8,7 @@ import { InscricaoService } from 'src/app/routes/inscricao.service';
 import { LoginService } from 'src/app/routes/login.service';
 import { PerguntaWithAlternativaService } from 'src/app/routes/perguntaWithAlternativa.service';
 import { NotifierService } from 'src/app/services/notifier.service';
+import { CookieService } from '../../../services/cookie.service';
 
 @Component({
   selector: 'app-cadastro-perguntas',
@@ -20,7 +21,7 @@ export class CadastroPerguntasComponent implements OnInit {
     private perguntaWithAlternativaService: PerguntaWithAlternativaService,
     private login: LoginService,
     private router: Router,
-    private toast: NotifierService,
+    private cookie: CookieService,
     private fb: FormBuilder,
     private inscricaoService: InscricaoService
   ) {}
@@ -147,10 +148,8 @@ export class CadastroPerguntasComponent implements OnInit {
       this.user
     );
 
-    this.inscricaoService.create(inscricaoInput).subscribe((res) => {
-      var response = JSON.parse(JSON.stringify(res));
-      this.toast.showSuccess('Inscrição realizada com sucesso');
-      this.router.navigate(['/edital/visualizareditais']);
-    });
+    localStorage.setItem('inscricao', JSON.stringify(inscricaoInput));
+
+    this.router.navigate(['/inserirdoc']);
   }
 }

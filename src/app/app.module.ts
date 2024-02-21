@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StyleService } from './services/style.service';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
+import { InserirDocComponent } from './features/home/inserir-doc/inserir-doc.component';
 
 @NgModule({
   declarations: [AppComponent],

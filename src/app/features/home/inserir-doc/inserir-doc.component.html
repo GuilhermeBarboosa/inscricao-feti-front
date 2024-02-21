@@ -1,0 +1,207 @@
+<app-navbar></app-navbar>
+
+<div class="dv-line dv-border-bottom">
+  <div class="dv-column">
+    <div class="dv-center">
+      <div class="dv-line">
+        <div class="dv-column">
+          <div class="dv-padding-hdpi">
+            <p class="dv-gray flex">
+              <img
+                class="flex dv-vertical-align-middle dv-margin-right-ldpi"
+                src="../../../../assets/icon/blue-home.svg"
+                width="16"
+              /><span
+                onclick="goTo('/inicio')"
+                class="dv-underline dv-blue dv-cursor"
+                >Início</span
+              >
+              /
+              <span
+                onclick="goTo('/inscricao/'+ gz_code + '/1')"
+                class="dv-underline dv-blue dv-cursor"
+                >Minhas inscrições</span
+              >
+              / Arquivos
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dv-line dv-border-bottom">
+  <div class="dv-column">
+    <div class="dv-center">
+      <div class="dv-line">
+        <div class="dv-column">
+          <div
+            class="dv-padding-top-hdpi dv-padding-bottom-mdpi dv-padding-right-hdpi dv-padding-left-hdpi"
+          >
+            <p
+              class="dv-padding-top-mdpi dv-padding-left-mdpi dv-blue-light-bg dv-bold dv-blue"
+            >
+              Cópia (frente e verso) dos seguintes documentos:
+            </p>
+
+            <li
+              class="dv-padding-left-mdpi dv-padding-right-mdpi dv-blue-light-bg dv-blue"
+            >
+              CPF - Cadastro de Pessoa Física;
+            </li>
+
+            <li
+              style="text-indent: -10px; padding-left: 26px"
+              class="dv-padding-left-mdpi dv-padding-right-hdpi dv-blue-light-bg dv-blue"
+            >
+              Documento de identificação com foto (Carteira de Identidade - RG,
+              Carteira Nacional de Habilitação - CNH, Carteiras de Conselhos
+              Profissionais e outras carteiras expedidas por órgão público que,
+              por Lei Federal, valem como identidade);
+            </li>
+
+            <li
+              style="text-indent: -10px; padding-left: 26px"
+              class="dv-padding-left-mdpi dv-padding-right-hdpi dv-blue-light-bg dv-blue"
+            >
+              Comprovante de escolaridade referente à vaga escolhida
+              (histórico/diploma/certificado/declaração), emitido por
+              instituição reconhecida pelo Ministério da Educação;
+            </li>
+
+            <li
+              class="dv-padding-bottom-mdpi dv-padding-left-mdpi dv-padding-right-hdpi dv-blue-light-bg dv-radius dv-blue"
+            >
+              Comprovação de título(s) e experiência(s), nos termos dos itens 7
+              e 8 do Edital.
+            </li>
+          </div>
+        </div>
+      </div>
+
+      <div class="dv-line justify-between">
+        <div class="dv-column flex">
+          <div class="dv-padding-hdpi">
+            <p class="flex">
+              <img
+                class="dv-vertical-align-middle dv-margin-right-ldpi"
+                src="../../../../assets/icon/gray-sheet.svg"
+                width="16"
+              />Total de registro(s): {{ form.length }}
+            </p>
+          </div>
+        </div>
+
+        <div class="dv-column">
+          <div class="dv-padding-hdpi">
+            <p
+              (click)="createArquivo()"
+              class="flex justify-end dv-green dv-underline dv-cursor"
+            >
+              <img
+                class="dv-vertical-align-middle dv-margin-right-ldpi"
+                src="../../../../assets/icon/green-add-circle-line.svg"
+                width="16"
+              />Adicionar novo registro
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dv-line">
+  <div class="dv-column">
+    <div class="dv-center">
+      <div class="dv-line">
+        <div class="dv-column">
+          <div class="dv-padding-hdpi">
+            <div class="dv-line">
+              <div class="dv-column">
+                <form [formGroup]="form" enctype="multipart/form-data">
+                  <div
+                    *ngFor="let arquivoGroup of form.controls; let i = index"
+                    [formGroupName]="i"
+                  >
+                    <label
+                      for="nome_arquivo"
+                      class="block text-sm font-medium text-gray-900"
+                      >Nome do arquivo</label
+                    >
+                    <input
+                      type="text"
+                      id="nome_arquivo"
+                      formControlName="nome_arquivo"
+                      class="default-input w-full"
+                      required
+                    />
+
+                    <div class="flex items-center mt-2">
+                      <div class="flex items-center w-full">
+                        <!-- <label class="block text-sm font-medium text-gray-900 dark:text-white" for="arquivo">Escolher arquivo</label> -->
+                        <input
+                          class="block w-full text-sm text-gray-900 default-input"
+                          id="arquivo"
+                          type="file"
+                          (change)="onFileSelected(i, $event)"
+                        />
+                      </div>
+
+                      <div class="flex">
+                        <button
+                          class="ml-4 mr-2"
+                          type="button"
+                          (click)="removeArquivo(i)"
+                        >
+                          <img
+                            src="../../../../assets/icon/blue-trash.svg"
+                            alt=""
+                            width="20"
+                          />
+                        </button>
+                      </div>
+                    </div>
+
+                    <!-- Botão para remover o grupo -->
+
+                    <hr />
+                    <!-- Adicione uma linha horizontal para separar os grupos, se necessário -->
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dv-line dv-border-top">
+  <div class="dv-column">
+    <div class="dv-center">
+      <div class="dv-line">
+        <div class="dv-column dv-text-align-right">
+          <div class="dv-padding-hdpi">
+            <div class="flex justify-end">
+              <button
+                (click)="realizarInscricao()"
+                class="flex items-center dv-padding-mdpi dv-text-align-center dv-radius dv-blue-border dv-blue-bg dv-white dv-underline dv-cursor"
+              >
+                <img
+                  class="dv-vertical-align-middle dv-margin-right-ldpi"
+                  src="/../../../../assets/icon/white-check.svg"
+                  width="16"
+                />Realizar inscricao
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

@@ -25,6 +25,12 @@ export const routes: Routes = [
     canActivate: [LoginGuardService],
   },
   {
+    path: 'inserirdoc',
+    loadChildren: () =>
+      import('./modules/inserir-doc/inserir-doc.module').then((m) => m.InserirDocModule),
+    canActivate: [LoginGuardService],
+  },
+  {
     path: 'dashboard',
     loadChildren: () =>
       import('./modules/dashboard/dashboard.module').then((m) => m.DashboardModule),
