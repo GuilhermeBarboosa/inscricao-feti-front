@@ -1,10 +1,13 @@
 import { Inscricao } from './../../../interfaces/dto/inscricao';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Arquivo } from 'src/app/interfaces/dto/arquivo';
+import { ArquivoService } from 'src/app/routes/arquivo.service';
 import { InscricaoService } from 'src/app/routes/inscricao.service';
 import { LoginService } from 'src/app/routes/login.service';
 import { PerguntaWithAlternativaService } from 'src/app/routes/perguntaWithAlternativa.service';
 import { NotifierService } from 'src/app/services/notifier.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-minha-inscricao',
@@ -15,7 +18,9 @@ export class MinhaInscricaoComponent implements OnInit {
   constructor(
     private activedRouter: ActivatedRoute,
     private inscricaoService: InscricaoService,
+    private arquivoService: ArquivoService,
     private login: LoginService,
+    private utilsService: UtilsService,
     private router: Router,
     private toast: NotifierService
   ) {}
@@ -23,6 +28,8 @@ export class MinhaInscricaoComponent implements OnInit {
   idUser = 0;
   id = this.activedRouter.snapshot.params['id'];
   inscricao!: Inscricao;
+  arquivo!: Arquivo[];
+
 
   async ngOnInit() {
 
@@ -30,8 +37,6 @@ export class MinhaInscricaoComponent implements OnInit {
       var data = JSON.parse(JSON.stringify(res));
       this.idUser = data.id
     })
-
-
 
     this.inscricaoService
     .getInscricaoWithPerguntas(this.id)
@@ -44,6 +49,17 @@ export class MinhaInscricaoComponent implements OnInit {
         this.router.navigateByUrl('/inicio')
       }
     });
+
+    this.arquivoService.getByInscricao(this.id).subscribe((res) => {
+      var data = JSON.parse(JSON.stringify(res));
+      this.arquivo = data;
+    });
+
   }
 
+  downloadDoc(arquivo: Arquivo){
+    this.arquivoService.getFile(arquivo.idInscricao, arquivo.caminho_arquivo).subscribe((res) => {
+      this.utilsService.saveArquivo(res);
+    });
+  }
 }

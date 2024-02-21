@@ -64,6 +64,10 @@ export class InserirDocComponent implements OnInit {
   }
 
   realizarInscricao() {
+   if(this.listArquivos.length == 0){
+     this.notifier.showError('Selecione um arquivo para enviar');
+     return;
+   }else{
     this.inscricaoService.create(this.inscricaoInput).subscribe(
       (dataInscricao) => {
         var responseInscricao = JSON.parse(JSON.stringify(dataInscricao));
@@ -101,5 +105,6 @@ export class InserirDocComponent implements OnInit {
         this.toast.showError('Erro ao realizar inscrição');
       }
     );
+   }
   }
 }

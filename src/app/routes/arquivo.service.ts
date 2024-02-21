@@ -18,12 +18,6 @@ export class ArquivoService {
 
   urlArquivo = `${environment.api}/arquivo_inscricao`;
 
-  // getById(id: number) {
-  //   return this.http.get(`${this.urlArquivo}/` + id, {
-  //     headers: this.HttpHeaders,
-  //   });
-  // }
-
   // downloadEdital(id: number | undefined) {
   //   return this.http.get(`${this.urlArquivo}/downloadEdital/` + id, {
   //     responseType: 'blob',
@@ -55,9 +49,18 @@ export class ArquivoService {
     );
   }
 
-  // getAll() {
-  //   return this.http.get(`${this.urlArquivo}`, { headers: this.HttpHeaders });
-  // }
+  getByInscricao(idInscricao: number) {
+    return this.http.get(`${this.urlArquivo}/inscricao/` + idInscricao, {
+      headers: this.HttpHeaders,
+    });
+  }
+
+
+  getFile(idInscricao: number, nome: string) {
+    console.log(idInscricao)
+    console.log(nome)
+    return this.http.get(`${this.urlArquivo}/findFile/${idInscricao}/nome/${nome}`, { responseType: 'blob' });
+  }
 
   // getAllInativo() {
   //   return this.http.get(`${this.urlArquivo}/desativado`, {

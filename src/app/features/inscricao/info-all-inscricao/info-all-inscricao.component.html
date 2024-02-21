@@ -35,6 +35,27 @@
           <p class="ml-4">{{p.alternativa}}</p>
         </div>
       </div>
+
+      <div class="mt-5">
+        <p class="flex mt-4 dv-bold">Arquivos:</p>
+
+        <div>
+          <div
+            class="dv-line"
+            *ngFor="let a of this.arquivo"
+          >
+            <div class="dv-column mb-2 flex">
+              <!-- <img src="../../../../assets/icon/blue-download.svg" alt="" class="m-2" width="1.5%"> -->
+              <a
+                (click)="downloadDoc(a)"
+                class="text-lg text-blue-600 dark:text-blue-500 underline cursor-pointer"
+                >{{ a.caminho_arquivo }}</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
