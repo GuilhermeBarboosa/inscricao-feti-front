@@ -12,15 +12,15 @@
                 src="../../../../assets/icon/blue-home.svg"
                 width="16"
               /><span
-              routerLink="/inicio"
-              routerLinkActive="active"
+                routerLink="/inicio"
+                routerLinkActive="active"
                 class="dv-underline dv-blue dv-cursor"
                 >Início</span
               >
               /
               <span
-              routerLink="/minha-inscricao"
-              routerLinkActive="active"
+                routerLink="/minha-inscricao"
+                routerLinkActive="active"
                 class="dv-underline dv-blue dv-cursor"
                 >Minhas inscrições</span
               >
@@ -78,6 +78,39 @@
               Comprovação de título(s) e experiência(s), nos termos dos itens 7
               e 8 do Edital.
             </li>
+          </div>
+        </div>
+      </div>
+
+      <div class="dv-line">
+        <div class="dv-column">
+          <div
+            class="dv-padding-top-ldpi dv-padding-bottom-mdpi dv-padding-right-hdpi dv-padding-left-hdpi"
+          >
+
+            <div class="mt-5">
+              <div>
+                <p>Edital: {{ this.funcao.edital }}</p>
+                <p>Funcao: {{ this.funcao.funcao }}</p>
+              </div>
+
+              <p class="title text-white font-medium text-lg font-bold">
+                Questionário
+              </p>
+              <small
+                >Você possui
+                <span class="font-bold">{{ pontuacao }}</span> pontos</small
+              >
+              <div
+                class=""
+                *ngFor="let p of this.inscricaoInput.perguntaResposta"
+              >
+                <p class="text-base text-black font-bold">
+                  {{ p.perguntaResponse }}
+                </p>
+                <p class="ml-4">{{ p.alternativaResponse }}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -189,7 +222,7 @@
           <div class="dv-padding-hdpi">
             <div class="flex justify-end">
               <button
-                (click)="realizarInscricao()"
+                (click)="openDialog()"
                 class="flex items-center dv-padding-mdpi dv-text-align-center dv-radius dv-blue-border dv-blue-bg dv-white dv-underline dv-cursor"
               >
                 <img

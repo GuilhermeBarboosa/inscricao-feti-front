@@ -1,0 +1,12 @@
+.center{
+  justify-content: center;
+  display: flex;
+}
+
+/* Estilos para o contêiner do diálogo */
+.quadrado-dialog {
+  width: 100%; /* Defina a largura desejada */
+  height: 100%; /* Defina a altura desejada */
+  border-radius: 10px; /* Adicione borda arredondada se desejar */
+  overflow: hidden; /* Garanta que o conteúdo não ultrapasse as dimensões definidas */
+}

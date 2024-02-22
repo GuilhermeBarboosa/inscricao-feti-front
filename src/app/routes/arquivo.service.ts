@@ -33,13 +33,12 @@ export class ArquivoService {
   uploadFile(files: File[], responseArquivo: Arquivo[], idInscricao: number) {
     const formData: FormData = new FormData();
 
-    files.forEach((file, index) => {
-      responseArquivo.forEach((arquivo) => {
-        let newFile = new File([file], arquivo.caminho_arquivo, {
-          type: file.type,
-        });
-        formData.append('files', newFile);
+    responseArquivo.forEach((arquivo, index) => {
+      let newFile = new File([files[index]], arquivo.caminho_arquivo, {
+        type: files[index].type,
       });
+      formData.append('files', newFile);
+
     });
 
     return this.http.post(
@@ -55,9 +54,11 @@ export class ArquivoService {
     });
   }
 
-
   getFile(idInscricao: number, nome: string) {
-    return this.http.get(`${this.urlArquivo}/findFile/${idInscricao}/nome/${nome}`, { responseType: 'blob' });
+    return this.http.get(
+      `${this.urlArquivo}/findFile/${idInscricao}/nome/${nome}`,
+      { responseType: 'blob' }
+    );
   }
 
   // getAllInativo() {

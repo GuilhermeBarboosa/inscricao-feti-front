@@ -7,7 +7,6 @@ import { PerguntaRespostaInput } from 'src/app/interfaces/input/pergunta_respost
 import { InscricaoService } from 'src/app/routes/inscricao.service';
 import { LoginService } from 'src/app/routes/login.service';
 import { PerguntaWithAlternativaService } from 'src/app/routes/perguntaWithAlternativa.service';
-import { NotifierService } from 'src/app/services/notifier.service';
 import { CookieService } from '../../../services/cookie.service';
 
 @Component({
@@ -105,38 +104,38 @@ export class CadastroPerguntasComponent implements OnInit {
     });
   }
 
-  setResposta(
-    pergunta: number,
-    alternativa: number | undefined,
-    pontuacao: number
-  ) {
+  setResposta(pergunta: any, alternativa: any) {
+    let perguntaId = pergunta.idPergunta;
+    let alternativaId = alternativa.id;
+
     if (this.listPerguntaResposta.length > 0) {
       let found = false;
 
       this.listPerguntaResposta.forEach((element) => {
-        if (element.pergunta === pergunta) {
-          element.alternativa = alternativa;
+        if (element.pergunta === perguntaId) {
+          element.alternativa = alternativaId;
           found = true;
         }
       });
 
       if (!found) {
-        this.setListInscricao(pergunta, alternativa, pontuacao);
+        this.setListInscricao(pergunta, alternativa);
       }
     } else {
-      this.setListInscricao(pergunta, alternativa, pontuacao);
+      this.setListInscricao(pergunta, alternativa);
     }
   }
 
-  private setListInscricao(
-    pergunta: number,
-    alternativa: number | undefined,
-    pontuacao: number
-  ) {
+  private setListInscricao(pergunta: any, alternativa: any) {
+    let perguntaId = pergunta.idPergunta;
+    let alternativaId = alternativa.id;
+
     this.listPerguntaResposta.push({
-      pergunta: pergunta,
-      alternativa: alternativa,
-      pontuacao: pontuacao,
+      pergunta: perguntaId,
+      perguntaResponse: pergunta.pergunta,
+      alternativa: alternativaId,
+      alternativaResponse: alternativa.alternativa,
+      pontuacao: alternativa.pontuacao,
     });
   }
 
@@ -151,6 +150,4 @@ export class CadastroPerguntasComponent implements OnInit {
 
     this.router.navigate(['/inserirdoc']);
   }
-
-
 }

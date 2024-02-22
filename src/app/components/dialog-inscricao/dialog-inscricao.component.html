@@ -1,0 +1,20 @@
+<!-- Adicione a classe "quadrado-dialog" ao contêiner do diálogo -->
+<div class="quadrado-dialog ">
+
+  <!-- Conteúdo do diálogo -->
+  <div class="dv-text-align-center" mat-dialog-content>
+    <p class="title text-white font-medium text-lg font-bold">
+      Você tem certeza que deseja finalizar?
+    </p>
+
+    <!-- Ações do diálogo -->
+    <div class="center mb-0 pb-0">
+      <div class="flex items-center justify-center">
+        <app-button-red class="m-5 mb-0 pb-0" [value]="Nao" mat-button (click)="onNoClick()">Fechar</app-button-red>
+        <app-button-green class="m-5 mb-0 pb-0" [value]="Sim" mat-button [mat-dialog-close]="data.value" cdkFocusInitial>Sim</app-button-green>
+      </div>
+    </div>
+
+  </div>
+
+</div>

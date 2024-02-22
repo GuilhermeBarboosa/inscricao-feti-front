@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { DialogInscricaoComponent } from 'src/app/components/dialog-inscricao/dialog-inscricao.component';
+import { Edital } from 'src/app/interfaces/dto/edital';
+import { Funcao } from 'src/app/interfaces/dto/funcao';
 import { ArquivoInput } from 'src/app/interfaces/input/arquivoInput';
 import { ArquivoService } from 'src/app/routes/arquivo.service';
+import { EditalService } from 'src/app/routes/edital.service';
+import { FuncaoService } from 'src/app/routes/funcao.service';
 import { InscricaoService } from 'src/app/routes/inscricao.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 
@@ -15,12 +21,17 @@ export class InserirDocComponent implements OnInit {
   form!: any;
   inscricaoInput: any;
   listArquivos: any = [];
+  pontuacao: number = 0;
+  funcao!: Funcao;
+  value?: String;
   constructor(
     private formBuilder: FormBuilder,
     private notifier: NotifierService,
     private inscricaoService: InscricaoService,
+    private funcaoService: FuncaoService,
     private toast: NotifierService,
     private router: Router,
+    public dialog: MatDialog,
     private arquivoService: ArquivoService // private utilsService: UtilsService
   ) {}
 
@@ -29,7 +40,16 @@ export class InserirDocComponent implements OnInit {
 
     await this.inscricaoService.inscricaoInput$.subscribe((data) => {
       this.inscricaoInput = data;
-      console.log(this.inscricaoInput)
+
+      this.funcaoService
+        .getById(this.inscricaoInput.funcao)
+        .subscribe((dataFuncao) => {
+          this.funcao = JSON.parse(JSON.stringify(dataFuncao));
+        });
+
+      this.inscricaoInput.perguntaResposta.forEach((element: any) => {
+        this.pontuacao += element.pontuacao;
+      });
     });
   }
 
@@ -44,6 +64,7 @@ export class InserirDocComponent implements OnInit {
 
   removeArquivo(index: number) {
     this.form.removeAt(index);
+    this.listArquivos.splice(index, 1);
   }
 
   onFileSelected(index: number, event: any) {
@@ -69,6 +90,7 @@ export class InserirDocComponent implements OnInit {
       this.notifier.showError('Selecione um arquivo para enviar');
       return;
     } else {
+
       this.inscricaoService.create(this.inscricaoInput).subscribe(
         (dataInscricao) => {
           var responseInscricao = JSON.parse(JSON.stringify(dataInscricao));
@@ -107,5 +129,18 @@ export class InserirDocComponent implements OnInit {
         }
       );
     }
+  }
+
+  openDialog(): void {
+    let dialogRef = this.dialog.open(DialogInscricaoComponent, {
+      width: '400px',
+      data: { value: this.value },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.realizarInscricao();
+      }
+    });
   }
 }

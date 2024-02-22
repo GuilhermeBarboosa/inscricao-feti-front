@@ -12,6 +12,7 @@ import { NavbarLoginComponent } from '../components/navbar-login/navbar-login.co
 import { NavbarComponent } from '../components/navbar/navbar.component';
 import { SidebarComponent } from '../components/sidebar/sidebar.component';
 import { MatSortModule } from '@angular/material/sort';
+import { DialogInscricaoComponent } from '../components/dialog-inscricao/dialog-inscricao.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { MatSortModule } from '@angular/material/sort';
     SidebarComponent,
     DialogComponent,
     NavbarComponent,
+    DialogInscricaoComponent,
     FooterComponent,
     ButtonGreenComponent,
     ButtonRedComponent,
@@ -39,6 +41,7 @@ import { MatSortModule } from '@angular/material/sort';
     SidebarComponent,
     DialogComponent,
     NavbarComponent,
+    DialogInscricaoComponent,
     FooterComponent,
     ButtonGreenComponent,
     NavbarLoginComponent,
