@@ -121,6 +121,7 @@ export class UtilsService {
         const controlErrors: ValidationErrors | null = control.errors;
         if (controlErrors != null) {
           Object.keys(controlErrors).forEach((keyError) => {
+
             console.log(
               'Key control: ' +
                 key +

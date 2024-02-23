@@ -67,7 +67,7 @@ export class RegisterCandidatoComponent implements OnInit {
       if(!this.registerForm.get("valid")?.value){
         this.notifier.showError("Você precisa aceitar os termos de uso")
       }else{
-        this.utilsService.getFormValidationErrors(this.registerForm)
+        // this.utilsService.getFormValidationErrors(this.registerForm)
         if (this.registerForm.valid) {
           let userDTO = {
             name: this.registerForm.get('name')?.value,
