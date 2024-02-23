@@ -30,7 +30,7 @@ export class ArquivoService {
     });
   }
 
-  uploadFile(files: File[], responseArquivo: Arquivo[], idInscricao: number) {
+  uploadFile(files: File[], responseArquivo: any[], idInscricao: number) {
     const formData: FormData = new FormData();
 
     responseArquivo.forEach((arquivo, index) => {

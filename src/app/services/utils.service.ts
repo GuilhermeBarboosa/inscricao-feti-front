@@ -141,7 +141,7 @@ export class UtilsService {
     var o = Math.round,
       r = Math.random,
       s = 255;
-      
+
     var blue = o(r() * s);
     var green = o(r() * 5);
     var red = o(r() * 5);

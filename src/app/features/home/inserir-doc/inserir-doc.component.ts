@@ -90,38 +90,32 @@ export class InserirDocComponent implements OnInit {
       this.notifier.showError('Selecione um arquivo para enviar');
       return;
     } else {
-      this.inscricaoService.create(this.inscricaoInput).subscribe(
+      let arquivoInput: ArquivoInput[] = [];
+      this.form.value.forEach((element: any) => {
+        arquivoInput.push(new ArquivoInput(element));
+      });
+
+      this.inscricaoService.create(this.inscricaoInput, arquivoInput).subscribe(
         (dataInscricao) => {
-          var responseInscricao = JSON.parse(JSON.stringify(dataInscricao));
-          let idInscricao = responseInscricao.id;
+          var responseInscricaoWithArquivos = JSON.parse(JSON.stringify(dataInscricao));
 
           this.toast.showSuccess('Inscrição realizada com sucesso');
 
-          let arquivoInput: ArquivoInput[] = [];
-          this.form.value.forEach((element: any) => {
-            arquivoInput.push(new ArquivoInput(element, idInscricao));
-          });
-
-          this.arquivoService.create(arquivoInput).subscribe(
-            (dataArquivo) => {
-              var responseArquivo = JSON.parse(JSON.stringify(dataArquivo));
-
-              this.arquivoService
-                .uploadFile(this.listArquivos, responseArquivo, idInscricao)
-                .subscribe(
-                  (data) => {
-                    this.toast.showSuccess('Arquivo enviado com sucesso');
-                    this.router.navigateByUrl('/minha-inscricao');
-                  },
-                  (error) => {
-                    this.toast.showError('Erro ao realizar inscrição');
-                  }
-                );
-            },
-            (error) => {
-              this.toast.showError('Erro ao realizar inscrição');
-            }
-          );
+          this.arquivoService
+            .uploadFile(
+              this.listArquivos,
+              responseInscricaoWithArquivos.arquivoInscricaoOutput,
+              responseInscricaoWithArquivos.inscricaoOutput.id
+            )
+            .subscribe(
+              (data) => {
+                this.toast.showSuccess('Arquivo enviado com sucesso');
+                this.router.navigateByUrl('/minha-inscricao');
+              },
+              (error) => {
+                this.toast.showError('Erro ao realizar inscrição');
+              }
+            );
         },
         (error) => {
           this.toast.showError('Erro ao realizar inscrição');

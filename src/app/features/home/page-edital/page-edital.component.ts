@@ -60,6 +60,7 @@ export class PageEditalComponent implements OnInit {
 
   downloadEdital(id: number | undefined) {
     this.editalService.downloadEdital(id).subscribe((data) => {
+
       this.utilsService.saveArquivo(data);
     });
   }

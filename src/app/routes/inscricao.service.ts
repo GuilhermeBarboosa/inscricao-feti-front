@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environment';
 import { InscricaoInput } from '../interfaces/input/inscricaoInput';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { ArquivoInput } from '../interfaces/input/arquivoInput';
+import { InscricaoWithArquivosInput } from '../interfaces/input/inscricaoWithArquivosInput';
 
 @Injectable({
   providedIn: 'root',
@@ -23,8 +25,10 @@ export class InscricaoService {
     });
   }
 
-  create(inscricao: InscricaoInput) {
-    return this.http.post(`${this.urlInscricao}`, inscricao, {
+  create(inscricao: InscricaoInput, arquivo: ArquivoInput[]) {
+    let inscricaoWithArquivosInput = new InscricaoWithArquivosInput(inscricao, arquivo);
+
+    return this.http.post(`${this.urlInscricao}`, inscricaoWithArquivosInput, {
       headers: this.HttpHeaders,
     });
   }
