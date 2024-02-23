@@ -67,7 +67,7 @@ export class RegisterCandidatoComponent implements OnInit {
       if(!this.registerForm.get("valid")?.value){
         this.notifier.showError("Você precisa aceitar os termos de uso")
       }else{
-        this.getFormValidationErrors();
+        this.utilsService.getFormValidationErrors(this.registerForm)
         if (this.registerForm.valid) {
           let userDTO = {
             name: this.registerForm.get('name')?.value,
@@ -106,24 +106,4 @@ export class RegisterCandidatoComponent implements OnInit {
     }
   }
 
-  getFormValidationErrors() {
-    Object.keys(this.registerForm.controls).forEach((key) => {
-      const control = this.registerForm.get(key);
-      if (control) {
-        const controlErrors: ValidationErrors | null = control.errors;
-        if (controlErrors != null) {
-          Object.keys(controlErrors).forEach((keyError) => {
-            console.log(
-              'Key control: ' +
-                key +
-                ', keyError: ' +
-                keyError +
-                ', err value: ',
-              controlErrors[keyError]
-            );
-          });
-        }
-      }
-    });
-  }
 }

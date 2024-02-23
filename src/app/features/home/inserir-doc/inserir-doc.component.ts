@@ -38,16 +38,16 @@ export class InserirDocComponent implements OnInit {
   async ngOnInit() {
     this.form = this.formBuilder.array([]);
 
-    await this.inscricaoService.inscricaoInput$.subscribe((data) => {
+    await this.inscricaoService.inscricaoInput$.subscribe(async (data) => {
       this.inscricaoInput = data;
 
-      this.funcaoService
+      await this.funcaoService
         .getById(this.inscricaoInput.funcao)
         .subscribe((dataFuncao) => {
           this.funcao = JSON.parse(JSON.stringify(dataFuncao));
         });
 
-      this.inscricaoInput.perguntaResposta.forEach((element: any) => {
+      await this.inscricaoInput.perguntaResposta.forEach((element: any) => {
         this.pontuacao += element.pontuacao;
       });
     });
@@ -90,7 +90,6 @@ export class InserirDocComponent implements OnInit {
       this.notifier.showError('Selecione um arquivo para enviar');
       return;
     } else {
-
       this.inscricaoService.create(this.inscricaoInput).subscribe(
         (dataInscricao) => {
           var responseInscricao = JSON.parse(JSON.stringify(dataInscricao));

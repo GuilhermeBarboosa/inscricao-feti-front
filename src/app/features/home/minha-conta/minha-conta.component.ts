@@ -101,7 +101,7 @@ export class MinhaContaComponent implements OnInit {
   }
 
   updateUser() {
-    this.getFormValidationErrors();
+    this.utilsService.getFormValidationErrors(this.formulario)
     if (this.formulario.valid) {
       let userDTO = {
         name: this.formulario.get('name')?.value,
@@ -135,25 +135,4 @@ export class MinhaContaComponent implements OnInit {
     }
   }
 
-  getFormValidationErrors() {
-    Object.keys(this.formulario.controls).forEach((key) => {
-      const control = this.formulario.get(key);
-      if (control) {
-        const controlErrors: ValidationErrors | null = control.errors;
-        if (controlErrors != null) {
-          Object.keys(controlErrors).forEach((keyError) => {
-            this.notifier.showWarning(key);
-            console.log(
-              'Key control: ' +
-                key +
-                ', keyError: ' +
-                keyError +
-                ', err value: ',
-              controlErrors[keyError]
-            );
-          });
-        }
-      }
-    });
-  }
 }

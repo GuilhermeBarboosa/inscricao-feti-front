@@ -97,40 +97,9 @@ export class CreateUserComponent implements OnInit {
     }
   }
 
-  // onValidateCpf(){
-  //   let cpfDigitado = this.formulario.get('cpf')?.value;
-  //   if (cpfDigitado != null && cpfDigitado != '') {
-  //     if (!this.utilsService.validarCPF(cpfDigitado)) {
-  //       this.notifier.showError('CPF inválido');
-  //       console.log("cpf inválido")
-  //       // this.formulario.get('cpf')?.setValue('');
-  //     }
-  //   }
-  // }
 
   onOutsideClick() {
-    // let cep = this.formulario.get('cep')?.value;
 
-    // if (
-    //   (cep != null && cep != '') ||
-    //   (this.formulario.get('rua')?.value != null &&
-    //     this.formulario.get('rua')?.value != '')
-    // ) {
-    //   cep = cep.replace('-', '');
-    //   this.enderecoService.findCep(this.formulario.get('cep')?.value).subscribe(
-    //     (data) => {
-    //       var enderecoResponse = JSON.parse(JSON.stringify(data));
-    //       this.formulario.get('rua')?.setValue(enderecoResponse.street);
-    //       this.formulario.get('cidade')?.setValue(enderecoResponse.city);
-    //       this.formulario
-    //         .get('bairro')
-    //         ?.setValue(enderecoResponse.neighborhood);
-    //     },
-    //     (error) => {
-    //       this.notifier.showError(error.error);
-    //     }
-    //   );
-    // }
   }
 
   return() {
