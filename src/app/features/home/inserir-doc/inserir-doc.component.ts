@@ -1,9 +1,9 @@
+import { Funcao } from './../../../interfaces/dto/funcao';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DialogInscricaoComponent } from 'src/app/components/dialog-inscricao/dialog-inscricao.component';
-import { Funcao } from 'src/app/interfaces/dto/funcao';
 import { ArquivoInput } from 'src/app/interfaces/input/arquivoInput';
 import { ArquivoService } from 'src/app/routes/arquivo.service';
 import { FuncaoService } from 'src/app/routes/funcao.service';
@@ -30,7 +30,7 @@ export class InserirDocComponent implements OnInit {
     private toast: NotifierService,
     private router: Router,
     public dialog: MatDialog,
-    private arquivoService: ArquivoService 
+    private arquivoService: ArquivoService
   ) {}
 
   async ngOnInit() {
