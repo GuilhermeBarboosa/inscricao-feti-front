@@ -1,24 +1,18 @@
-import {
-  Component,
-  ElementRef,
-  OnInit,
-  Renderer2,
-  ViewChild,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Role } from 'src/app/interfaces/dto/role';
 import { Pergunta } from 'src/app/interfaces/dto/pergunta';
+import { Role } from 'src/app/interfaces/dto/role';
 import { PerguntaInput } from 'src/app/interfaces/input/perguntaInput';
-import { RoleService } from 'src/app/routes/role.service';
 import { PerguntaService } from 'src/app/routes/pergunta.service';
+import { RoleService } from 'src/app/routes/role.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-create-pergunta',
   templateUrl: './create-pergunta.component.html',
-  styleUrls: ['./create-pergunta.component.css']
+  styleUrls: ['./create-pergunta.component.css'],
 })
 export class CreatePerguntaComponent implements OnInit {
   pergunta!: Pergunta;
@@ -78,7 +72,7 @@ export class CreatePerguntaComponent implements OnInit {
         }
       );
     } else {
-      this.utilsService.getFormValidationErrors(this.formulario)
+      this.utilsService.getFormValidationErrors(this.formulario);
     }
   }
 

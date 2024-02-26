@@ -1,9 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environment';
-import { EditalInput } from '../interfaces/input/editalInput';
 import { ArquivoInput } from '../interfaces/input/arquivoInput';
-import { Arquivo } from '../interfaces/dto/arquivo';
 
 @Injectable({
   providedIn: 'root',

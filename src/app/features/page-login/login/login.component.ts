@@ -1,12 +1,10 @@
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { HttpHeaders, HttpRequest } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { LoginInput } from 'src/app/interfaces/input/loginInput';
+import { LoginService } from 'src/app/routes/login.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { TokenJwtService } from 'src/app/services/token-jwt.service';
-import { LoginService } from 'src/app/routes/login.service';
-import { LoginInput } from 'src/app/interfaces/input/loginInput';
-import { CookieService } from 'src/app/services/cookie.service';
 
 @Component({
   selector: 'app-login',
@@ -50,7 +48,7 @@ export class LoginComponent implements OnInit {
           this.loginService.obterClaims().subscribe(
             (data: any) => {
               var data = JSON.parse(JSON.stringify(data));
-              localStorage.setItem("user", data.user);
+              localStorage.setItem('user', data.user);
               this.notifier.showSuccess('Login efetuado com sucesso!');
               this.router.navigate(['/dashboard']);
             },

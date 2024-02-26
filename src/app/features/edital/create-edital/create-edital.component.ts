@@ -1,17 +1,11 @@
-import {
-  Component,
-  ElementRef,
-  OnInit,
-  Renderer2,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Role } from 'src/app/interfaces/dto/role';
 import { Edital } from 'src/app/interfaces/dto/edital';
+import { Role } from 'src/app/interfaces/dto/role';
 import { EditalInput } from 'src/app/interfaces/input/editalInput';
-import { RoleService } from 'src/app/routes/role.service';
 import { EditalService } from 'src/app/routes/edital.service';
+import { RoleService } from 'src/app/routes/role.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
@@ -104,18 +98,19 @@ export class CreateEditalComponent implements OnInit {
         (data) => {
           var dataResponse = JSON.parse(JSON.stringify(data));
 
-          this.editalService.uploadFile(this.formulario.get('arquivo')?.value, dataResponse.id).subscribe((response) => {
-
-            this.notifier.showSuccess('Edital cadastrado com sucesso!');
-            this.router.navigateByUrl('/edital');
-          });
+          this.editalService
+            .uploadFile(this.formulario.get('arquivo')?.value, dataResponse.id)
+            .subscribe((response) => {
+              this.notifier.showSuccess('Edital cadastrado com sucesso!');
+              this.router.navigateByUrl('/edital');
+            });
         },
         (error) => {
           this.notifier.showError(error.error.message);
         }
       );
     } else {
-      this.utilsService.getFormValidationErrors(this.formulario)
+      this.utilsService.getFormValidationErrors(this.formulario);
     }
   }
 

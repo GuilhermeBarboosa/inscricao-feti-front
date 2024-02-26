@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
       telefone: ['', [Validators.required]],
-      cep: ['', [Validators.required,]],
+      cep: ['', [Validators.required]],
       rua: ['', [Validators.required]],
       cidade: ['', [Validators.required]],
       bairro: ['', [Validators.required]],
@@ -55,8 +55,6 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-
-
     if (
       this.registerForm.get('password')?.value !=
       this.registerForm.get('passwordConfirm')?.value
@@ -92,14 +90,13 @@ export class RegisterComponent implements OnInit {
           }
         );
       } else {
-        this.utilsService.getFormValidationErrors(this.registerForm)
+        this.utilsService.getFormValidationErrors(this.registerForm);
       }
     }
   }
 
   onOutsideClick() {
     // let cep = this.registerForm.get('cep')?.value;
-
     // if (
     //   (cep != null && cep != '') ||
     //   (this.registerForm.get('rua')?.value != null &&

@@ -6,6 +6,5 @@ export const InicioRoutes: Routes = [
   {
     path: '',
     component: InicioComponent,
-    // canActivate: [AuthGuardService],
   }
 ];

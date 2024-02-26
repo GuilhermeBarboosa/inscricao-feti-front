@@ -12,14 +12,14 @@ export const AlternativaRoutes: Routes = [
     component: AlternativaTableComponent,
     canActivate: [AuthGuardService],
     data: {
-      rolesArray:[
-         {
-          role: roles.ROLE_ADMIN
-         },
-         {
-          role: roles.ROLE_SECRETARIO
-         }
-      ]
+      rolesArray: [
+        {
+          role: roles.ROLE_ADMIN,
+        },
+        {
+          role: roles.ROLE_SECRETARIO,
+        },
+      ],
     },
   },
   {
@@ -27,14 +27,14 @@ export const AlternativaRoutes: Routes = [
     component: CreateAlternativaComponent,
     canActivate: [AuthGuardService],
     data: {
-      rolesArray:[
-         {
-          role: roles.ROLE_ADMIN
-         },
-         {
-          role: roles.ROLE_SECRETARIO
-         }
-      ]
+      rolesArray: [
+        {
+          role: roles.ROLE_ADMIN,
+        },
+        {
+          role: roles.ROLE_SECRETARIO,
+        },
+      ],
     },
   },
   {
@@ -42,14 +42,14 @@ export const AlternativaRoutes: Routes = [
     component: EditAlternativaComponent,
     canActivate: [AuthGuardService],
     data: {
-      rolesArray:[
-         {
-          role: roles.ROLE_ADMIN
-         },
-         {
-          role: roles.ROLE_SECRETARIO
-         }
-      ]
+      rolesArray: [
+        {
+          role: roles.ROLE_ADMIN,
+        },
+        {
+          role: roles.ROLE_SECRETARIO,
+        },
+      ],
     },
   },
   {
@@ -57,14 +57,14 @@ export const AlternativaRoutes: Routes = [
     component: InfoAlternativaComponent,
     canActivate: [AuthGuardService],
     data: {
-      rolesArray:[
-         {
-          role: roles.ROLE_ADMIN
-         },
-         {
-          role: roles.ROLE_SECRETARIO
-         }
-      ]
+      rolesArray: [
+        {
+          role: roles.ROLE_ADMIN,
+        },
+        {
+          role: roles.ROLE_SECRETARIO,
+        },
+      ],
     },
   },
 ];

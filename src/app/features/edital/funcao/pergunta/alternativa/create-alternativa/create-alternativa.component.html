@@ -1,54 +1,53 @@
-<app-navbar-login [value] = 'tipoPagina'></app-navbar-login>
+<app-navbar-login [value]="tipoPagina"></app-navbar-login>
 
 <div class="flex">
   <app-sidebar></app-sidebar>
-<div class="home-section">
-  <form class="m-5" [formGroup]="formulario" *ngIf="formulario">
-    <div class="flex justify-between">
-      <p class="text-black font-medium justify-start text-lg font-bold">
-        REGISTRE A ALTERNATIVA
-      </p>
-    </div>
+  <div class="home-section">
+    <form class="m-5" [formGroup]="formulario" *ngIf="formulario">
+      <div class="flex justify-between">
+        <p class="text-black font-medium justify-start text-lg font-bold">
+          REGISTRE A ALTERNATIVA
+        </p>
+      </div>
 
-    <form class="h-full w-full" [formGroup]="formulario" *ngIf="formulario">
-      <div>
-        <div class="grid gap-5 grid-cols-2">
-          <div class="col ">
-            <label class="block text-sm" for="alternativa">Alternativa</label>
-            <input
-              formControlName="alternativa"
-              class="default-input w-full p-2.5"
-              type="text"
-              id="alternativa"
-              aria-label="alternativa"
-              required
-            />
+      <form class="h-full w-full" [formGroup]="formulario" *ngIf="formulario">
+        <div>
+          <div class="grid gap-5 grid-cols-2">
+            <div class="col">
+              <label class="block text-sm" for="alternativa">Alternativa</label>
+              <input
+                formControlName="alternativa"
+                class="default-input w-full p-2.5"
+                type="text"
+                id="alternativa"
+                aria-label="alternativa"
+                required
+              />
+            </div>
+            <div class="col">
+              <label class="block text-sm" for="pontuacao">Pontuação</label>
+              <input
+                formControlName="pontuacao"
+                class="default-input w-full p-2.5"
+                type="text"
+                id="pontuacao"
+                aria-label="pontuacao"
+                required
+              />
+            </div>
           </div>
-          <div class="col">
-            <label class="block text-sm" for="pontuacao">Pontuação</label>
-            <input
-              formControlName="pontuacao"
-              class="default-input w-full p-2.5"
-              type="text"
-              id="pontuacao"
-              aria-label="pontuacao"
-              required
-            />
-          </div>
+        </div>
+      </form>
+
+      <div class="items-center flex justify-between my-2">
+        <div>
+          <app-button-red [value]="Nao" (click)="return()"></app-button-red>
+        </div>
+
+        <div class="align-end">
+          <app-button-green [value]="Sim" (click)="save()"></app-button-green>
         </div>
       </div>
     </form>
-
-    <div class="items-center flex justify-between my-2">
-      <div>
-        <app-button-red [value]="Nao" (click)="return()"></app-button-red>
-      </div>
-
-      <div class="align-end">
-        <app-button-green [value]="Sim" (click)="save()"></app-button-green>
-      </div>
-    </div>
-  </form>
-</div>
-
+  </div>
 </div>

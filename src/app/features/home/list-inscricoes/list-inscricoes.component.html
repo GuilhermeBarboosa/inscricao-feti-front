@@ -47,15 +47,15 @@
                   <div class="dv-line">
                     <div class="dv-column dv-border dv-radius">
                       <div class="dv-padding-hdpi">
-
-                        <div class="dv-line" *ngIf="length == 0" >
-
+                        <div class="dv-line" *ngIf="length == 0">
                           <p>Nenhuma inscrição</p>
-
                         </div>
 
-                        <div class="dv-line dv-border p-5 m-2" *ngFor="let i of this.inscricao">
-                          <div class="dv-column ">
+                        <div
+                          class="dv-line dv-border p-5 m-2"
+                          *ngFor="let i of this.inscricao"
+                        >
+                          <div class="dv-column">
                             <p class="dv-bold">{{ i.edital }}</p>
                             <p class="flex">
                               <img
@@ -80,8 +80,6 @@
                                 width="16"
                               />Inscrito em: {{ i.created }}
                             </p>
-
-
                           </div>
 
                           <div
@@ -95,7 +93,11 @@
                                 }}</span>
                               </p>
 
-                              <a routerLink="/minha-inscricao/info/{{i.id}}" routerLinkActive="active" class="flex dv-blue dv-cursor  dv-vertical-align-center dv-horizontal-align-center ">
+                              <a
+                                routerLink="/minha-inscricao/info/{{ i.id }}"
+                                routerLinkActive="active"
+                                class="flex dv-blue dv-cursor dv-vertical-align-center dv-horizontal-align-center"
+                              >
                                 <img
                                   class="ml-2 dv-vertical-align-middle dv-margin-right-ldpi"
                                   src="../../../../assets/icon/blue-see.svg"
@@ -120,7 +122,6 @@
     </div>
   </div>
 </div>
-
 
 <app-footer></app-footer>
 ```

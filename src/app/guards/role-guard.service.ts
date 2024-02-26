@@ -5,10 +5,9 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import { roles } from 'src/roles';
 import { LoginService } from '../routes/login.service';
 import { CookieService } from '../services/cookie.service';
-import { roles } from 'src/roles';
-import { UtilsService } from '../services/utils.service';
 import { NotifierService } from '../services/notifier.service';
 
 @Injectable({
@@ -39,15 +38,14 @@ export class RoleGuardService {
           var response = JSON.parse(JSON.stringify(data));
 
           if (response.role != roles.ROLE_ADMIN) {
-            this.toast.showError("Você não possui permissão")
-            window.location.reload()
+            this.toast.showError('Você não possui permissão');
+            window.location.reload();
             return false;
           } else {
             return true;
           }
         });
       });
-      // return true;
     }
     return false;
   }

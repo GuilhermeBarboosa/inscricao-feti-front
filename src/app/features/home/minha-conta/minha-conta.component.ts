@@ -1,15 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  ValidationErrors,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Role } from 'src/app/interfaces/dto/role';
 import { User } from 'src/app/interfaces/dto/user';
 import { UserInput } from 'src/app/interfaces/input/userInput';
-import { RoleService } from 'src/app/routes/role.service';
 import { UserService } from 'src/app/routes/user.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { TokenJwtService } from 'src/app/services/token-jwt.service';
@@ -29,7 +23,6 @@ export class MinhaContaComponent implements OnInit {
   Voltar = 'Voltar';
   role = '';
   constructor(
-    private activedRouter: ActivatedRoute,
     private userService: UserService,
     private router: Router,
     private utilsService: UtilsService,
@@ -101,7 +94,7 @@ export class MinhaContaComponent implements OnInit {
   }
 
   updateUser() {
-    this.utilsService.getFormValidationErrors(this.formulario)
+    this.utilsService.getFormValidationErrors(this.formulario);
     if (this.formulario.valid) {
       let userDTO = {
         name: this.formulario.get('name')?.value,
@@ -116,7 +109,7 @@ export class MinhaContaComponent implements OnInit {
         cidade: this.formulario.get('cidade')?.value,
         bairro: this.formulario.get('bairro')?.value,
         role: this.user?.idRole,
-        password : this.user?.password
+        password: this.user?.password,
       };
 
       let userInput = new UserInput(userDTO);
@@ -134,5 +127,4 @@ export class MinhaContaComponent implements OnInit {
       this.notifier.showError('Preencha todos os campos obrigatórios!');
     }
   }
-
 }

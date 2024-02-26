@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { LoginService } from '../routes/login.service';
 import {
   ActivatedRouteSnapshot,
   Router,
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
+import { Observable, switchMap } from 'rxjs';
+import { LoginService } from '../routes/login.service';
 import { NotifierService } from '../services/notifier.service';
-import { Observable, of, switchMap } from 'rxjs';
 import { TokenJwtService } from '../services/token-jwt.service';
 
 @Injectable({
@@ -39,7 +39,7 @@ export class ProfileGuardService {
         let idEdit = route.params['id'];
 
         return this.loginService.obterClaims().pipe(
-          switchMap( async (res) => {
+          switchMap(async (res) => {
             let response = JSON.parse(JSON.stringify(res));
             let idLogin = response.id;
             let userRole = await this.token.getRole();
@@ -50,8 +50,10 @@ export class ProfileGuardService {
               if (idLogin == idEdit) {
                 return true;
               } else {
-                window.history.back()
-                this.notifier.showError('Você não tem permissão para acessar essa página');
+                window.history.back();
+                this.notifier.showError(
+                  'Você não tem permissão para acessar essa página'
+                );
                 return false;
               }
             }

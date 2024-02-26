@@ -1,15 +1,13 @@
-import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
-  UrlTree,
-  Router,
+  UrlTree
 } from '@angular/router';
-import { Injectable } from '@angular/core';
-import { NotifierService } from '../services/notifier.service';
+import { Observable } from 'rxjs';
 import { LoginService } from '../routes/login.service';
+import { NotifierService } from '../services/notifier.service';
 import { TokenJwtService } from '../services/token-jwt.service';
-import { roles } from 'src/roles';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +15,6 @@ import { roles } from 'src/roles';
 export class AuthGuardService {
   constructor(
     private loginService: LoginService,
-    private router: Router,
     private notifier: NotifierService,
     private token: TokenJwtService
   ) {}

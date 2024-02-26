@@ -1,17 +1,11 @@
-import {
-  Component,
-  ElementRef,
-  OnInit,
-  Renderer2,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Role } from 'src/app/interfaces/dto/role';
 import { Edital } from 'src/app/interfaces/dto/edital';
+import { Role } from 'src/app/interfaces/dto/role';
 import { EditalInput } from 'src/app/interfaces/input/editalInput';
-import { RoleService } from 'src/app/routes/role.service';
 import { EditalService } from 'src/app/routes/edital.service';
+import { RoleService } from 'src/app/routes/role.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { UtilsService } from 'src/app/services/utils.service';
 @Component({
@@ -55,8 +49,12 @@ export class EditEditalComponent implements OnInit {
       editalResponse.data_fim = this.utilsService.formatarData(
         editalResponse.data_fim
       );
-      editalResponse.created = this.utilsService.formatarData(editalResponse.created);
-      editalResponse.updated = this.utilsService.formatarData(editalResponse.updated);
+      editalResponse.created = this.utilsService.formatarData(
+        editalResponse.created
+      );
+      editalResponse.updated = this.utilsService.formatarData(
+        editalResponse.updated
+      );
 
       this.edital = editalResponse;
 
@@ -110,9 +108,7 @@ export class EditEditalComponent implements OnInit {
         editalDTO.data_fim
       );
 
-
       let editalInput = new EditalInput(editalDTO);
-
 
       this.editalService.edit(editalInput, this.edital!.id!).subscribe(
         (data) => {

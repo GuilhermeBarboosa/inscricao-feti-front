@@ -3,7 +3,7 @@ import {
   ElementRef,
   OnInit,
   Renderer2,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -93,14 +93,11 @@ export class CreateUserComponent implements OnInit {
         }
       );
     } else {
-      this.utilsService.getFormValidationErrors(this.formulario)
+      this.utilsService.getFormValidationErrors(this.formulario);
     }
   }
 
-
-  onOutsideClick() {
-
-  }
+  onOutsideClick() {}
 
   return() {
     this.router.navigateByUrl('/user');

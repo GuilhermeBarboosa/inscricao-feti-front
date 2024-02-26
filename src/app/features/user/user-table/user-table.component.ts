@@ -11,7 +11,6 @@ import { UserInput } from 'src/app/interfaces/input/userInput';
 import { UserService } from 'src/app/routes/user.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { TokenJwtService } from 'src/app/services/token-jwt.service';
-import { MatSortModule } from '@angular/material/sort'
 
 @Component({
   selector: 'app-user-table',
@@ -105,7 +104,7 @@ export class UserTableComponent implements OnInit, AfterViewInit {
           (error) => {
             this.notifier.showError('Erro ao excluir usuário!');
           }
-         );
+        );
       }
     });
   }

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Role } from 'src/app/interfaces/dto/role';
 import { Edital } from 'src/app/interfaces/dto/edital';
-import { RoleService } from 'src/app/routes/role.service';
+import { Role } from 'src/app/interfaces/dto/role';
 import { EditalService } from 'src/app/routes/edital.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { TokenJwtService } from 'src/app/services/token-jwt.service';
@@ -12,9 +11,9 @@ import { UtilsService } from 'src/app/services/utils.service';
 @Component({
   selector: 'app-info-edital',
   templateUrl: './info-edital.component.html',
-  styleUrls: ['./info-edital.component.css']
+  styleUrls: ['./info-edital.component.css'],
 })
-export class InfoEditalComponent implements OnInit{
+export class InfoEditalComponent implements OnInit {
   formulario!: FormGroup;
   edital?: Edital;
   roles?: Role[];
@@ -41,10 +40,18 @@ export class InfoEditalComponent implements OnInit{
         var editalResponse = JSON.parse(JSON.stringify(data));
         this.edital = editalResponse;
 
-        this.edital!.data_inicio = this.utilsService.formatarData(this.edital?.data_inicio);
-        this.edital!.data_fim = this.utilsService.formatarData(this.edital?.data_fim);
-        this.edital!.created = this.utilsService.formatarData(this.edital!.created);
-        this.edital!.updated = this.utilsService.formatarData(this.edital!.updated);
+        this.edital!.data_inicio = this.utilsService.formatarData(
+          this.edital?.data_inicio
+        );
+        this.edital!.data_fim = this.utilsService.formatarData(
+          this.edital?.data_fim
+        );
+        this.edital!.created = this.utilsService.formatarData(
+          this.edital!.created
+        );
+        this.edital!.updated = this.utilsService.formatarData(
+          this.edital!.updated
+        );
 
         this.createTable();
       },

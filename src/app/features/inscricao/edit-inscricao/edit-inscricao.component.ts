@@ -4,7 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Inscricao } from 'src/app/interfaces/dto/inscricao';
 import { Situacao } from 'src/app/interfaces/dto/situacao';
-import { InscricaoInput } from 'src/app/interfaces/input/inscricaoInput';
 import { InscricaoService } from 'src/app/routes/inscricao.service';
 import { SituacaoService } from 'src/app/routes/situacao.service';
 import { NotifierService } from 'src/app/services/notifier.service';

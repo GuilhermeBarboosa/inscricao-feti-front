@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from 'src/app/routes/login.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UtilsService } from 'src/app/services/utils.service';
-import { UserService } from '../../../routes/user.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/dto/user';
-import { TokenJwtService } from '../../../services/token-jwt.service';
-
+import { LoginService } from 'src/app/routes/login.service';
+import { UtilsService } from 'src/app/services/utils.service';
+import { UserService } from '../../../routes/user.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -16,7 +14,6 @@ export class ProfileComponent implements OnInit {
   constructor(
     private userService: UserService,
     private loginService: LoginService,
-    private token: TokenJwtService,
     private router: Router,
     private formBuilder: FormBuilder,
     private utilsService: UtilsService
@@ -38,9 +35,13 @@ export class ProfileComponent implements OnInit {
 
           this.user!.name = this.utilsService.formatterString(this.user!.name);
 
-          this.user!.created = this.utilsService.formatarData(this.user!.created);
+          this.user!.created = this.utilsService.formatarData(
+            this.user!.created
+          );
 
-          this.user!.updated = this.utilsService.formatarData(this.user!.updated);
+          this.user!.updated = this.utilsService.formatarData(
+            this.user!.updated
+          );
 
           this.createTable();
         });

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Edital } from 'src/app/interfaces/dto/edital';
 import { EditalService } from 'src/app/routes/edital.service';
-import { LoginService } from 'src/app/routes/login.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
@@ -20,8 +19,7 @@ export class PageEditalComponent implements OnInit {
   constructor(
     private editalService: EditalService,
     private utilsService: UtilsService,
-    private router: Router,
-    private login: LoginService
+    private router: Router
   ) {}
 
   async ngOnInit() {
@@ -60,12 +58,9 @@ export class PageEditalComponent implements OnInit {
 
   downloadEdital(id: number | undefined) {
     this.editalService.downloadEdital(id).subscribe((data) => {
-
       this.utilsService.saveArquivo(data);
     });
   }
-
-
 
   convertDate(date: String) {
     const dateString = date;

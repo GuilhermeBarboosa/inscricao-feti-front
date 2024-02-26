@@ -1,98 +1,105 @@
-<app-navbar-login [value] = 'tipoPagina'></app-navbar-login>
-
+<app-navbar-login [value]="tipoPagina"></app-navbar-login>
 
 <div class="flex">
   <app-sidebar></app-sidebar>
-<div class="home-section">
-  <form class="m-5" [formGroup]="formulario" *ngIf="formulario">
-    <div class="flex justify-between">
-      <p class="text-black font-medium justify-start text-lg font-bold">
-        REGISTRE O EDITAL
-      </p>
-    </div>
+  <div class="home-section">
+    <form class="m-5" [formGroup]="formulario" *ngIf="formulario">
+      <div class="flex justify-between">
+        <p class="text-black font-medium justify-start text-lg font-bold">
+          REGISTRE O EDITAL
+        </p>
+      </div>
 
-    <form class="h-full w-full" [formGroup]="formulario" *ngIf="formulario" enctype="multipart/form-data">
-      <div>
-        <div class="">
-          <div class="col-span-3">
-            <label class="block text-sm" for="edital">Edital</label>
-            <input
-              formControlName="edital"
-              class="default-input w-full p-2.5"
-              type="text"
-              id="edital"
-              aria-label="edital"
-              required
-            />
-          </div>
-        </div>
-
-        <div class="grid gap-5 grid-cols-3">
-          <div class="col ">
-            <label class="block text-sm" for="data_inicio">Data de inicio</label>
-            <input
-              formControlName="data_inicio"
-              class="default-input w-full p-2.5"
-              type="text"
-              id="data_inicio"
-              aria-label="data_inicio"
-              required
-              mask="00/00/0000"
-            />
-          </div>
-
-          <div class="col ">
-            <label class="block text-sm" for="data_fim">Data de termino</label>
-            <input
-              formControlName="data_fim"
-              class="default-input w-full p-2.5"
-              type="text"
-              id="data_fim"
-              aria-label="data_fim"
-              required
-              mask="00/00/0000"
-            />
-          </div>
-
-
-          <div class="col">
-            <label class="block text-sm" for="qtd_vagas">Quantidade de vagas</label>
-            <input
-              formControlName="qtd_vagas"
-              class="default-input w-full p-2.5"
-              type="text"
-              id="qtd_vagas"
-              aria-label="qtd_vagas"
-              required
-            />
-          </div>
-        </div>
-
+      <form
+        class="h-full w-full"
+        [formGroup]="formulario"
+        *ngIf="formulario"
+        enctype="multipart/form-data"
+      >
         <div>
-          <label class="block text-sm" for="arquivo">Arquivo</label>
-          <input
-            formControlName="arquivo"
-            class="default-input w-full p-2.5 pl-5"
-            type="file"
-            id="arquivo"
-            aria-label="arquivo"
-            (change)="onFileSelected($event)"
-          />
+          <div class="">
+            <div class="col-span-3">
+              <label class="block text-sm" for="edital">Edital</label>
+              <input
+                formControlName="edital"
+                class="default-input w-full p-2.5"
+                type="text"
+                id="edital"
+                aria-label="edital"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="grid gap-5 grid-cols-3">
+            <div class="col">
+              <label class="block text-sm" for="data_inicio"
+                >Data de inicio</label
+              >
+              <input
+                formControlName="data_inicio"
+                class="default-input w-full p-2.5"
+                type="text"
+                id="data_inicio"
+                aria-label="data_inicio"
+                required
+                mask="00/00/0000"
+              />
+            </div>
+
+            <div class="col">
+              <label class="block text-sm" for="data_fim"
+                >Data de termino</label
+              >
+              <input
+                formControlName="data_fim"
+                class="default-input w-full p-2.5"
+                type="text"
+                id="data_fim"
+                aria-label="data_fim"
+                required
+                mask="00/00/0000"
+              />
+            </div>
+
+            <div class="col">
+              <label class="block text-sm" for="qtd_vagas"
+                >Quantidade de vagas</label
+              >
+              <input
+                formControlName="qtd_vagas"
+                class="default-input w-full p-2.5"
+                type="text"
+                id="qtd_vagas"
+                aria-label="qtd_vagas"
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm" for="arquivo">Arquivo</label>
+            <input
+              formControlName="arquivo"
+              class="default-input w-full p-2.5 pl-5"
+              type="file"
+              id="arquivo"
+              aria-label="arquivo"
+              (change)="onFileSelected($event)"
+            />
+          </div>
+        </div>
+      </form>
+
+      <div class="items-center flex justify-between my-2">
+        <div>
+          <app-button-red [value]="Nao" (click)="return()"></app-button-red>
         </div>
 
-
+        <div class="align-end">
+          <app-button-green [value]="Sim" (click)="save()"></app-button-green>
+        </div>
       </div>
     </form>
-
-    <div class="items-center flex justify-between my-2">
-      <div>
-        <app-button-red [value]="Nao" (click)="return()"></app-button-red>
-      </div>
-
-      <div class="align-end">
-        <app-button-green [value]="Sim" (click)="save()"></app-button-green>
-      </div>
-    </div>
-  </form>
-</div>
+  </div>
 </div>

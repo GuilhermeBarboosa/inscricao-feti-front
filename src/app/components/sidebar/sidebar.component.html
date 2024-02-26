@@ -1,7 +1,17 @@
-<div [ngStyle]="{ 'background-color': styleService.colorVariables['bg_primary_color']}" class="sidebar open">
+<div
+  [ngStyle]="{
+    'background-color': styleService.colorVariables['bg_primary_color']
+  }"
+  class="sidebar open"
+>
   <div class="logo-details">
     <!-- <i class='bx bxl-angular'></i> -->
-    <div class="logo_name" [ngStyle]="{ 'color': styleService.colorVariables['font_color']}" >Sistema FETI</div>
+    <div
+      class="logo_name"
+      [ngStyle]="{ color: styleService.colorVariables['font_color'] }"
+    >
+      Sistema FETI
+    </div>
     <i (click)="openMenu()" class="bx bx-menu" id="btn"></i>
   </div>
   <li>
@@ -9,39 +19,69 @@
     <input type="text" placeholder="Search..." (keyup)="applyFilter($event)" />
     <span class="tooltip">Search</span>
   </li>
-  <ul  id="nav-list">
+  <ul id="nav-list">
     <li>
-      <a  [ngStyle]="{ 'background-color': styleService.colorVariables['bg_secundary_color']}" routerLink="/dashboard" routerLinkActive="active">
-        <i class='bx bxs-dashboard'></i>
+      <a
+        [ngStyle]="{
+          'background-color': styleService.colorVariables['bg_secundary_color']
+        }"
+        routerLink="/dashboard"
+        routerLinkActive="active"
+      >
+        <i class="bx bxs-dashboard"></i>
         <span class="links_name">Dashboard</span>
       </a>
       <p class="tooltip">Dashboard</p>
     </li>
 
     <li>
-      <a  [ngStyle]="{ 'background-color': styleService.colorVariables['bg_secundary_color']}" routerLink="/profile" routerLinkActive="active">
+      <a
+        [ngStyle]="{
+          'background-color': styleService.colorVariables['bg_secundary_color']
+        }"
+        routerLink="/profile"
+        routerLinkActive="active"
+      >
         <i class="bx bx-user"></i>
         <span class="links_name">Perfil</span>
       </a>
       <p class="tooltip">Perfil</p>
     </li>
     <li>
-      <a [ngStyle]="{ 'background-color': styleService.colorVariables['bg_secundary_color']}" routerLink="/user" routerLinkActive="active">
+      <a
+        [ngStyle]="{
+          'background-color': styleService.colorVariables['bg_secundary_color']
+        }"
+        routerLink="/user"
+        routerLinkActive="active"
+      >
         <i class="bx bxs-user-detail"></i>
         <span class="links_name">Usuários</span>
       </a>
       <p class="tooltip">Usuários</p>
     </li>
     <li>
-      <a [ngStyle]="{ 'background-color': styleService.colorVariables['bg_secundary_color']}" routerLink="/edital" routerLinkActive="active">
-        <i class='bx bx-folder-open'></i>
+      <a
+        [ngStyle]="{
+          'background-color': styleService.colorVariables['bg_secundary_color']
+        }"
+        routerLink="/edital"
+        routerLinkActive="active"
+      >
+        <i class="bx bx-folder-open"></i>
         <span class="links_name">Edital</span>
       </a>
       <p class="tooltip">Edital</p>
     </li>
     <li>
-      <a [ngStyle]="{ 'background-color': styleService.colorVariables['bg_secundary_color']}" routerLink="/inscricao" routerLinkActive="active">
-        <i class='bx bx-edit-alt'></i>
+      <a
+        [ngStyle]="{
+          'background-color': styleService.colorVariables['bg_secundary_color']
+        }"
+        routerLink="/inscricao"
+        routerLinkActive="active"
+      >
+        <i class="bx bx-edit-alt"></i>
         <span class="links_name">Inscrição</span>
       </a>
       <p class="tooltip">Inscrição</p>
@@ -51,7 +91,7 @@
     <div class="profile-details">
       <div class="name_job">
         <div class="name">
-          <img class="img_name" src="../../../assets/white-codiub.png" alt="">
+          <img class="img_name" src="../../../assets/white-codiub.png" alt="" />
         </div>
         <!-- <div class="job">Dev Full Stack</div> -->
       </div>

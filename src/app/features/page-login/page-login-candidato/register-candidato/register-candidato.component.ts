@@ -1,13 +1,5 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  ValidationErrors,
-  Validators,
-} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/dto/user';
 import { UserInput } from 'src/app/interfaces/input/userInput';
@@ -64,10 +56,9 @@ export class RegisterCandidatoComponent implements OnInit {
     ) {
       this.notifier.showError('As senhas não coincidem!');
     } else {
-      if(!this.registerForm.get("valid")?.value){
-        this.notifier.showError("Você precisa aceitar os termos de uso")
-      }else{
-        // this.utilsService.getFormValidationErrors(this.registerForm)
+      if (!this.registerForm.get('valid')?.value) {
+        this.notifier.showError('Você precisa aceitar os termos de uso');
+      } else {
         if (this.registerForm.valid) {
           let userDTO = {
             name: this.registerForm.get('name')?.value,
@@ -99,11 +90,9 @@ export class RegisterCandidatoComponent implements OnInit {
             }
           );
         } else {
-          this.utilsService.getFormValidationErrors(this.registerForm)
+          this.utilsService.getFormValidationErrors(this.registerForm);
         }
       }
-
     }
   }
-
 }

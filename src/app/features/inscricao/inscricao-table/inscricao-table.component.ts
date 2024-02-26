@@ -11,7 +11,6 @@ import { InscricaoInput } from 'src/app/interfaces/input/inscricaoInput';
 import { InscricaoService } from 'src/app/routes/inscricao.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { TokenJwtService } from 'src/app/services/token-jwt.service';
-import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-inscricao-table',
@@ -46,7 +45,6 @@ export class InscricaoTableComponent implements OnInit {
     private router: Router,
     private notifier: NotifierService,
     private token: TokenJwtService,
-    private utilsService: UtilsService,
     private _liveAnnouncer: LiveAnnouncer
   ) {}
 

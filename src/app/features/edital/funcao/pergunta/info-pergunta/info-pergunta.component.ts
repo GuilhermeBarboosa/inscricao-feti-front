@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Role } from 'src/app/interfaces/dto/role';
 import { Pergunta } from 'src/app/interfaces/dto/pergunta';
-import { RoleService } from 'src/app/routes/role.service';
+import { Role } from 'src/app/interfaces/dto/role';
 import { PerguntaService } from 'src/app/routes/pergunta.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { TokenJwtService } from 'src/app/services/token-jwt.service';
@@ -12,9 +11,9 @@ import { UtilsService } from 'src/app/services/utils.service';
 @Component({
   selector: 'app-info-pergunta',
   templateUrl: './info-pergunta.component.html',
-  styleUrls: ['./info-pergunta.component.css']
+  styleUrls: ['./info-pergunta.component.css'],
 })
-export class InfoPerguntaComponent implements OnInit{
+export class InfoPerguntaComponent implements OnInit {
   formulario!: FormGroup;
   pergunta?: Pergunta;
   roles?: Role[];
@@ -42,8 +41,12 @@ export class InfoPerguntaComponent implements OnInit{
         var perguntaResponse = JSON.parse(JSON.stringify(data));
         this.pergunta = perguntaResponse;
 
-        this.pergunta!.created = this.utilsService.formatarData(this.pergunta!.created);
-        this.pergunta!.updated = this.utilsService.formatarData(this.pergunta!.updated);
+        this.pergunta!.created = this.utilsService.formatarData(
+          this.pergunta!.created
+        );
+        this.pergunta!.updated = this.utilsService.formatarData(
+          this.pergunta!.updated
+        );
 
         this.createTable();
       },

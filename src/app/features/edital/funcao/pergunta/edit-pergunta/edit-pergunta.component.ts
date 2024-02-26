@@ -2,22 +2,21 @@ import {
   Component,
   ElementRef,
   OnInit,
-  Renderer2,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Role } from 'src/app/interfaces/dto/role';
 import { Pergunta } from 'src/app/interfaces/dto/pergunta';
+import { Role } from 'src/app/interfaces/dto/role';
 import { PerguntaInput } from 'src/app/interfaces/input/perguntaInput';
-import { RoleService } from 'src/app/routes/role.service';
 import { PerguntaService } from 'src/app/routes/pergunta.service';
+import { RoleService } from 'src/app/routes/role.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { UtilsService } from 'src/app/services/utils.service';
 @Component({
   selector: 'app-edit-pergunta',
   templateUrl: './edit-pergunta.component.html',
-  styleUrls: ['./edit-pergunta.component.css']
+  styleUrls: ['./edit-pergunta.component.css'],
 })
 export class EditPerguntaComponent implements OnInit {
   formulario!: FormGroup;
@@ -50,8 +49,12 @@ export class EditPerguntaComponent implements OnInit {
     this.perguntaService.getById(this.id).subscribe((res) => {
       var perguntaResponse = JSON.parse(JSON.stringify(res));
 
-      perguntaResponse.created = this.utilsService.formatarData(perguntaResponse.created);
-      perguntaResponse.updated = this.utilsService.formatarData(perguntaResponse.updated);
+      perguntaResponse.created = this.utilsService.formatarData(
+        perguntaResponse.created
+      );
+      perguntaResponse.updated = this.utilsService.formatarData(
+        perguntaResponse.updated
+      );
 
       this.pergunta = perguntaResponse;
 
@@ -102,6 +105,8 @@ export class EditPerguntaComponent implements OnInit {
   }
 
   return() {
-    this.router.navigateByUrl(`/pergunta/${this.idFuncao}/info/${this.pergunta?.id}`);
+    this.router.navigateByUrl(
+      `/pergunta/${this.idFuncao}/info/${this.pergunta?.id}`
+    );
   }
 }

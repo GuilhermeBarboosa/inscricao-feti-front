@@ -1,23 +1,17 @@
-import {
-  Component,
-  ElementRef,
-  OnInit,
-  Renderer2,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Role } from 'src/app/interfaces/dto/role';
 import { Funcao } from 'src/app/interfaces/dto/funcao';
+import { Role } from 'src/app/interfaces/dto/role';
 import { FuncaoInput } from 'src/app/interfaces/input/funcaoInput';
-import { RoleService } from 'src/app/routes/role.service';
 import { FuncaoService } from 'src/app/routes/funcao.service';
+import { RoleService } from 'src/app/routes/role.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { UtilsService } from 'src/app/services/utils.service';
 @Component({
   selector: 'app-edit-funcao',
   templateUrl: './edit-funcao.component.html',
-  styleUrls: ['./edit-funcao.component.css']
+  styleUrls: ['./edit-funcao.component.css'],
 })
 export class EditFuncaoComponent implements OnInit {
   formulario!: FormGroup;
@@ -50,8 +44,12 @@ export class EditFuncaoComponent implements OnInit {
     this.funcaoService.getById(this.id).subscribe((res) => {
       var funcaoResponse = JSON.parse(JSON.stringify(res));
 
-      funcaoResponse.created = this.utilsService.formatarData(funcaoResponse.created);
-      funcaoResponse.updated = this.utilsService.formatarData(funcaoResponse.updated);
+      funcaoResponse.created = this.utilsService.formatarData(
+        funcaoResponse.created
+      );
+      funcaoResponse.updated = this.utilsService.formatarData(
+        funcaoResponse.updated
+      );
 
       this.funcao = funcaoResponse;
 
@@ -102,6 +100,8 @@ export class EditFuncaoComponent implements OnInit {
   }
 
   return() {
-    this.router.navigateByUrl(`/funcao/info/${this.funcao?.id}/${this.idEdital}`);
+    this.router.navigateByUrl(
+      `/funcao/info/${this.funcao?.id}/${this.idEdital}`
+    );
   }
 }

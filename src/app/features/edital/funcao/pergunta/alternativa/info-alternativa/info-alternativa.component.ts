@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Role } from 'src/app/interfaces/dto/role';
 import { Alternativa } from 'src/app/interfaces/dto/alternativa';
-import { RoleService } from 'src/app/routes/role.service';
+import { Role } from 'src/app/interfaces/dto/role';
 import { AlternativaService } from 'src/app/routes/alternativa.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { TokenJwtService } from 'src/app/services/token-jwt.service';
@@ -11,9 +10,9 @@ import { UtilsService } from 'src/app/services/utils.service';
 @Component({
   selector: 'app-info-alternativa',
   templateUrl: './info-alternativa.component.html',
-  styleUrls: ['./info-alternativa.component.css']
+  styleUrls: ['./info-alternativa.component.css'],
 })
-export class InfoAlternativaComponent  implements OnInit {
+export class InfoAlternativaComponent implements OnInit {
   formulario!: FormGroup;
   alternativa?: Alternativa;
   roles?: Role[];
@@ -41,8 +40,12 @@ export class InfoAlternativaComponent  implements OnInit {
         var alternativaResponse = JSON.parse(JSON.stringify(data));
         this.alternativa = alternativaResponse;
 
-        this.alternativa!.created = this.utilsService.formatarData(this.alternativa!.created);
-        this.alternativa!.updated = this.utilsService.formatarData(this.alternativa!.updated);
+        this.alternativa!.created = this.utilsService.formatarData(
+          this.alternativa!.created
+        );
+        this.alternativa!.updated = this.utilsService.formatarData(
+          this.alternativa!.updated
+        );
 
         this.createTable();
       },

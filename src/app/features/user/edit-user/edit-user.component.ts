@@ -10,7 +10,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Role } from 'src/app/interfaces/dto/role';
 import { User } from 'src/app/interfaces/dto/user';
 import { UserInput } from 'src/app/interfaces/input/userInput';
-// import { EnderecoService } from 'src/app/routes/endereco.service';
 import { RoleService } from 'src/app/routes/role.service';
 import { UserService } from 'src/app/routes/user.service';
 import { NotifierService } from 'src/app/services/notifier.service';
@@ -53,8 +52,12 @@ export class EditUserComponent implements OnInit {
     this.userService.getById(this.id).subscribe((res) => {
       var userResponse = JSON.parse(JSON.stringify(res));
 
-      userResponse.created = this.utilsService.formatarData(userResponse.created);
-      userResponse.updated = this.utilsService.formatarData(userResponse.updated);
+      userResponse.created = this.utilsService.formatarData(
+        userResponse.created
+      );
+      userResponse.updated = this.utilsService.formatarData(
+        userResponse.updated
+      );
 
       this.user = userResponse;
 
@@ -129,7 +132,6 @@ export class EditUserComponent implements OnInit {
 
   onOutsideClick() {
     // let cep = this.formulario.get('cep')?.value;
-
     // if (
     //   (cep != null && cep != '') ||
     //   (this.formulario.get('rua')?.value != null &&

@@ -31,7 +31,6 @@
                 class="dv-underline dv-blue dv-cursor"
                 >Cargos</span
               >
-
             </p>
           </div>
         </div>
@@ -81,7 +80,7 @@
                 {{ i + 1 }}) {{ p.pergunta }}
               </p>
 
-              <div formArrayName="alternativas" class=" dv-border-dashed">
+              <div formArrayName="alternativas" class="dv-border-dashed">
                 <div
                   *ngFor="let a of p.listAlternativas; let j = index"
                   [formGroupName]="j"
@@ -111,9 +110,7 @@
                                 id="{{ a.alternativa }}"
                                 value="{{ a.id }}"
                                 required=""
-                                (click)="
-                                  setResposta(p, a)
-                                "
+                                (click)="setResposta(p, a)"
                               />
 
                               <label
@@ -189,7 +186,5 @@
     </div>
   </div>
 </div>
-
-
 
 <app-footer></app-footer>

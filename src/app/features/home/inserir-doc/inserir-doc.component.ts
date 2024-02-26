@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DialogInscricaoComponent } from 'src/app/components/dialog-inscricao/dialog-inscricao.component';
-import { Edital } from 'src/app/interfaces/dto/edital';
 import { Funcao } from 'src/app/interfaces/dto/funcao';
 import { ArquivoInput } from 'src/app/interfaces/input/arquivoInput';
 import { ArquivoService } from 'src/app/routes/arquivo.service';
-import { EditalService } from 'src/app/routes/edital.service';
 import { FuncaoService } from 'src/app/routes/funcao.service';
 import { InscricaoService } from 'src/app/routes/inscricao.service';
 import { NotifierService } from 'src/app/services/notifier.service';
@@ -32,7 +30,7 @@ export class InserirDocComponent implements OnInit {
     private toast: NotifierService,
     private router: Router,
     public dialog: MatDialog,
-    private arquivoService: ArquivoService // private utilsService: UtilsService
+    private arquivoService: ArquivoService 
   ) {}
 
   async ngOnInit() {
@@ -97,7 +95,9 @@ export class InserirDocComponent implements OnInit {
 
       this.inscricaoService.create(this.inscricaoInput, arquivoInput).subscribe(
         (dataInscricao) => {
-          var responseInscricaoWithArquivos = JSON.parse(JSON.stringify(dataInscricao));
+          var responseInscricaoWithArquivos = JSON.parse(
+            JSON.stringify(dataInscricao)
+          );
 
           this.toast.showSuccess('Inscrição realizada com sucesso');
 

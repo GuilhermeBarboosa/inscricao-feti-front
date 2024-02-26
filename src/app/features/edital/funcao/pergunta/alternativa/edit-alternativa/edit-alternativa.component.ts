@@ -1,23 +1,17 @@
-import {
-  Component,
-  ElementRef,
-  OnInit,
-  Renderer2,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Role } from 'src/app/interfaces/dto/role';
 import { Alternativa } from 'src/app/interfaces/dto/alternativa';
+import { Role } from 'src/app/interfaces/dto/role';
 import { AlternativaInput } from 'src/app/interfaces/input/alternativaInput';
-import { RoleService } from 'src/app/routes/role.service';
 import { AlternativaService } from 'src/app/routes/alternativa.service';
+import { RoleService } from 'src/app/routes/role.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { UtilsService } from 'src/app/services/utils.service';
 @Component({
   selector: 'app-edit-alternativa',
   templateUrl: './edit-alternativa.component.html',
-  styleUrls: ['./edit-alternativa.component.css']
+  styleUrls: ['./edit-alternativa.component.css'],
 })
 export class EditAlternativaComponent implements OnInit {
   formulario!: FormGroup;
@@ -50,8 +44,12 @@ export class EditAlternativaComponent implements OnInit {
     this.alternativaService.getById(this.id).subscribe((res) => {
       var alternativaResponse = JSON.parse(JSON.stringify(res));
 
-      alternativaResponse.created = this.utilsService.formatarData(alternativaResponse.created);
-      alternativaResponse.updated = this.utilsService.formatarData(alternativaResponse.updated);
+      alternativaResponse.created = this.utilsService.formatarData(
+        alternativaResponse.created
+      );
+      alternativaResponse.updated = this.utilsService.formatarData(
+        alternativaResponse.updated
+      );
 
       this.alternativa = alternativaResponse;
 
@@ -91,22 +89,26 @@ export class EditAlternativaComponent implements OnInit {
 
       let alternativaInput = new AlternativaInput(alternativaDTO);
 
-      this.alternativaService.edit(alternativaInput, this.alternativa!.id!).subscribe(
-        (data) => {
-          this.notifier.showSuccess('Alternativa atualizado com sucesso!');
-          this.router.navigateByUrl(`/alternativa/${this.idPergunta}`);
-        },
-        (error) => {
-          this.notifier.showError(error.error);
-          return;
-        }
-      );
+      this.alternativaService
+        .edit(alternativaInput, this.alternativa!.id!)
+        .subscribe(
+          (data) => {
+            this.notifier.showSuccess('Alternativa atualizado com sucesso!');
+            this.router.navigateByUrl(`/alternativa/${this.idPergunta}`);
+          },
+          (error) => {
+            this.notifier.showError(error.error);
+            return;
+          }
+        );
     } else {
       this.utilsService.getFormValidationErrors(this.formulario);
     }
   }
 
   return() {
-    this.router.navigateByUrl(`/alternativa/${this.idPergunta}/info/${this.id}`);
+    this.router.navigateByUrl(
+      `/alternativa/${this.idPergunta}/info/${this.id}`
+    );
   }
 }

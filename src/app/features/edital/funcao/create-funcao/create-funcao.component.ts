@@ -1,17 +1,11 @@
-import {
-  Component,
-  ElementRef,
-  OnInit,
-  Renderer2,
-  ViewChild,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Role } from 'src/app/interfaces/dto/role';
 import { Funcao } from 'src/app/interfaces/dto/funcao';
+import { Role } from 'src/app/interfaces/dto/role';
 import { FuncaoInput } from 'src/app/interfaces/input/funcaoInput';
-import { RoleService } from 'src/app/routes/role.service';
 import { FuncaoService } from 'src/app/routes/funcao.service';
+import { RoleService } from 'src/app/routes/role.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
@@ -78,7 +72,7 @@ export class CreateFuncaoComponent implements OnInit {
         }
       );
     } else {
-      this.utilsService.getFormValidationErrors(this.formulario)
+      this.utilsService.getFormValidationErrors(this.formulario);
     }
   }
 

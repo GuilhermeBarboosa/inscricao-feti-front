@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Chart, plugins, registerables } from 'chart.js';
+import { Chart, registerables } from 'chart.js';
 import { Edital } from 'src/app/interfaces/dto/edital';
 import { DashboardService } from 'src/app/routes/dashboard.service';
 import { EditalService } from 'src/app/routes/edital.service';

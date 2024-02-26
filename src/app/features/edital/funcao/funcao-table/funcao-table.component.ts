@@ -30,7 +30,7 @@ export class FuncaoTableComponent implements OnInit {
 
   funcaoArray = new MatTableDataSource<Funcao>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-@ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private funcaoService: FuncaoService,
@@ -99,7 +99,7 @@ export class FuncaoTableComponent implements OnInit {
           (error) => {
             this.notifier.showError('Erro ao excluir usuário!');
           }
-         );
+        );
       }
     });
   }
@@ -115,7 +115,6 @@ export class FuncaoTableComponent implements OnInit {
   initTable() {
     this.funcaoService.getByIdEdital(this.idEdital).subscribe((data) => {
       var funcaoResponse = JSON.parse(JSON.stringify(data));
-
 
       funcaoResponse.map((funcao: Funcao) => {
         if (funcao.actived) {
@@ -138,6 +137,6 @@ export class FuncaoTableComponent implements OnInit {
   }
 
   getByPerguntas(id: any) {
-    this.router.navigateByUrl(`/pergunta/${id}`)
+    this.router.navigateByUrl(`/pergunta/${id}`);
   }
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/routes/login.service';
-import { CookieService } from 'src/app/services/cookie.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { TokenJwtService } from 'src/app/services/token-jwt.service';
 
@@ -15,12 +14,7 @@ export class NavbarComponent implements OnInit {
   nameUser: any = '';
   role = '';
 
-  constructor(
-    private router: Router,
-    private notifier: NotifierService,
-    private loginService: LoginService,
-    private token: TokenJwtService
-  ) {}
+  constructor(private loginService: LoginService) {}
 
   async ngOnInit() {
     this.nameUser = localStorage.getItem('user');

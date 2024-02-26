@@ -1,7 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { InscricaoService } from 'src/app/routes/inscricao.service';
-
 @Component({
   selector: 'app-dialog-inscricao',
   templateUrl: './dialog-inscricao.component.html',

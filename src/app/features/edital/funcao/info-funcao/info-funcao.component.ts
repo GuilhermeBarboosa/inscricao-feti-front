@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Role } from 'src/app/interfaces/dto/role';
 import { Funcao } from 'src/app/interfaces/dto/funcao';
-import { RoleService } from 'src/app/routes/role.service';
+import { Role } from 'src/app/interfaces/dto/role';
 import { FuncaoService } from 'src/app/routes/funcao.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { TokenJwtService } from 'src/app/services/token-jwt.service';
@@ -11,7 +10,7 @@ import { UtilsService } from 'src/app/services/utils.service';
 @Component({
   selector: 'app-info-funcao',
   templateUrl: './info-funcao.component.html',
-  styleUrls: ['./info-funcao.component.css']
+  styleUrls: ['./info-funcao.component.css'],
 })
 export class InfoFuncaoComponent implements OnInit {
   formulario!: FormGroup;
@@ -41,8 +40,12 @@ export class InfoFuncaoComponent implements OnInit {
         var funcaoResponse = JSON.parse(JSON.stringify(data));
         this.funcao = funcaoResponse;
 
-        this.funcao!.created = this.utilsService.formatarData(this.funcao!.created);
-        this.funcao!.updated = this.utilsService.formatarData(this.funcao!.updated);
+        this.funcao!.created = this.utilsService.formatarData(
+          this.funcao!.created
+        );
+        this.funcao!.updated = this.utilsService.formatarData(
+          this.funcao!.updated
+        );
 
         this.createTable();
       },

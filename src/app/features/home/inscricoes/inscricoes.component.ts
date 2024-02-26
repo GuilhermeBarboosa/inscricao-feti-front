@@ -6,8 +6,6 @@ import { VerifyInput } from 'src/app/interfaces/input/verifyInput';
 import { FuncaoService } from 'src/app/routes/funcao.service';
 import { LoginService } from 'src/app/routes/login.service';
 import { NotifierService } from 'src/app/services/notifier.service';
-import { TokenJwtService } from 'src/app/services/token-jwt.service';
-import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-inscricoes',
@@ -37,8 +35,8 @@ export class InscricoesComponent implements OnInit {
 
     await this.login.obterClaims().subscribe((res) => {
       var data = JSON.parse(JSON.stringify(res));
-      this.user = data.id
-    })
+      this.user = data.id;
+    });
 
     this.formulario = this.formBuilder.group({
       idFuncao: [{ value: 0 }, Validators.required],
@@ -46,13 +44,12 @@ export class InscricoesComponent implements OnInit {
   }
 
   async realizarInscricao() {
-
     let idFuncao = this.formulario.get('idFuncao')?.value;
 
     localStorage.setItem('funcao', idFuncao);
     localStorage.setItem('edital', this.idEdital);
 
-    let verifyInput = new VerifyInput(this.idEdital, idFuncao, this.user)
+    let verifyInput = new VerifyInput(this.idEdital, idFuncao, this.user);
 
     await this.funcaoService.getVerifyInscricao(verifyInput).subscribe(
       (data) => {
@@ -64,12 +61,9 @@ export class InscricoesComponent implements OnInit {
           console.error(e);
         }
       },
-      (error) =>{
-        this.toast.showError("Você já possui uma inscrição para este cargo");
+      (error) => {
+        this.toast.showError('Você já possui uma inscrição para este cargo');
       }
     );
-
-
-
   }
 }

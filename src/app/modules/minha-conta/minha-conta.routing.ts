@@ -7,6 +7,5 @@ export const MinhaContaRoutes: Routes = [
   {
     path: '',
     component: MinhaContaComponent,
-    // canActivate: [AuthGuardService],
   }
 ];

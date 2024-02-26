@@ -20,7 +20,6 @@ export class CadastroPerguntasComponent implements OnInit {
     private perguntaWithAlternativaService: PerguntaWithAlternativaService,
     private login: LoginService,
     private router: Router,
-    private cookie: CookieService,
     private fb: FormBuilder,
     private inscricaoService: InscricaoService
   ) {}

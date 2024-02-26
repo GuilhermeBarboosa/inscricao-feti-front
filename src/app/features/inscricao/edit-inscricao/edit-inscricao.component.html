@@ -24,7 +24,7 @@
       <form class="h-full" [formGroup]="formulario" *ngIf="formulario">
         <div>
           <div class="grid gap-5 grid-cols-2">
-            <div class="col ">
+            <div class="col">
               <label class="block text-sm" for="name">Nome</label>
               <input
                 formControlName="name"
@@ -46,13 +46,10 @@
                 required
               />
             </div>
-
           </div>
 
           <div class="grid gap-5 grid-cols-2 mt-4">
-
-            <div class="col ">
-
+            <div class="col">
               <label class="block text-sm" for="pontuacao">Pontuação</label>
               <input
                 formControlName="pontuacao"
@@ -71,14 +68,18 @@
                 formControlName="situacao"
                 class="default-input w-full p-2.5"
               >
-                <option value="" disabled selected>Selecione a permissão</option>
-                <option *ngFor="let situacao of situacaoArray" [value]="situacao.id">
+                <option value="" disabled selected>
+                  Selecione a permissão
+                </option>
+                <option
+                  *ngFor="let situacao of situacaoArray"
+                  [value]="situacao.id"
+                >
                   {{ situacao.situacao }}
                 </option>
               </select>
             </div>
           </div>
-
         </div>
       </form>
 
@@ -93,5 +94,4 @@
       </div>
     </form>
   </div>
-
 </div>

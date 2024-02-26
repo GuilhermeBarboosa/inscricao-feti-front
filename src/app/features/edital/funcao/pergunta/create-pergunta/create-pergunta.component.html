@@ -1,42 +1,42 @@
-<app-navbar-login [value] = 'tipoPagina'></app-navbar-login>
+<app-navbar-login [value]="tipoPagina"></app-navbar-login>
 
 <div class="flex">
   <app-sidebar></app-sidebar>
-<div class="home-section">
-  <form class="m-5" [formGroup]="formulario" *ngIf="formulario">
-    <div class="flex justify-between">
-      <p class="text-black font-medium justify-start text-lg font-bold">
-        REGISTRE A PERGUNTA
-      </p>
-    </div>
+  <div class="home-section">
+    <form class="m-5" [formGroup]="formulario" *ngIf="formulario">
+      <div class="flex justify-between">
+        <p class="text-black font-medium justify-start text-lg font-bold">
+          REGISTRE A PERGUNTA
+        </p>
+      </div>
 
-    <form class="h-full w-full" [formGroup]="formulario" *ngIf="formulario">
-      <div>
-        <div class="">
-          <div class="col-span-3">
-            <label class="block text-sm" for="pergunta">Pergunta</label>
-            <input
-              formControlName="pergunta"
-              class="default-input w-full p-2.5"
-              type="text"
-              id="pergunta"
-              aria-label="pergunta"
-              required
-            />
+      <form class="h-full w-full" [formGroup]="formulario" *ngIf="formulario">
+        <div>
+          <div class="">
+            <div class="col-span-3">
+              <label class="block text-sm" for="pergunta">Pergunta</label>
+              <input
+                formControlName="pergunta"
+                class="default-input w-full p-2.5"
+                type="text"
+                id="pergunta"
+                aria-label="pergunta"
+                required
+              />
+            </div>
           </div>
+        </div>
+      </form>
+
+      <div class="items-center flex justify-between my-2">
+        <div>
+          <app-button-red [value]="Nao" (click)="return()"></app-button-red>
+        </div>
+
+        <div class="align-end">
+          <app-button-green [value]="Sim" (click)="save()"></app-button-green>
         </div>
       </div>
     </form>
-
-    <div class="items-center flex justify-between my-2">
-      <div>
-        <app-button-red [value]="Nao" (click)="return()"></app-button-red>
-      </div>
-
-      <div class="align-end">
-        <app-button-green [value]="Sim" (click)="save()"></app-button-green>
-      </div>
-    </div>
-  </form>
-</div>
+  </div>
 </div>

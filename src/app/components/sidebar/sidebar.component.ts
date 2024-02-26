@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { NotifierService } from 'src/app/services/notifier.service';
-import { TokenJwtService } from '../../services/token-jwt.service';
-import { CookieService } from 'src/app/services/cookie.service';
 import { LoginService } from 'src/app/routes/login.service';
 import { StyleService } from 'src/app/services/style.service';
+import { TokenJwtService } from '../../services/token-jwt.service';
 
 @Component({
   selector: 'app-sidebar',

@@ -1,95 +1,96 @@
-<app-navbar-login [value] = 'tipoPagina'></app-navbar-login>
+<app-navbar-login [value]="tipoPagina"></app-navbar-login>
 
 <div class="flex">
   <app-sidebar></app-sidebar>
 
-<div class="home-section">
-  <form class="m-5" [formGroup]="formulario" *ngIf="formulario">
-    <div class="flex justify-between">
-      <p class="text-black font-medium justify-start text-lg font-bold">
-        INFO DA ALTERNATIVA
-      </p>
-    </div>
+  <div class="home-section">
+    <form class="m-5" [formGroup]="formulario" *ngIf="formulario">
+      <div class="flex justify-between">
+        <p class="text-black font-medium justify-start text-lg font-bold">
+          INFO DA ALTERNATIVA
+        </p>
+      </div>
 
-    <div class="">
-      <label class="block text-sm input-cod" for="nome">Código</label>
-      <input
-        formControlName="id"
-        class="default-input text-center p-2.5"
-        type="text"
-        id="name"
-        required
-      />
-    </div>
+      <div class="">
+        <label class="block text-sm input-cod" for="nome">Código</label>
+        <input
+          formControlName="id"
+          class="default-input text-center p-2.5"
+          type="text"
+          id="name"
+          required
+        />
+      </div>
 
-    <form class="h-full w-full" [formGroup]="formulario" *ngIf="formulario">
-      <div>
-        <div class="grid gap-5 grid-cols-2">
-          <div class="col ">
-            <label class="block text-sm" for="alternativa">Alternativa</label>
-            <input
-              formControlName="alternativa"
-              class="default-input w-full p-2.5"
-              type="text"
-              id="alternativa"
-              aria-label="alternativa"
-              required
-            />
-          </div>
-
-          <div class="col">
-            <label class="block text-sm" for="pontuacao">Pontuação</label>
-            <input
-              formControlName="pontuacao"
-              class="default-input w-full p-2.5"
-              type="text"
-              id="pontuacao"
-              aria-label="pontuacao"
-              required
-            />
-          </div>
-        </div>
-
-
-        <div *ngIf="role == 'ADMIN'">
-          <div class="flex justify-between">
+      <form class="h-full w-full" [formGroup]="formulario" *ngIf="formulario">
+        <div>
+          <div class="grid gap-5 grid-cols-2">
             <div class="col">
-              <label class="block text-sm" for="created">Criado</label>
+              <label class="block text-sm" for="alternativa">Alternativa</label>
               <input
-                formControlName="created"
-                class="default-input p-2.5"
+                formControlName="alternativa"
+                class="default-input w-full p-2.5"
                 type="text"
-                id="created"
-                aria-label="created"
+                id="alternativa"
+                aria-label="alternativa"
                 required
               />
             </div>
 
             <div class="col">
-              <label class="block text-sm" for="updated">Modificado</label>
+              <label class="block text-sm" for="pontuacao">Pontuação</label>
               <input
-                formControlName="updated"
-                class="default-input p-2.5"
+                formControlName="pontuacao"
+                class="default-input w-full p-2.5"
                 type="text"
-                id="updated"
-                aria-label="updated"
+                id="pontuacao"
+                aria-label="pontuacao"
                 required
               />
             </div>
           </div>
+
+          <div *ngIf="role == 'ADMIN'">
+            <div class="flex justify-between">
+              <div class="col">
+                <label class="block text-sm" for="created">Criado</label>
+                <input
+                  formControlName="created"
+                  class="default-input p-2.5"
+                  type="text"
+                  id="created"
+                  aria-label="created"
+                  required
+                />
+              </div>
+
+              <div class="col">
+                <label class="block text-sm" for="updated">Modificado</label>
+                <input
+                  formControlName="updated"
+                  class="default-input p-2.5"
+                  type="text"
+                  id="updated"
+                  aria-label="updated"
+                  required
+                />
+              </div>
+            </div>
+          </div>
         </div>
+      </form>
+
+      <div class="flex justify-between pt-3">
+        <app-button-green
+          [value]="Voltar"
+          (click)="return()"
+        ></app-button-green>
+        <app-button-yellow
+          *ngIf="role == 'ADMIN'"
+          [value]="Editar"
+          (click)="edit()"
+        ></app-button-yellow>
       </div>
     </form>
-
-    <div class="flex justify-between pt-3">
-      <app-button-green [value]="Voltar" (click)="return()"></app-button-green>
-      <app-button-yellow
-        *ngIf="role == 'ADMIN'"
-        [value]="Editar"
-        (click)="edit()"
-      ></app-button-yellow>
-    </div>
-  </form>
-</div>
-
+  </div>
 </div>

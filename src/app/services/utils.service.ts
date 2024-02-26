@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import * as saveAs from 'file-saver';
+import { FormGroup, ValidationErrors } from '@angular/forms';
 import * as CryptoJS from 'crypto-js';
-import { Form, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
+import * as saveAs from 'file-saver';
 import { NotifierService } from './notifier.service';
 
 @Injectable({
