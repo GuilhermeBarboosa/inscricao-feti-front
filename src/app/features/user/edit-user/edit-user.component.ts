@@ -39,8 +39,6 @@ export class EditUserComponent implements OnInit {
     private utilsService: UtilsService,
     private formBuilder: FormBuilder,
     private notifier: NotifierService,
-    // private enderecoService: EnderecoService,
-    private renderer: Renderer2
   ) {}
 
   ngOnInit() {
@@ -62,12 +60,6 @@ export class EditUserComponent implements OnInit {
       this.user = userResponse;
 
       this.createTable();
-    });
-
-    this.renderer.listen('document', 'click', (event: Event) => {
-      if (!this.inputCep.nativeElement.contains(event.target)) {
-        this.onOutsideClick();
-      }
     });
   }
 
@@ -128,30 +120,6 @@ export class EditUserComponent implements OnInit {
     } else {
       this.utilsService.getFormValidationErrors(this.formulario);
     }
-  }
-
-  onOutsideClick() {
-    // let cep = this.formulario.get('cep')?.value;
-    // if (
-    //   (cep != null && cep != '') ||
-    //   (this.formulario.get('rua')?.value != null &&
-    //     this.formulario.get('rua')?.value != '')
-    // ) {
-    //   cep = cep.replace('-', '');
-    //   this.enderecoService.findCep(this.formulario.get('cep')?.value).subscribe(
-    //     (data) => {
-    //       var enderecoResponse = JSON.parse(JSON.stringify(data));
-    //       this.formulario.get('rua')?.setValue(enderecoResponse.street);
-    //       this.formulario.get('cidade')?.setValue(enderecoResponse.city);
-    //       this.formulario
-    //         .get('bairro')
-    //         ?.setValue(enderecoResponse.neighborhood);
-    //     },
-    //     (error) => {
-    //       this.notifier.showError(error.error);
-    //     }
-    //   );
-    // }
   }
 
   return() {

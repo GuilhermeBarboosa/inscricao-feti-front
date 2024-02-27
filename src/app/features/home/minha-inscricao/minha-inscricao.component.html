@@ -38,7 +38,7 @@
                     <div class="dv-column dv-border dv-radius">
                       <div class="dv-padding-hdpi">
                         <div class="dv-line">
-                          <div class="dv-column">
+                          <div class="dv-column" *ngIf="this.inscricao">
                             <p class="dv-bold">
                               {{ inscricao.edital }} - Inscrição:
                               {{ inscricao.id }}

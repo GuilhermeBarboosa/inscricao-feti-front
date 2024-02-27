@@ -24,7 +24,6 @@ export class RegisterComponent implements OnInit {
     private userService: UserService,
     private formBuilder: FormBuilder,
     private notifier: NotifierService,
-    private renderer: Renderer2,
     private utilsService: UtilsService
   ) {}
 
@@ -33,11 +32,6 @@ export class RegisterComponent implements OnInit {
   @ViewChild('inputCep') inputCep!: ElementRef;
 
   ngOnInit() {
-    this.renderer.listen('document', 'click', (event: Event) => {
-      if (!this.inputCep.nativeElement.contains(event.target)) {
-        this.onOutsideClick();
-      }
-    });
 
     this.registerForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
@@ -95,27 +89,4 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  onOutsideClick() {
-    // let cep = this.registerForm.get('cep')?.value;
-    // if (
-    //   (cep != null && cep != '') ||
-    //   (this.registerForm.get('rua')?.value != null &&
-    //     this.registerForm.get('rua')?.value != '')
-    // ) {
-    //   cep = cep.replace('-', '');
-    //   this.enderecoService.findCep(this.registerForm.get('cep')?.value).subscribe(
-    //     (data) => {
-    //       var enderecoResponse = JSON.parse(JSON.stringify(data));
-    //       this.registerForm.get('rua')?.setValue(enderecoResponse.street);
-    //       this.registerForm.get('cidade')?.setValue(enderecoResponse.city);
-    //       this.registerForm
-    //         .get('bairro')
-    //         ?.setValue(enderecoResponse.neighborhood);
-    //     },
-    //     (error) => {
-    //       this.notifier.showError(error.error);
-    //     }
-    //   );
-    // }
-  }
 }

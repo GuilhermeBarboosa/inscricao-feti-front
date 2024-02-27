@@ -37,7 +37,6 @@ export class CreateUserComponent implements OnInit {
     private formBuilder: FormBuilder,
     private notifier: NotifierService,
     private utilsService: UtilsService,
-    private renderer: Renderer2
   ) {}
 
   ngOnInit() {
@@ -53,11 +52,6 @@ export class CreateUserComponent implements OnInit {
       }
     );
 
-    this.renderer.listen('document', 'click', (event: Event) => {
-      if (!this.inputCep.nativeElement.contains(event.target)) {
-        this.onOutsideClick();
-      }
-    });
   }
 
   async createTable() {
@@ -96,8 +90,6 @@ export class CreateUserComponent implements OnInit {
       this.utilsService.getFormValidationErrors(this.formulario);
     }
   }
-
-  onOutsideClick() {}
 
   return() {
     this.router.navigateByUrl('/user');
