@@ -20,6 +20,6 @@ export class RoleService {
 
   getAll() {
     return this.http.get(`${environment.api}/role`);
-  }
+  } 
 
 }

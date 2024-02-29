@@ -8,6 +8,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StyleService } from './services/style.service';
+import { RoleTelaService } from './routes/role-tela.service';
+import { CreatePermissaoComponent } from './features/roles/telas/create-permissao/create-permissao.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,5 +25,8 @@ import { StyleService } from './services/style.service';
   bootstrap: [AppComponent],
 })
 export class AppModule {
-  constructor() {}
+  constructor(private RoleTelaService : RoleTelaService) {
+    this.RoleTelaService.initRoleTela();
+
+  }
 }

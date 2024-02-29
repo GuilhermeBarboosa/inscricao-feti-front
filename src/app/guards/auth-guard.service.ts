@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
-  UrlTree
+  UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LoginService } from '../routes/login.service';
 import { NotifierService } from '../services/notifier.service';
 import { TokenJwtService } from '../services/token-jwt.service';
+import { RoleTelaService } from '../routes/role-tela.service';
+import { roles } from 'src/roles';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +18,8 @@ export class AuthGuardService {
   constructor(
     private loginService: LoginService,
     private notifier: NotifierService,
-    private token: TokenJwtService
+    private token: TokenJwtService,
+    private roleTelaService: RoleTelaService
   ) {}
 
   canActivate(
@@ -37,14 +40,20 @@ export class AuthGuardService {
   ): Promise<boolean> {
     if (this.loginService.verifyToken()) {
       let userRole = await this.token.getRole();
-      const roleJson = JSON.parse(JSON.stringify(route.data));
-      let roleArray = roleJson.rolesArray;
       let permission = false;
 
-      roleArray.forEach((element: any) => {
-        if (element.role == userRole) {
-          permission = true;
-        }
+      if(userRole === roles.ROLE_ADMIN){
+        permission = true;
+      }
+
+      this.roleTelaService.roleTela$.subscribe((res) => {
+        res?.forEach((roleTela) => {
+          if (roleTela.identificador === route.data['route_identifier']) {
+            if (roleTela.role === userRole) {
+              permission = true;
+            }
+          }
+        });
       });
 
       if (!permission) {

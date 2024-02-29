@@ -1,0 +1,43 @@
+<app-navbar-login [value]="tipoPagina"></app-navbar-login>
+
+<div class="flex">
+  <app-sidebar></app-sidebar>
+  <div class="home-section">
+    <form class="m-5" [formGroup]="formulario" *ngIf="formulario">
+      <div class="flex justify-between">
+        <p class="text-black font-medium justify-start text-lg font-bold">
+          REGISTRE AS PERMISSÕES
+        </p>
+      </div>
+
+      <form class="h-full w-full" [formGroup]="formulario" *ngIf="formulario">
+        <div class="border p-2">
+          <div class="flex items-center p-2" *ngFor="let r of roleTela">
+            <input
+              id="{{ r.id }}"
+              type="checkbox"
+              value="{{ r.descricao }}"
+              (click)="createInput(r)"
+              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+            />
+            <label
+              for="{{ r.id }}"
+              class="ms-2 text-sm font-medium text-gray-900"
+              >{{ r.descricao }}</label
+            >
+          </div>
+        </div>
+      </form>
+
+      <div class="items-center flex justify-between my-2">
+        <div>
+          <app-button-red [value]="Nao" (click)="return()"></app-button-red>
+        </div>
+
+        <div class="align-end">
+          <app-button-green [value]="Sim" (click)="save()"></app-button-green>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

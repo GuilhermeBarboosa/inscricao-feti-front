@@ -4,6 +4,7 @@ import { EditFuncaoComponent } from 'src/app/features/edital/funcao/edit-funcao/
 import { FuncaoTableComponent } from 'src/app/features/edital/funcao/funcao-table/funcao-table.component';
 import { InfoFuncaoComponent } from 'src/app/features/edital/funcao/info-funcao/info-funcao.component';
 import { AuthGuardService } from 'src/app/guards/auth-guard.service';
+import { RouteData } from 'src/app/interfaces/input/roteData';
 import { roles } from 'src/roles';
 
 export const FuncaoRoutes: Routes = [
@@ -12,59 +13,31 @@ export const FuncaoRoutes: Routes = [
     component: FuncaoTableComponent,
     canActivate: [AuthGuardService],
     data: {
-      rolesArray:[
-         {
-          role: roles.ROLE_ADMIN
-         },
-         {
-          role: roles.ROLE_SECRETARIO
-         }
-      ]
-    },
+      route_identifier: 'funcao', // Adicione um identificador único para a rota
+    } as RouteData,
   },
   {
     path: ':id/register',
     component: CreateFuncaoComponent,
     canActivate: [AuthGuardService],
     data: {
-      rolesArray:[
-         {
-          role: roles.ROLE_ADMIN
-         },
-         {
-          role: roles.ROLE_SECRETARIO
-         }
-      ]
-    },
+      route_identifier: 'funcao-register', // Adicione um identificador único para a rota
+    } as RouteData,
   },
   {
     path: 'info/:id/:idEdital',
     component: InfoFuncaoComponent,
     canActivate: [AuthGuardService],
     data: {
-      rolesArray:[
-         {
-          role: roles.ROLE_ADMIN
-         },
-         {
-          role: roles.ROLE_SECRETARIO
-         }
-      ]
-    },
+      route_identifier: 'funcao-info', // Adicione um identificador único para a rota
+    } as RouteData,
   },
   {
     path: 'edit/:id/:idEdital',
     component: EditFuncaoComponent,
     canActivate: [AuthGuardService],
     data: {
-      rolesArray:[
-         {
-          role: roles.ROLE_ADMIN
-         },
-         {
-          role: roles.ROLE_SECRETARIO
-         }
-      ]
-    },
+      route_identifier: 'funcao-edit', // Adicione um identificador único para a rota
+    } as RouteData,
   },
 ];

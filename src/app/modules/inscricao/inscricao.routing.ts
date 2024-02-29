@@ -3,6 +3,7 @@ import { InscricoesComponent } from 'src/app/features/home/inscricoes/inscricoes
 import { EditInscricaoComponent } from 'src/app/features/inscricao/edit-inscricao/edit-inscricao.component';
 import { InfoAllInscricaoComponent } from 'src/app/features/inscricao/info-all-inscricao/info-all-inscricao.component';
 import { InscricaoTableComponent } from 'src/app/features/inscricao/inscricao-table/inscricao-table.component';
+import { RouteData } from 'src/app/interfaces/input/roteData';
 
 export const InscricaoRoutes: Routes = [
   {
@@ -12,6 +13,9 @@ export const InscricaoRoutes: Routes = [
   {
     path: 'infoAll/:id',
     component: InfoAllInscricaoComponent,
+    data: {
+      route_identifier: 'info-all-inscricao', // Adicione um identificador único para a rota
+    } as RouteData,
   },
   {
     path: 'fazerinscricao/:idEdital',

@@ -5,6 +5,7 @@ import { InfoUserComponent } from 'src/app/features/user/info-user/info-user.com
 import { UserTableComponent } from 'src/app/features/user/user-table/user-table.component';
 import { AuthGuardService } from 'src/app/guards/auth-guard.service';
 import { ProfileGuardService } from 'src/app/guards/profile-guard.service';
+import { RouteData } from 'src/app/interfaces/input/roteData';
 import { roles } from 'src/roles';
 
 export const UserRoutes: Routes = [
@@ -13,49 +14,31 @@ export const UserRoutes: Routes = [
     component: UserTableComponent,
     canActivate: [AuthGuardService],
     data: {
-      rolesArray:[
-         {
-          role: roles.ROLE_ADMIN
-         },
-         {
-          role: roles.ROLE_SECRETARIO
-         }
-      ]
-    },
+      route_identifier: 'user',
+    } as RouteData,
   },
   {
     path: 'register',
     component: CreateUserComponent,
     canActivate: [AuthGuardService],
     data: {
-      rolesArray:[
-         {
-          role: roles.ROLE_ADMIN
-         },
-         {
-          role: roles.ROLE_SECRETARIO
-         }
-      ]
-    },
+      route_identifier: 'user-register',
+    } as RouteData,
   },
   {
     path: 'edit/:id',
     component: EditUserComponent,
     canActivate: [ProfileGuardService],
+    data: {
+      route_identifier: 'user-edit',
+    } as RouteData,
   },
   {
     path: 'info/:id',
     component: InfoUserComponent,
     canActivate: [AuthGuardService],
     data: {
-      rolesArray:[
-         {
-          role: roles.ROLE_ADMIN
-         },
-         {
-          role: roles.ROLE_SECRETARIO
-         }
-      ]
-    },
+      route_identifier: 'user-info',
+    } as RouteData,
   },
 ];

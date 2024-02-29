@@ -7,6 +7,7 @@ import { CadastroPerguntasComponent } from 'src/app/features/home/cadastro-pergu
 import { AuthGuardService } from 'src/app/guards/auth-guard.service';
 
 import { LoginGuardService } from 'src/app/guards/login-guard.service';
+import { RouteData } from 'src/app/interfaces/input/roteData';
 import { roles } from 'src/roles';
 
 export const PerguntaRoutes: Routes = [
@@ -15,15 +16,8 @@ export const PerguntaRoutes: Routes = [
     component: PerguntaTableComponent,
     canActivate: [AuthGuardService],
     data: {
-      rolesArray:[
-         {
-          role: roles.ROLE_ADMIN
-         },
-         {
-          role: roles.ROLE_SECRETARIO
-         }
-      ]
-    },
+      route_identifier: 'pergunta', // Adicione um identificador único para a rota
+    } as RouteData,
   },
   {
     path: 'funcao/:idFuncao',
@@ -45,44 +39,23 @@ export const PerguntaRoutes: Routes = [
     component: CreatePerguntaComponent,
     canActivate: [AuthGuardService],
     data: {
-      rolesArray:[
-         {
-          role: roles.ROLE_ADMIN
-         },
-         {
-          role: roles.ROLE_SECRETARIO
-         }
-      ]
-    },
+      route_identifier: 'pergunta-register', // Adicione um identificador único para a rota
+    } as RouteData,
   },
   {
     path: ':idFuncao/edit/:id',
     component: EditPerguntaComponent,
     canActivate: [AuthGuardService],
     data: {
-      rolesArray:[
-         {
-          role: roles.ROLE_ADMIN
-         },
-         {
-          role: roles.ROLE_SECRETARIO
-         }
-      ]
-    },
+      route_identifier: 'pergunta-edit', // Adicione um identificador único para a rota
+    } as RouteData,
   },
   {
     path: ':idFuncao/info/:id',
     component: InfoPerguntaComponent,
     canActivate: [AuthGuardService],
     data: {
-      rolesArray:[
-         {
-          role: roles.ROLE_ADMIN
-         },
-         {
-          role: roles.ROLE_SECRETARIO
-         }
-      ]
-    },
+      route_identifier: 'pergunta-info', // Adicione um identificador único para a rota
+    } as RouteData,
   }
 ];
