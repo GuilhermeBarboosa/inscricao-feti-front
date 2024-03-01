@@ -1,4 +1,7 @@
 import { Routes } from '@angular/router';
+import { CreateRoleComponent } from 'src/app/features/roles/create-role/create-role.component';
+import { EditRoleComponent } from 'src/app/features/roles/edit-role/edit-role.component';
+import { InfoRoleComponent } from 'src/app/features/roles/info-role/info-role.component';
 import { RolesTableComponent } from 'src/app/features/roles/roles-table/roles-table.component';
 import { CreatePermissaoComponent } from 'src/app/features/roles/telas/create-permissao/create-permissao.component';
 import { TableTelasComponent } from 'src/app/features/roles/telas/table-telas/table-telas.component';
@@ -12,6 +15,30 @@ export const RoleRoutes: Routes = [
     canActivate: [AuthGuardService],
     data: {
       route_identifier: 'roles', // Adicione um identificador único para a rota
+    } as RouteData,
+  },
+  {
+    path: 'register',
+    component: CreateRoleComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      route_identifier: 'role_tela-register', // Adicione um identificador único para a rota
+    } as RouteData,
+  },
+  {
+    path: 'info/:id',
+    component: InfoRoleComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      route_identifier: 'role_tela-info', // Adicione um identificador único para a rota
+    } as RouteData,
+  },
+  {
+    path: 'edit/:id',
+    component: EditRoleComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      route_identifier: 'role_tela-edit', // Adicione um identificador único para a rota
     } as RouteData,
   },
   {
@@ -30,5 +57,6 @@ export const RoleRoutes: Routes = [
       route_identifier: 'role_tela', // Adicione um identificador único para a rota
     } as RouteData,
   },
+
 
 ];

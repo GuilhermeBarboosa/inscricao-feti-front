@@ -10,6 +10,9 @@ import { AppComponent } from './app.component';
 import { StyleService } from './services/style.service';
 import { RoleTelaService } from './routes/role-tela.service';
 import { CreatePermissaoComponent } from './features/roles/telas/create-permissao/create-permissao.component';
+import { CreateRoleComponent } from './features/roles/create-role/create-role.component';
+import { InfoRoleComponent } from './features/roles/info-role/info-role.component';
+import { EditRoleComponent } from './features/roles/edit-role/edit-role.component';
 
 @NgModule({
   declarations: [AppComponent],

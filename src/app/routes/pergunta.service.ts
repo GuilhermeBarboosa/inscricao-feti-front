@@ -23,8 +23,8 @@ export class PerguntaService {
     });
   }
 
-  create(user: PerguntaInput) {
-    return this.http.post(`${this.urlPergunta}`, user, {
+  create(pergunta: PerguntaInput) {
+    return this.http.post(`${this.urlPergunta}`, pergunta, {
       headers: this.HttpHeaders,
     });
   }
@@ -39,14 +39,14 @@ export class PerguntaService {
     });
   }
 
-  edit(user: PerguntaInput, id: number) {
-    return this.http.put(`${this.urlPergunta}/${id}`, user, {
+  edit(pergunta: PerguntaInput, id: number) {
+    return this.http.put(`${this.urlPergunta}/${id}`, pergunta, {
       headers: this.HttpHeaders,
     });
   }
 
-  ativar(user: PerguntaInput, id: number) {
-    return this.http.put(`${this.urlPergunta}/ativar/${id}`, user, {
+  ativar(pergunta: PerguntaInput, id: number) {
+    return this.http.put(`${this.urlPergunta}/ativar/${id}`, pergunta, {
       headers: this.HttpHeaders,
     });
   }
