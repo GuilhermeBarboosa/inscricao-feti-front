@@ -13,7 +13,7 @@ export class SidebarComponent implements OnInit {
   isSidebarOpen: boolean = false;
   sideListOriginal: any;
   constructor(
-    public styleService: StyleService,
+    // public styleService: StyleService,
     private token: TokenJwtService,
     private loginService: LoginService
   ) {}

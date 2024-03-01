@@ -1,14 +1,12 @@
 <div
-  [ngStyle]="{
-    'background-color': styleService.colorVariables['bg_primary_color']
-  }"
+
   class="sidebar open"
 >
   <div class="logo-details">
     <!-- <i class='bx bxl-angular'></i> -->
     <div
       class="logo_name"
-      [ngStyle]="{ color: styleService.colorVariables['font_color'] }"
+
     >
       Sistema FETI
     </div>
@@ -21,10 +19,11 @@
   </li>
   <ul id="nav-list">
     <li>
+      <!-- [ngStyle]="{
+        'background-color': styleService.colorVariables['bg_secundary_color']
+      }" -->
       <a
-        [ngStyle]="{
-          'background-color': styleService.colorVariables['bg_secundary_color']
-        }"
+
         routerLink="/dashboard"
         routerLinkActive="active"
       >
@@ -36,9 +35,7 @@
 
     <li>
       <a
-        [ngStyle]="{
-          'background-color': styleService.colorVariables['bg_secundary_color']
-        }"
+
         routerLink="/profile"
         routerLinkActive="active"
       >
@@ -49,9 +46,7 @@
     </li>
     <li>
       <a
-        [ngStyle]="{
-          'background-color': styleService.colorVariables['bg_secundary_color']
-        }"
+
         routerLink="/role"
         routerLinkActive="active"
       >
@@ -62,9 +57,7 @@
     </li>
     <li>
       <a
-        [ngStyle]="{
-          'background-color': styleService.colorVariables['bg_secundary_color']
-        }"
+
         routerLink="/user"
         routerLinkActive="active"
       >
@@ -75,9 +68,7 @@
     </li>
     <li>
       <a
-        [ngStyle]="{
-          'background-color': styleService.colorVariables['bg_secundary_color']
-        }"
+
         routerLink="/edital"
         routerLinkActive="active"
       >
@@ -88,9 +79,6 @@
     </li>
     <li>
       <a
-        [ngStyle]="{
-          'background-color': styleService.colorVariables['bg_secundary_color']
-        }"
         routerLink="/inscricao"
         routerLinkActive="active"
       >
