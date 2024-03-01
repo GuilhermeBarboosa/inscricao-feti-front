@@ -35,6 +35,10 @@ export class ProfileComponent implements OnInit {
 
           this.user!.name = this.utilsService.formatterString(this.user!.name);
 
+          this.user!.data_de_nascimento = this.utilsService.formatarData(
+            this.user!.data_de_nascimento
+          );
+
           this.user!.created = this.utilsService.formatarData(
             this.user!.created
           );
@@ -53,6 +57,9 @@ export class ProfileComponent implements OnInit {
   }
 
   createTable() {
+
+    console.log(this.user)
+
     this.userForm = this.formBuilder.group({
       name: [
         { value: this.user?.name, disabled: this.isDisabled },
