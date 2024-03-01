@@ -12,18 +12,18 @@
 
       <form class="h-full w-full" [formGroup]="formulario" *ngIf="formulario">
         <div class="border p-2">
-          <div class="flex items-center p-2" *ngFor="let r of roleTela">
+          <div class="flex items-center p-2" *ngFor="let t of tela">
             <input
-              id="{{ r.id }}"
+              id="{{ t.id }}"
               type="checkbox"
-              value="{{ r.descricao }}"
-              (click)="createInput(r)"
+              value="{{ t.descricao }}"
+              (click)="createInput(t)"
               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
             />
             <label
-              for="{{ r.id }}"
+              for="{{ t.id }}"
               class="ms-2 text-sm font-medium text-gray-900"
-              >{{ r.descricao }}</label
+              >{{ t.descricao }}</label
             >
           </div>
         </div>

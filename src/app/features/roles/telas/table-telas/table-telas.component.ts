@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { Role } from 'src/app/interfaces/dto/role';
 import { RoleTela } from 'src/app/interfaces/dto/roleTela';
 import { RoleTelaService } from 'src/app/routes/role-tela.service';
@@ -82,36 +83,26 @@ export class TableTelasComponent implements OnInit {
     this.router.navigateByUrl(`role/info/${role.id}`);
   }
 
-  ativar(role: Role) {
-    // let roleInput = new RoleInput(role);
-
-    // this.roleService.ativar(roleInput, role.id!).subscribe((data) => {
-    //   this.notifier.showSuccess('Role ativado com sucesso!');
-    //   window.location.reload();
-    // });
-
-    // window.location.reload();
-  }
 
   openDialog(role: any): void {
-    // let dialogRef = this.dialog.open(DialogComponent, {
-    //   width: '250px',
-    //   data: { value: this.value },
-    // });
+    let dialogRef = this.dialog.open(DialogComponent, {
+      width: '250px',
+      data: { value: this.value },
+    });
 
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   if (result) {
-    //     this.roleService.delete(role.id).subscribe(
-    //       (data) => {
-    //         this.notifier.showSuccess('Role excluído com sucesso!');
-    //         window.location.reload();
-    //       },
-    //       (error) => {
-    //         this.notifier.showError('Erro ao excluir usuário!');
-    //       }
-    //     );
-    //   }
-    // });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.roleTelaService.delete(role.id).subscribe(
+          (data) => {
+            this.notifier.showSuccess('Permissão excluída com sucesso!');
+            window.location.reload();
+          },
+          (error) => {
+            this.notifier.showError('Erro ao excluir usuário!');
+          }
+        );
+      }
+    });
   }
 
   announceSortChange(sort: Sort) {

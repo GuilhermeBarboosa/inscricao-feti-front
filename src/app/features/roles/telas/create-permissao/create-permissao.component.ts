@@ -4,14 +4,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RoleTelaService } from 'src/app/routes/role-tela.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { UtilsService } from 'src/app/services/utils.service';
-import { RoleTela } from '../../../../interfaces/dto/roleTela';
+import { Tela } from '../../../../interfaces/dto/tela';
+import { RoleTelaInput } from 'src/app/interfaces/input/roleTelaInput';
+import { TelaService } from 'src/app/routes/tela.service';
 @Component({
   selector: 'app-create-permissao',
   templateUrl: './create-permissao.component.html',
   styleUrls: ['./create-permissao.component.css']
 })
 export class CreatePermissaoComponent implements OnInit{
-  roleTela!: RoleTela[];
+  tela!: Tela[];
   formulario!: any;
   Sim = 'Sim';
   Nao = 'Não';
@@ -22,16 +24,17 @@ export class CreatePermissaoComponent implements OnInit{
     private router: Router,
     private activedRouter: ActivatedRoute,
     private roleTelaService: RoleTelaService,
+    private telaService: TelaService,
     private formBuilder: FormBuilder,
     private notifier: NotifierService,
     private utilsService: UtilsService
   ) {}
 
   ngOnInit() {
-    this.roleTelaService.getAll().subscribe(
+    this.telaService.getAll().subscribe(
       (data) => {
         var roleResponse = JSON.parse(JSON.stringify(data));
-        this.roleTela = roleResponse;
+        this.tela = roleResponse;
 
         this.createTable();
       },
@@ -45,9 +48,9 @@ export class CreatePermissaoComponent implements OnInit{
     this.formulario = this.formBuilder.array([]);
   }
 
-  createInput(roleTela: RoleTela) {
+  createInput(tela: Tela) {
     const existingIndex = this.formulario.controls.findIndex(
-      (control: any) => control.value.id === roleTela.id
+      (control: any) => control.value.id === tela.id
     );
 
     if (existingIndex !== -1) {
@@ -56,9 +59,8 @@ export class CreatePermissaoComponent implements OnInit{
     } else {
       // Se não está no array, adiciona
       const roleTelaGroup = this.formBuilder.group({
-        id: roleTela.id,
-        idRole: roleTela.idRole,
-        idTela: roleTela.idTela,
+        role: this.id,
+        tela: tela.id,
       });
 
       this.formulario.push(roleTelaGroup);
@@ -66,30 +68,24 @@ export class CreatePermissaoComponent implements OnInit{
   }
 
   save() {
-    console.log(this.formulario.value)
-    // if (this.formulario.valid) {
-    //   let funcaoDTO = {
-    //     roleTela: this.formulario.value.roleTela,
-    //     edital: this.id,
-    //   };
+    // console.log(this.formulario.value)
+    if (this.formulario.valid) {
 
-    //   let funcaoInput = new FuncaoInput(funcaoDTO);
-
-    //   this.funcaoService.create(funcaoInput).subscribe(
-    //     (data) => {
-    //       this.notifier.showSuccess('Função cadastrada com sucesso!');
-    //       this.router.navigateByUrl(`/roleTela/${this.id}`);
-    //     },
-    //     (error) => {
-    //       this.notifier.showError(error.error);
-    //     }
-    //   );
-    // } else {
-    //   this.utilsService.getFormValidationErrors(this.formulario);
-    // }
+      this.roleTelaService.create(this.formulario.value).subscribe(
+        (data) => {
+          this.notifier.showSuccess('Permissões cadastrada com sucesso!');
+          this.router.navigateByUrl(`/role/telas/${this.id}`);
+        },
+        (error) => {
+          this.notifier.showError(error.error);
+        }
+      );
+    } else {
+      this.utilsService.getFormValidationErrors(this.formulario);
+    }
   }
 
   return() {
-    this.router.navigateByUrl(`/roleTela/${this.id}`);
+    this.router.navigateByUrl(`/role/telas/${this.id}`);
   }
 }
