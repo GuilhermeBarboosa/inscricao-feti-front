@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { Role } from 'src/app/interfaces/dto/role';
 import { RoleService } from 'src/app/routes/role.service';
 import { NotifierService } from 'src/app/services/notifier.service';
@@ -82,23 +83,24 @@ export class RolesTableComponent implements OnInit {
   }
 
   openDialog(role: any): void {
-    // let dialogRef = this.dialog.open(DialogComponent, {
-    //   width: '250px',
-    //   data: { value: this.value },
-    // });
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   if (result) {
-    //     this.roleService.delete(role.id).subscribe(
-    //       (data) => {
-    //         this.notifier.showSuccess('Role excluído com sucesso!');
-    //         window.location.reload();
-    //       },
-    //       (error) => {
-    //         this.notifier.showError('Erro ao excluir usuário!');
-    //       }
-    //     );
-    //   }
-    // });
+    let dialogRef = this.dialog.open(DialogComponent, {
+      width: '250px',
+      data: { value: this.value },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.roleService.delete(role.id).subscribe(
+          (data) => {
+            this.notifier.showSuccess('Permissão excluída com sucesso!');
+            window.location.reload();
+          },
+          (error) => {
+            console.log(error);
+            this.notifier.showError('Erro ao excluir permissão!');
+          }
+        );
+      }
+    });
   }
 
   announceSortChange(sort: Sort) {

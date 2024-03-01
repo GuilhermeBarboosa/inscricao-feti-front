@@ -36,8 +36,8 @@ export class FuncaoService {
     });
   }
 
-  create(user: FuncaoInput) {
-    return this.http.post(`${this.urlFuncao}`, user, {
+  create(funcao: FuncaoInput) {
+    return this.http.post(`${this.urlFuncao}`, funcao, {
       headers: this.HttpHeaders,
     });
   }
@@ -52,14 +52,14 @@ export class FuncaoService {
     });
   }
 
-  edit(user: FuncaoInput, id: number) {
-    return this.http.put(`${this.urlFuncao}/${id}`, user, {
+  edit(funcao: FuncaoInput, id: number) {
+    return this.http.put(`${this.urlFuncao}/${id}`, funcao, {
       headers: this.HttpHeaders,
     });
   }
 
-  ativar(user: FuncaoInput, id: number) {
-    return this.http.put(`${this.urlFuncao}/ativar/${id}`, user, {
+  ativar(funcao: FuncaoInput, id: number) {
+    return this.http.put(`${this.urlFuncao}/ativar/${id}`, funcao, {
       headers: this.HttpHeaders,
     });
   }

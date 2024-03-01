@@ -30,6 +30,14 @@ export class RoleService {
     });
   }
 
+  delete(id: number) {
+    return this.http.delete(`${environment.api}/role/${id}`, {
+      headers: this.HttpHeaders,
+    });
+  }
+
+
+
   getById(id: number) {
     return this.http.get(`${environment.api}/role/` + id);
   }
