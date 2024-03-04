@@ -58,8 +58,6 @@ export class ProfileComponent implements OnInit {
 
   createTable() {
 
-    console.log(this.user)
-
     this.userForm = this.formBuilder.group({
       name: [
         { value: this.user?.name, disabled: this.isDisabled },

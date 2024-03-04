@@ -32,7 +32,6 @@ export class RoleTelaService {
   });
 
   create(roleTelaInput: any[]) {
-    console.log(roleTelaInput)
     return this.http.post(`${this.urlRoleTela}/`, roleTelaInput, {
       headers: this.HttpHeaders,
     });

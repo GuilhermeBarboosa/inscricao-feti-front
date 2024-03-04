@@ -1,15 +1,7 @@
-<div
-
-  class="sidebar open"
->
+<div class="sidebar open">
   <div class="logo-details">
     <!-- <i class='bx bxl-angular'></i> -->
-    <div
-      class="logo_name"
-
-    >
-      Sistema FETI
-    </div>
+    <div class="logo_name">Sistema FETI</div>
     <i (click)="openMenu()" class="bx bx-menu" id="btn"></i>
   </div>
   <li>
@@ -17,89 +9,63 @@
     <input type="text" placeholder="Search..." (keyup)="applyFilter($event)" />
     <span class="tooltip">Search</span>
   </li>
-  <ul id="nav-list">
-    <li>
-      <!-- [ngStyle]="{
-        'background-color': styleService.colorVariables['bg_secundary_color']
-      }" -->
-      <a
 
-        routerLink="/dashboard"
-        routerLinkActive="active"
-      >
-        <i class="bx bxs-dashboard"></i>
-        <span class="links_name">Dashboard</span>
-      </a>
-      <p class="tooltip">Dashboard</p>
-    </li>
+  <div *ngIf="this.permissions">
+    <ul id="nav-list" *ngFor="let p of permissions">
+      <li *ngIf="p.identificador == this.telasDefault.DASHBOARD">
+        <a routerLink="/dashboard" routerLinkActive="active">
+          <i class="bx bxs-dashboard"></i>
+          <span class="links_name">Dashboard</span>
+        </a>
+        <p class="tooltip">Dashboard</p>
+      </li>
+      <li *ngIf="p.identificador == this.telasDefault.PROFILE">
+        <a routerLink="/profile" routerLinkActive="active">
+          <i class="bx bx-user"></i>
+          <span class="links_name">Perfil</span>
+        </a>
+        <p class="tooltip">Perfil</p>
+      </li>
+      <li *ngIf="p.identificador == this.telasDefault.ROLE">
+        <a routerLink="/role" routerLinkActive="active">
+          <i class="bx bx-user"></i>
+          <span class="links_name">Tipo de Perfil</span>
+        </a>
+        <p class="tooltip">Tipo de Perfil</p>
+      </li>
+      <li *ngIf="p.identificador == this.telasDefault.USER">
+        <a routerLink="/user" routerLinkActive="active">
+          <i class="bx bxs-user-detail"></i>
+          <span class="links_name">Usuários</span>
+        </a>
+        <p class="tooltip">Usuários</p>
+      </li>
+      <li *ngIf="p.identificador == this.telasDefault.EDITAL">
+        <a routerLink="/edital" routerLinkActive="active">
+          <i class="bx bx-folder-open"></i>
+          <span class="links_name">Edital</span>
+        </a>
+        <p class="tooltip">Edital</p>
+      </li>
+      <li *ngIf="p.identificador == this.telasDefault.INFO_ALL_INSCRICAO">
+        <a routerLink="/inscricao" routerLinkActive="active">
+          <i class="bx bx-edit-alt"></i>
+          <span class="links_name">Inscrição</span>
+        </a>
+        <p class="tooltip">Inscrição</p>
+      </li>
+    </ul>
+  </div>
 
-    <li>
-      <a
 
-        routerLink="/profile"
-        routerLinkActive="active"
-      >
-        <i class="bx bx-user"></i>
-        <span class="links_name">Perfil</span>
-      </a>
-      <p class="tooltip">Perfil</p>
-    </li>
-    <li>
-      <a
-
-        routerLink="/role"
-        routerLinkActive="active"
-      >
-        <i class="bx bx-user"></i>
-        <span class="links_name">Tipo de Perfil</span>
-      </a>
-      <p class="tooltip">Tipo de Perfil</p>
-    </li>
-    <li>
-      <a
-
-        routerLink="/user"
-        routerLinkActive="active"
-      >
-        <i class="bx bxs-user-detail"></i>
-        <span class="links_name">Usuários</span>
-      </a>
-      <p class="tooltip">Usuários</p>
-    </li>
-    <li>
-      <a
-
-        routerLink="/edital"
-        routerLinkActive="active"
-      >
-        <i class="bx bx-folder-open"></i>
-        <span class="links_name">Edital</span>
-      </a>
-      <p class="tooltip">Edital</p>
-    </li>
-    <li>
-      <a
-        routerLink="/inscricao"
-        routerLinkActive="active"
-      >
-        <i class="bx bx-edit-alt"></i>
-        <span class="links_name">Inscrição</span>
-      </a>
-      <p class="tooltip">Inscrição</p>
-    </li>
-  </ul>
   <li class="profile">
     <div class="profile-details">
       <div class="name_job">
         <div class="name">
           <img class="img_name" src="../../../assets/white-codiub.png" alt="" />
         </div>
-        <!-- <div class="job">Dev Full Stack</div> -->
       </div>
     </div>
     <i (click)="logout()" class="bx bx-log-out cursor-pointer" id="log_out"></i>
   </li>
 </div>
-<!-- <section class="home-section">
-  <div class="text">Dashboard</div>
-</section> -->

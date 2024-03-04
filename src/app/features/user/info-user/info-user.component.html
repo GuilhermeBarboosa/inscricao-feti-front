@@ -88,9 +88,9 @@
           (click)="return()"
         ></app-button-green>
         <app-button-yellow
-
+          *ngIf="this.edit == true"
           [value]="Editar"
-          (click)="edit()"
+          (click)="getEdit()"
         ></app-button-yellow>
       </div>
     </form>

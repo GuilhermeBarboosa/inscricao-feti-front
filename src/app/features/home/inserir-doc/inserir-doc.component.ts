@@ -79,6 +79,9 @@ export class InserirDocComponent implements OnInit {
       } else {
         this.notifier.showError('Arquivo inválido! Selecione um arquivo PDF.');
         this.form.value[index].arquivo = null;
+        // Limpar o input de arquivo
+        const inputElement: HTMLInputElement = event.target;
+        inputElement.value = '';
       }
     }
   }

@@ -1,24 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RoleTelaService } from 'src/app/routes/role-tela.service';
+import { TelaService } from 'src/app/routes/tela.service';
 import { NotifierService } from 'src/app/services/notifier.service';
+import { TokenJwtService } from 'src/app/services/token-jwt.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { Tela } from '../../../../interfaces/dto/tela';
-import { RoleTelaInput } from 'src/app/interfaces/input/roleTelaInput';
-import { TelaService } from 'src/app/routes/tela.service';
+
 @Component({
   selector: 'app-create-permissao',
   templateUrl: './create-permissao.component.html',
-  styleUrls: ['./create-permissao.component.css']
+  styleUrls: ['./create-permissao.component.css'],
 })
-export class CreatePermissaoComponent implements OnInit{
+export class CreatePermissaoComponent implements OnInit {
   tela!: Tela[];
   formulario!: any;
   Sim = 'Sim';
   Nao = 'Não';
   tipoPagina = 'CMS';
   id = this.activedRouter.snapshot.params['id'];
+
 
   constructor(
     private router: Router,
@@ -27,21 +29,39 @@ export class CreatePermissaoComponent implements OnInit{
     private telaService: TelaService,
     private formBuilder: FormBuilder,
     private notifier: NotifierService,
-    private utilsService: UtilsService
+    private utilsService: UtilsService,
+    private token: TokenJwtService
   ) {}
 
-  ngOnInit() {
-    this.telaService.getAll().subscribe(
+  async ngOnInit() {
+    // let roleId = await this.token.getIdRole();
+
+    await this.telaService.getAll().subscribe(
       (data) => {
         var roleResponse = JSON.parse(JSON.stringify(data));
         this.tela = roleResponse;
-
-        this.createTable();
       },
       (error) => {
         this.notifier.showError(error.error);
       }
     );
+
+    await this.roleTelaService.getByRole(this.id).subscribe((res) => {
+      var roleResponse = JSON.parse(JSON.stringify(res));
+      roleResponse.forEach((element: any) => {
+
+        this.createRoleExist(element);
+
+        const selector = `[id='${element.idTela}']`;
+        const inputElement = document.querySelector(selector);
+
+        if (inputElement) {
+          inputElement.setAttribute('checked', 'true');
+        }
+      });
+    });
+
+    this.createTable();
   }
 
   async createTable() {
@@ -50,27 +70,42 @@ export class CreatePermissaoComponent implements OnInit{
 
   createInput(tela: Tela) {
     const existingIndex = this.formulario.controls.findIndex(
-      (control: any) => control.value.id === tela.id
+      (control: any) => control.value.tela === tela.id
     );
 
     if (existingIndex !== -1) {
-      // Se o item já está no array, remove-o ao desmarcar
-      this.formulario.removeAt(existingIndex);
+      // Se o item já está no array, atualiza a propriedade 'checked'
+      this.formulario.controls[existingIndex].patchValue({ checked: !this.formulario.controls[existingIndex].value.checked });
+
+      // Se não está mais marcado, remove-o do array
+      if (!this.formulario.controls[existingIndex].value.checked) {
+        this.formulario.removeAt(existingIndex);
+      }
     } else {
       // Se não está no array, adiciona
       const roleTelaGroup = this.formBuilder.group({
         role: this.id,
         tela: tela.id,
+        checked: true,
       });
 
       this.formulario.push(roleTelaGroup);
     }
   }
 
-  save() {
-    // console.log(this.formulario.value)
-    if (this.formulario.valid) {
 
+  createRoleExist(element: any) {
+    const roleTelaGroup = this.formBuilder.group({
+      role: element.idRole,
+      tela: element.idTela,
+      checked: true,
+    });
+
+    this.formulario.push(roleTelaGroup);
+  }
+
+  save() {
+    if (this.formulario.valid) {
       this.roleTelaService.create(this.formulario.value).subscribe(
         (data) => {
           this.notifier.showSuccess('Permissões cadastrada com sucesso!');

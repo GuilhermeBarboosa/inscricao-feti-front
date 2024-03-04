@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PermissionsGuardService } from 'src/app/guards/permissions-guard.service';
 import { Role } from 'src/app/interfaces/dto/role';
 import { User } from 'src/app/interfaces/dto/user';
+import { TelaService } from 'src/app/routes/tela.service';
 import { UserService } from 'src/app/routes/user.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { TokenJwtService } from 'src/app/services/token-jwt.service';
 import { UtilsService } from 'src/app/services/utils.service';
+import { roles } from 'src/roles';
 
 @Component({
   selector: 'app-info-user',
@@ -23,6 +26,14 @@ export class InfoUserComponent implements OnInit {
   Voltar = 'Voltar';
   tipoPagina = 'CMS';
   role = '';
+
+  telasDefault: any = null;
+  rolesDefault = roles;
+  permissions: any = [];
+  created = false;
+  edit = false;
+  info = false;
+
   constructor(
     private activedRouter: ActivatedRoute,
     private userService: UserService,
@@ -30,6 +41,8 @@ export class InfoUserComponent implements OnInit {
     private utilsService: UtilsService,
     private formBuilder: FormBuilder,
     private notifier: NotifierService,
+    private telaService: TelaService,
+    private permissionService: PermissionsGuardService,
     private token: TokenJwtService
   ) {}
 
@@ -49,6 +62,20 @@ export class InfoUserComponent implements OnInit {
         this.notifier.showError(error.error);
       }
     );
+
+    if (this.role == this.rolesDefault.ROLE_ADMIN) {
+      this.permissions = this.telaService.telaAdmin
+  } else {
+    this.permissionService.permissionsVariables$.subscribe((res) => {
+      this.permissions = res;
+    });
+  }
+
+  this.permissions.map((data: any) => {
+    if (data.identificador === this.telasDefault.USER_EDIT) {
+      this.edit = true;
+    }
+  })
   }
 
   createTable() {
@@ -77,7 +104,7 @@ export class InfoUserComponent implements OnInit {
     });
   }
 
-  edit() {
+  getEdit() {
     this.router.navigateByUrl(`user/edit/${this.id}`);
   }
 

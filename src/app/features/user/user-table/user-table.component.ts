@@ -6,11 +6,14 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
+import { PermissionsGuardService } from 'src/app/guards/permissions-guard.service';
 import { User } from 'src/app/interfaces/dto/user';
 import { UserInput } from 'src/app/interfaces/input/userInput';
+import { TelaService } from 'src/app/routes/tela.service';
 import { UserService } from 'src/app/routes/user.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { TokenJwtService } from 'src/app/services/token-jwt.service';
+import { roles } from 'src/roles';
 
 @Component({
   selector: 'app-user-table',
@@ -30,9 +33,16 @@ export class UserTableComponent implements OnInit, AfterViewInit {
     'acoes',
   ];
   Adicionar = 'Adicionar';
-  Info = 'Info';
   tipoPagina = 'CMS';
   role = '';
+
+
+  telasDefault: any = null;
+  rolesDefault = roles;
+  permissions: any = [];
+  created = false;
+  edit = false;
+  info = false;
 
   usersArray = new MatTableDataSource<User>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -44,6 +54,8 @@ export class UserTableComponent implements OnInit, AfterViewInit {
     private router: Router,
     private notifier: NotifierService,
     private token: TokenJwtService,
+    private telaService: TelaService,
+    private permissionService: PermissionsGuardService,
     private _liveAnnouncer: LiveAnnouncer
   ) {}
 
@@ -57,6 +69,28 @@ export class UserTableComponent implements OnInit, AfterViewInit {
 
       this.displayedColumns = [...columnsToKeep];
     }
+
+    this.telasDefault = this.telaService.telasAll;
+
+    if (this.role == this.rolesDefault.ROLE_ADMIN) {
+        this.permissions = this.telaService.telaAdmin
+    } else {
+      this.permissionService.permissionsVariables$.subscribe((res) => {
+        this.permissions = res;
+      });
+    }
+
+    this.permissions.map((data: any) => {
+      if (data.identificador === this.telasDefault.USER_REGISTER) {
+        this.created = true;
+      }
+      if (data.identificador === this.telasDefault.USER_EDIT) {
+        this.edit = true;
+      }
+      if (data.identificador === this.telasDefault.USER_INFO  ) {
+        this.info = true;
+      }
+    })
 
     this.initTable();
   }
@@ -73,7 +107,7 @@ export class UserTableComponent implements OnInit, AfterViewInit {
     this.usersArray.filter = filterValue;
   }
 
-  info(user: User) {
+  getInfo(user: User) {
     this.router.navigateByUrl(`user/info/${user.id}`);
   }
 

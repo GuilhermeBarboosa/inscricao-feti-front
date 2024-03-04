@@ -7,12 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { StyleService } from './services/style.service';
 import { RoleTelaService } from './routes/role-tela.service';
-import { CreatePermissaoComponent } from './features/roles/telas/create-permissao/create-permissao.component';
-import { CreateRoleComponent } from './features/roles/create-role/create-role.component';
-import { InfoRoleComponent } from './features/roles/info-role/info-role.component';
-import { EditRoleComponent } from './features/roles/edit-role/edit-role.component';
+import { Tela } from './interfaces/dto/tela';
+import { TelaService } from './routes/tela.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,12 +21,13 @@ import { EditRoleComponent } from './features/roles/edit-role/edit-role.componen
     AppRoutingModule,
     ToastrModule.forRoot(),
   ],
-  providers: [StyleService],
+  // providers: [StyleService],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {
-  constructor(private RoleTelaService : RoleTelaService) {
-    this.RoleTelaService.initRoleTela();
-
+  constructor(private roleTelaService : RoleTelaService, private telaService: TelaService) {
+    this.roleTelaService.initRoleTela();
+    this.telaService.initTelas();
   }
 }

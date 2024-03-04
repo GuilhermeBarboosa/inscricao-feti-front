@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { PermissionsGuardService } from 'src/app/guards/permissions-guard.service';
 import { LoginService } from 'src/app/routes/login.service';
-import { StyleService } from 'src/app/services/style.service';
+import { TelaService } from 'src/app/routes/tela.service';
+import { roles } from 'src/roles';
 import { TokenJwtService } from '../../services/token-jwt.service';
 
 @Component({
@@ -10,16 +12,30 @@ import { TokenJwtService } from '../../services/token-jwt.service';
 })
 export class SidebarComponent implements OnInit {
   role = '';
+  rolesDefault = roles;
   isSidebarOpen: boolean = false;
+  permissions: any = [];
+  telasDefault: any = null;
   sideListOriginal: any;
+  innerHTML = '';
   constructor(
-    // public styleService: StyleService,
     private token: TokenJwtService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private permissionService: PermissionsGuardService,
+    private telaService: TelaService
   ) {}
 
   async ngOnInit() {
     this.role = await this.token.getRole();
+    this.telasDefault = this.telaService.telasAll;
+
+    if (this.role == this.rolesDefault.ROLE_ADMIN) {
+        this.permissions = this.telaService.telaAdmin
+    } else {
+      this.permissionService.permissionsVariables$.subscribe((res) => {
+        this.permissions = res;
+      });
+    }
   }
 
   openMenu() {

@@ -28,6 +28,19 @@ export class TokenJwtService {
     });
   }
 
+  getIdRole(): Promise<number> {
+    return new Promise<number>((resolve, reject) => {
+      this.loginService.obterClaims().subscribe(
+        (data: any) => {
+          resolve(data.idRole);
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
   getIdUser() : Promise<string> {
     return new Promise<string>((resolve, reject) => {
       this.loginService.obterClaims().subscribe(

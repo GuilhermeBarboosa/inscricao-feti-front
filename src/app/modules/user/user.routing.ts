@@ -28,7 +28,7 @@ export const UserRoutes: Routes = [
   {
     path: 'edit/:id',
     component: EditUserComponent,
-    canActivate: [ProfileGuardService],
+    canActivate: [AuthGuardService],
     data: {
       route_identifier: 'user-edit',
     } as RouteData,

@@ -95,7 +95,6 @@ export class RolesTableComponent implements OnInit {
             window.location.reload();
           },
           (error) => {
-            console.log(error);
             this.notifier.showError('Erro ao excluir permissão!');
           }
         );
