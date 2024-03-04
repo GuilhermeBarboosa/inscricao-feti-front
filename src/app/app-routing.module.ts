@@ -140,7 +140,6 @@ export class AppRoutingModule {
   routeIdentifier: string | undefined;
 
   constructor(private routeIdentifierService: RouteInfoService) {
-
     routes.forEach((route: any) => {
       if (route.data && route.data.route_identifier) {
         this.routeIdentifierService.setRouteIdentifier(

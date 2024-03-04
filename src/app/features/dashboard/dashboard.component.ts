@@ -4,6 +4,7 @@ import { Edital } from 'src/app/interfaces/dto/edital';
 import { DashboardService } from 'src/app/routes/dashboard.service';
 import { EditalService } from 'src/app/routes/edital.service';
 import { UtilsService } from 'src/app/services/utils.service';
+import { RouteInfoService } from '../../services/route-info.service';
 Chart.register(...registerables);
 
 @Component({
@@ -23,7 +24,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private dashboard: DashboardService,
     private utils: UtilsService,
-    private editalService: EditalService
+    private editalService: EditalService,
+    private routeInfoService: RouteInfoService
   ) {}
 
   ngOnInit() {

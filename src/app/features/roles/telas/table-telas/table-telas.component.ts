@@ -26,7 +26,7 @@ export class TableTelasComponent implements OnInit {
   mandaFiltroFalse = 'Excluir';
   role_admin = roles.ROLE_ADMIN
   displayedColumns: string[] = [
-    'id',
+    // 'id',
     // 'tela',
     'descricao',
     'acoes',

@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { RoleTelaService } from './routes/role-tela.service';
 import { Tela } from './interfaces/dto/tela';
 import { TelaService } from './routes/tela.service';
+import { RouteInfoService } from './services/route-info.service';
 
 @NgModule({
   declarations: [AppComponent],

@@ -11,6 +11,13 @@
   </li>
 
   <div *ngIf="this.permissions">
+    <li >
+      <a routerLink="/profile" routerLinkActive="active">
+        <i class="bx bx-user"></i>
+        <span class="links_name">Perfil</span>
+      </a>
+      <p class="tooltip">Perfil</p>
+    </li>
     <ul id="nav-list" *ngFor="let p of permissions">
       <li *ngIf="p.identificador == this.telasDefault.DASHBOARD">
         <a routerLink="/dashboard" routerLinkActive="active">
@@ -18,13 +25,6 @@
           <span class="links_name">Dashboard</span>
         </a>
         <p class="tooltip">Dashboard</p>
-      </li>
-      <li *ngIf="p.identificador == this.telasDefault.PROFILE">
-        <a routerLink="/profile" routerLinkActive="active">
-          <i class="bx bx-user"></i>
-          <span class="links_name">Perfil</span>
-        </a>
-        <p class="tooltip">Perfil</p>
       </li>
       <li *ngIf="p.identificador == this.telasDefault.ROLE">
         <a routerLink="/role" routerLinkActive="active">

@@ -88,7 +88,7 @@
             matSort
             (matSortChange)="announceSortChange($event)"
           >
-            <th matColumnDef="id">
+            <!-- <th matColumnDef="id">
               <mat-header-cell
                 mat-header-cell
                 *matHeaderCellDef
@@ -100,7 +100,7 @@
               <mat-cell mat-cell *matCellDef="let roleTela">
                 {{ roleTela.id }}
               </mat-cell>
-            </th>
+            </th> -->
 
             <!-- <th matColumnDef="tela">
               <mat-header-cell
@@ -137,13 +137,13 @@
             <th matColumnDef="acoes">
               <mat-header-cell mat-header-cell *matHeaderCellDef>
               </mat-header-cell>
-              <mat-cell mat-cell *matCellDef="let role">
+              <mat-cell mat-cell *matCellDef="let role" class="flex justify-end">
                 <!-- <div class="flex">
                   <i class="bx bx-info-circle" (click)="info(role)"> </i>
                 </div> -->
                 <div
                   *ngIf="this.roleToken && this.roleToken == role_admin"
-                  class="flex"
+                  class="flex justify-end"
                 >
                   <i
                     class="bx bx-trash cursor-pointer"
