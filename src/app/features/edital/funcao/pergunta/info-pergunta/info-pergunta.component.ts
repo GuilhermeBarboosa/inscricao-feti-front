@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PermissionsGuardService } from 'src/app/guards/permissions-guard.service';
 import { Pergunta } from 'src/app/interfaces/dto/pergunta';
 import { Role } from 'src/app/interfaces/dto/role';
 import { PerguntaService } from 'src/app/routes/pergunta.service';
+import { TelaService } from 'src/app/routes/tela.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { TokenJwtService } from 'src/app/services/token-jwt.service';
 import { UtilsService } from 'src/app/services/utils.service';
+import { roles } from 'src/roles';
 
 @Component({
   selector: 'app-info-pergunta',
@@ -24,6 +27,10 @@ export class InfoPerguntaComponent implements OnInit {
   Voltar = 'Voltar';
   tipoPagina = 'CMS';
   role = '';
+
+  telasDefault: any = null;
+  rolesDefault = roles;
+  permissions: any = [];
   constructor(
     private activedRouter: ActivatedRoute,
     private perguntaService: PerguntaService,
@@ -31,7 +38,9 @@ export class InfoPerguntaComponent implements OnInit {
     private utilsService: UtilsService,
     private formBuilder: FormBuilder,
     private notifier: NotifierService,
-    private token: TokenJwtService
+    private token: TokenJwtService,
+    private telaService: TelaService,
+    public permissionService: PermissionsGuardService,
   ) {}
 
   async ngOnInit() {

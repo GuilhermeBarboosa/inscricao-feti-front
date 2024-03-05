@@ -13,15 +13,43 @@
       <form class="h-full w-full" [formGroup]="formulario" *ngIf="formulario">
         <div class="border p-2">
           <div class="flex items-center p-2" *ngFor="let t of tela">
-            <input
-              id="{{ t.id }}"
-              type="checkbox"
-              value="{{ t.descricao }}"
-              (click)="createInput(t)"
-              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
-            />
-            <label for="{{ t.id }}" class="ms-2 text-sm font-medium text-gray-900">{{ t.descricao }}</label>
+            <div>
+              <input
+                id="{{ t.id }}"
+                type="checkbox"
+                value="{{ t.descricao }}"
+                (click)="createInput(t)"
+                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+              />
+              <label
+                for="{{ t.id }}"
+                class="ms-2 text-sm font-medium text-gray-900"
+              >{{ t.descricao }}</label>
+
+              <div *ngIf="t.unica == false">
+                <div class="block" *ngFor="let p of permissao" >
+                  <div class="flex items-center ml-4">
+                    <input
+                      id="permissao_{{ t.id }}"
+                      type="radio"
+                      value="{{ p.id }}"
+                      name="permissao_{{ t.id }}"
+                      (click)="createPermission(t, p)"
+                      disabled
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"
+                    />
+                    <label
+                      id="label_permissao_{{ t.id }}"
+                      for="{{ p.id }}"
+                      class="ms-2 text-sm font-medium text-gray-400"
+                    >{{ p.permissao }}</label>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+
+
         </div>
       </form>
 

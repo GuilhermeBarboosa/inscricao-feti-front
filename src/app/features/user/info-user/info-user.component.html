@@ -52,7 +52,7 @@
             </div>
           </div>
 
-          <div >
+          <div>
             <div class="flex justify-between">
               <div class="col">
                 <label class="block text-sm" for="created">Criado</label>
@@ -88,7 +88,7 @@
           (click)="return()"
         ></app-button-green>
         <app-button-yellow
-          *ngIf="this.edit == true"
+          *ngIf="(permissionService.edit$ | async) === true"
           [value]="Editar"
           (click)="getEdit()"
         ></app-button-yellow>

@@ -34,15 +34,15 @@ export class LoginComponent implements OnInit {
   tipoPagina = 'USER';
 
   ngOnInit() {
-    // this.loginForm = this.formBuilder.group({
-    //   email: ['root@codiub.com.br', Validators.required],
-    //   password: ['admin', Validators.required],
-    // });
-
     this.loginForm = this.formBuilder.group({
-      email: ['a@a.com', Validators.required],
+      email: ['root@codiub.com.br', Validators.required],
       password: ['admin', Validators.required],
     });
+
+    // this.loginForm = this.formBuilder.group({
+    //   email: ['a@a.com', Validators.required],
+    //   password: ['admin', Validators.required],
+    // });
 
     if (localStorage.getItem('email') != null) {
       this.loginForm.get('email')?.setValue(localStorage.getItem('email'));

@@ -22,7 +22,7 @@ export const RoleRoutes: Routes = [
     component: CreateRoleComponent,
     canActivate: [AuthGuardService],
     data: {
-      route_identifier: 'role_tela-register',
+      route_identifier: 'role_tela',
     } as RouteData,
   },
   {
@@ -30,7 +30,7 @@ export const RoleRoutes: Routes = [
     component: InfoRoleComponent,
     canActivate: [AuthGuardService],
     data: {
-      route_identifier: 'role_tela-info',
+      route_identifier: 'role_tela',
     } as RouteData,
   },
   {
@@ -38,7 +38,7 @@ export const RoleRoutes: Routes = [
     component: EditRoleComponent,
     canActivate: [AuthGuardService],
     data: {
-      route_identifier: 'role_tela-edit',
+      route_identifier: 'role_tela',
     } as RouteData,
   },
   {

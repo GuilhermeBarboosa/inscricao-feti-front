@@ -48,7 +48,8 @@
         ></app-button-green>
         <app-button-yellow
 
-          [value]="Editar"
+             *ngIf="(permissionService.edit$ | async) === true"
+ [value]="Editar"
           (click)="edit()"
         ></app-button-yellow>
       </div>

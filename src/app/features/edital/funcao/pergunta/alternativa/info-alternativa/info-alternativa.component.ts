@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PermissionsGuardService } from 'src/app/guards/permissions-guard.service';
 import { Alternativa } from 'src/app/interfaces/dto/alternativa';
 import { Role } from 'src/app/interfaces/dto/role';
 import { AlternativaService } from 'src/app/routes/alternativa.service';
+import { TelaService } from 'src/app/routes/tela.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { TokenJwtService } from 'src/app/services/token-jwt.service';
 import { UtilsService } from 'src/app/services/utils.service';
+import { roles } from 'src/roles';
 @Component({
   selector: 'app-info-alternativa',
   templateUrl: './info-alternativa.component.html',
@@ -23,6 +26,10 @@ export class InfoAlternativaComponent implements OnInit {
   Voltar = 'Voltar';
   tipoPagina = 'CMS';
   role = '';
+
+  telasDefault: any = null;
+  rolesDefault = roles;
+  permissions: any = [];
   constructor(
     private activedRouter: ActivatedRoute,
     private alternativaService: AlternativaService,
@@ -30,7 +37,9 @@ export class InfoAlternativaComponent implements OnInit {
     private utilsService: UtilsService,
     private formBuilder: FormBuilder,
     private notifier: NotifierService,
-    private token: TokenJwtService
+    private token: TokenJwtService,
+    private telaService: TelaService,
+    public permissionService: PermissionsGuardService
   ) {}
 
   async ngOnInit() {

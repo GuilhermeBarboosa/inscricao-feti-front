@@ -30,9 +30,6 @@ export class InfoUserComponent implements OnInit {
   telasDefault: any = null;
   rolesDefault = roles;
   permissions: any = [];
-  created = false;
-  edit = false;
-  info = false;
 
   constructor(
     private activedRouter: ActivatedRoute,
@@ -42,7 +39,7 @@ export class InfoUserComponent implements OnInit {
     private formBuilder: FormBuilder,
     private notifier: NotifierService,
     private telaService: TelaService,
-    private permissionService: PermissionsGuardService,
+    public permissionService: PermissionsGuardService,
     private token: TokenJwtService
   ) {}
 
@@ -64,18 +61,12 @@ export class InfoUserComponent implements OnInit {
     );
 
     if (this.role == this.rolesDefault.ROLE_ADMIN) {
-      this.permissions = this.telaService.telaAdmin
-  } else {
-    this.permissionService.permissionsVariables$.subscribe((res) => {
-      this.permissions = res;
-    });
-  }
-
-  this.permissions.map((data: any) => {
-    if (data.identificador === this.telasDefault.USER_EDIT) {
-      this.edit = true;
+      this.permissions = this.telaService.telaAdmin;
+    } else {
+      this.permissionService.permissionsVariables$.subscribe((res) => {
+        this.permissions = res;
+      });
     }
-  })
   }
 
   createTable() {

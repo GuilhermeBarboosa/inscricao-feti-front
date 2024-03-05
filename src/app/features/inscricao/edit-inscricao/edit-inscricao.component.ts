@@ -9,6 +9,7 @@ import { SituacaoService } from 'src/app/routes/situacao.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { TokenJwtService } from 'src/app/services/token-jwt.service';
 import { UtilsService } from 'src/app/services/utils.service';
+import { roles } from 'src/roles';
 @Component({
   selector: 'app-edit-inscricao',
   templateUrl: './edit-inscricao.component.html',

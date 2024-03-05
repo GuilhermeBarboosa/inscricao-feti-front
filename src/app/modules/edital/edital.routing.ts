@@ -23,7 +23,7 @@ export const EditalRoutes: Routes = [
     component: CreateEditalComponent,
     canActivate: [AuthGuardService],
     data: {
-      route_identifier: 'edital-register',
+      route_identifier: 'edital',
     } as RouteData,
   },
   {
@@ -31,7 +31,7 @@ export const EditalRoutes: Routes = [
     component: InfoEditalComponent,
     canActivate: [AuthGuardService],
     data: {
-      route_identifier: 'edital-info',
+      route_identifier: 'edital',
     } as RouteData,
   },
   {
@@ -39,7 +39,7 @@ export const EditalRoutes: Routes = [
     component: EditEditalComponent,
     canActivate: [AuthGuardService],
     data: {
-      route_identifier: 'edital-edit',
+      route_identifier: 'edital',
     } as RouteData,
   },
   {

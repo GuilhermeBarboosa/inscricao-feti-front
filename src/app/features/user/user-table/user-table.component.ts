@@ -40,9 +40,6 @@ export class UserTableComponent implements OnInit, AfterViewInit {
   telasDefault: any = null;
   rolesDefault = roles;
   permissions: any = [];
-  created = false;
-  edit = false;
-  info = false;
 
   usersArray = new MatTableDataSource<User>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -55,20 +52,12 @@ export class UserTableComponent implements OnInit, AfterViewInit {
     private notifier: NotifierService,
     private token: TokenJwtService,
     private telaService: TelaService,
-    private permissionService: PermissionsGuardService,
+    public permissionService: PermissionsGuardService,
     private _liveAnnouncer: LiveAnnouncer
   ) {}
 
   async ngOnInit() {
     this.role = await this.token.getRole();
-
-    if (this.role != 'ADMIN') {
-      const columnsToKeep: string[] = this.displayedColumns.filter(
-        (column) => column !== 'excluir' && column !== 'status'
-      );
-
-      this.displayedColumns = [...columnsToKeep];
-    }
 
     this.telasDefault = this.telaService.telasAll;
 
@@ -80,17 +69,7 @@ export class UserTableComponent implements OnInit, AfterViewInit {
       });
     }
 
-    this.permissions.map((data: any) => {
-      if (data.identificador === this.telasDefault.USER_REGISTER) {
-        this.created = true;
-      }
-      if (data.identificador === this.telasDefault.USER_EDIT) {
-        this.edit = true;
-      }
-      if (data.identificador === this.telasDefault.USER_INFO  ) {
-        this.info = true;
-      }
-    })
+    this.permissionService.verifyPermissions();
 
     this.initTable();
   }

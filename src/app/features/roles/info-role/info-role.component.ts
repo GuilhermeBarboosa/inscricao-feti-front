@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PermissionsGuardService } from 'src/app/guards/permissions-guard.service';
 import { Role } from 'src/app/interfaces/dto/role';
 import { RoleService } from 'src/app/routes/role.service';
+import { TelaService } from 'src/app/routes/tela.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { TokenJwtService } from 'src/app/services/token-jwt.service';
 import { UtilsService } from 'src/app/services/utils.service';
+import { roles } from 'src/roles';
 @Component({
   selector: 'app-info-role',
   templateUrl: './info-role.component.html',
-  styleUrls: ['./info-role.component.css']
+  styleUrls: ['./info-role.component.css'],
 })
 export class InfoRoleComponent implements OnInit {
   formulario!: FormGroup;
@@ -27,11 +30,12 @@ export class InfoRoleComponent implements OnInit {
     private utilsService: UtilsService,
     private formBuilder: FormBuilder,
     private notifier: NotifierService,
-    private token: TokenJwtService
+    private token: TokenJwtService,
+    private telaService: TelaService,
+    public permissionService: PermissionsGuardService
   ) {}
 
   async ngOnInit() {
-
     this.roleService.getById(this.id).subscribe(
       (data) => {
         var roleResponse = JSON.parse(JSON.stringify(data));

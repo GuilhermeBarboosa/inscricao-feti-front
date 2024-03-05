@@ -12,7 +12,8 @@
         </div>
         <!--
       <div class="" >
-        <a routerLink="register" routerLinkActive="active">
+        <a routerLink="register" routerLinkActive="active"
+*ngIf="(permissionService.created$ | async) === true">
           <app-button-green [value]="Adicionar"></app-button-green>
         </a>
       </div> -->
@@ -194,10 +195,10 @@
                   <i class="bx bx-edit-alt" (click)="edit(inscricao)"> </i>
                 </div>
                 <div class="flex">
-                  <i class="bx bx-info-circle" (click)="info(inscricao)"> </i>
+                  <i class="bx bx-info-circle" *ngIf="(permissionService.info$ | async) === true" (click)="info(inscricao)"> </i>
                 </div>
                 <div
-                  *ngIf="inscricao.actived == 'Ativo' && role == 'ADMIN'"
+                  *ngIf="inscricao.actived == 'Ativo' && (permissionService.edit$ | async) === true"
                   class="flex"
                 >
                   <i
@@ -206,7 +207,7 @@
                   ></i>
                 </div>
                 <div
-                  *ngIf="inscricao.actived == 'Desativado' && role == 'ADMIN'"
+                  *ngIf="inscricao.actived == 'Desativado' && (permissionService.edit$ | async) === true"
                   class="flex"
                 >
                   <i

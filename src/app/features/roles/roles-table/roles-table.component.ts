@@ -6,8 +6,10 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
+import { PermissionsGuardService } from 'src/app/guards/permissions-guard.service';
 import { Role } from 'src/app/interfaces/dto/role';
 import { RoleService } from 'src/app/routes/role.service';
+import { TelaService } from 'src/app/routes/tela.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { TokenJwtService } from 'src/app/services/token-jwt.service';
 import { UtilsService } from 'src/app/services/utils.service';
@@ -27,7 +29,11 @@ export class RolesTableComponent implements OnInit {
   Adicionar = 'Adicionar';
   Info = 'Info';
   tipoPagina = 'CMS';
-  roleToken = '';
+  role = '';
+
+  telasDefault: any = null;
+  rolesDefault = roles;
+  permissions: any = [];
 
   roleArray = new MatTableDataSource<Role>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -40,19 +46,33 @@ export class RolesTableComponent implements OnInit {
     private notifier: NotifierService,
     private token: TokenJwtService,
     private utilsService: UtilsService,
+    private telaService: TelaService,
+    public permissionService: PermissionsGuardService,
     private _liveAnnouncer: LiveAnnouncer
   ) {}
 
   async ngOnInit() {
-    this.roleToken = await this.token.getRole();
+    this.role = await this.token.getRole();
 
-    if (this.roleToken != 'ADMIN') {
+    if (this.role != 'ADMIN') {
       const columnsToKeep: string[] = this.displayedColumns.filter(
         (column) => column !== 'excluir' && column !== 'status'
       );
 
       this.displayedColumns = [...columnsToKeep];
     }
+
+    this.telasDefault = this.telaService.telasAll;
+
+    if (this.role == this.rolesDefault.ROLE_ADMIN) {
+        this.permissions = this.telaService.telaAdmin
+    } else {
+      this.permissionService.permissionsVariables$.subscribe((res) => {
+        this.permissions = res;
+      });
+    }
+
+    this.permissionService.verifyPermissions();
 
     this.initTable();
   }

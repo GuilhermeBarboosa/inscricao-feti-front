@@ -6,11 +6,14 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
+import { PermissionsGuardService } from 'src/app/guards/permissions-guard.service';
 import { Pergunta } from 'src/app/interfaces/dto/pergunta';
 import { PerguntaInput } from 'src/app/interfaces/input/perguntaInput';
 import { PerguntaService } from 'src/app/routes/pergunta.service';
+import { TelaService } from 'src/app/routes/tela.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { TokenJwtService } from 'src/app/services/token-jwt.service';
+import { roles } from 'src/roles';
 
 @Component({
   selector: 'app-pergunta-table',
@@ -39,26 +42,36 @@ export class PerguntaTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  telasDefault: any = null;
+  rolesDefault = roles;
+  permissions: any = [];
+
   constructor(
     private perguntaService: PerguntaService,
     private activedRouter: ActivatedRoute,
     public dialog: MatDialog,
     private router: Router,
-    private notifier: NotifierService,
+      private notifier: NotifierService,
     private token: TokenJwtService,
+    private telaService: TelaService,
+    public permissionService: PermissionsGuardService,
     private _liveAnnouncer: LiveAnnouncer
   ) {}
 
   async ngOnInit() {
     this.role = await this.token.getRole();
 
-    if (this.role != 'ADMIN') {
-      const columnsToKeep: string[] = this.displayedColumns.filter(
-        (column) => column !== 'excluir' && column !== 'status'
-      );
+      this.telasDefault = this.telaService.telasAll;
 
-      this.displayedColumns = [...columnsToKeep];
+    if (this.role == this.rolesDefault.ROLE_ADMIN) {
+        this.permissions = this.telaService.telaAdmin
+    } else {
+      this.permissionService.permissionsVariables$.subscribe((res) => {
+        this.permissions = res;
+      });
     }
+
+    this.permissionService.verifyPermissions();
 
     this.initTable();
   }

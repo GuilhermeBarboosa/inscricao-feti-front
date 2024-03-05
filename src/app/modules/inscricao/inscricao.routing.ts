@@ -9,12 +9,15 @@ export const InscricaoRoutes: Routes = [
   {
     path: '',
     component: InscricaoTableComponent,
+    data: {
+      route_identifier: 'inscricao',
+    } as RouteData,
   },
   {
     path: 'infoAll/:id',
     component: InfoAllInscricaoComponent,
     data: {
-      route_identifier: 'info-all-inscricao',
+      route_identifier: 'inscricao',
     } as RouteData,
   },
   {

@@ -21,7 +21,7 @@ export const FuncaoRoutes: Routes = [
     component: CreateFuncaoComponent,
     canActivate: [AuthGuardService],
     data: {
-      route_identifier: 'funcao-register',
+      route_identifier: 'funcao',
     } as RouteData,
   },
   {
@@ -29,7 +29,7 @@ export const FuncaoRoutes: Routes = [
     component: InfoFuncaoComponent,
     canActivate: [AuthGuardService],
     data: {
-      route_identifier: 'funcao-info',
+      route_identifier: 'funcao',
     } as RouteData,
   },
   {
@@ -37,7 +37,7 @@ export const FuncaoRoutes: Routes = [
     component: EditFuncaoComponent,
     canActivate: [AuthGuardService],
     data: {
-      route_identifier: 'funcao-edit',
+      route_identifier: 'funcao',
     } as RouteData,
   },
 ];

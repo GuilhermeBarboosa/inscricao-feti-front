@@ -7,4 +7,6 @@ export interface RoleTela extends DefaultDto{
     descricao: string;
     idRole: number;
     role: string;
+    idPermissao: number;
+    permissao: string
 }

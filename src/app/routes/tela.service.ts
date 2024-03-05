@@ -33,7 +33,9 @@ export class TelaService {
         const response = JSON.parse(JSON.stringify(data));
         const telasVariables: any = [];
         this.telaAdmin = response;
-        
+
+        console.log(response);
+
         response.forEach((element: any) => {
           const key = element.identificador.toUpperCase().replaceAll('-', '_');
           this.telasAll[key] = element.identificador;

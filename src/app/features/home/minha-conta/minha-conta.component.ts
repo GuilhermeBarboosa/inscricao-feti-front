@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PermissionsGuardService } from 'src/app/guards/permissions-guard.service';
 import { Role } from 'src/app/interfaces/dto/role';
 import { User } from 'src/app/interfaces/dto/user';
 import { UserInput } from 'src/app/interfaces/input/userInput';
+import { TelaService } from 'src/app/routes/tela.service';
 import { UserService } from 'src/app/routes/user.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { TokenJwtService } from 'src/app/services/token-jwt.service';
 import { UtilsService } from 'src/app/services/utils.service';
+import { roles } from 'src/roles';
 @Component({
   selector: 'app-minha-conta',
   templateUrl: './minha-conta.component.html',
@@ -28,7 +31,7 @@ export class MinhaContaComponent implements OnInit {
     private utilsService: UtilsService,
     private formBuilder: FormBuilder,
     private notifier: NotifierService,
-    private token: TokenJwtService
+    private token: TokenJwtService,
   ) {}
 
   async ngOnInit() {

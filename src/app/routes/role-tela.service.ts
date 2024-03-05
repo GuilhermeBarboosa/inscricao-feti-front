@@ -19,6 +19,8 @@ export class RoleTelaService {
   initRoleTela() {
     this.getAll().subscribe((data: any) => {
       const roleTelaArray: RoleTela[] = JSON.parse(JSON.stringify(data));
+
+      console.log(roleTelaArray)
       this.roleTelaSubject.next(roleTelaArray);
       this.roleTela = roleTelaArray;
     });

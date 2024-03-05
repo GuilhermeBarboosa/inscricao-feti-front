@@ -12,7 +12,8 @@
         </div>
 
         <div class="" >
-          <a routerLink="register" routerLinkActive="active">
+          <a routerLink="register" routerLinkActive="active"
+*ngIf="(permissionService.created$ | async) === true">
             <app-button-green [value]="Adicionar"></app-button-green>
           </a>
         </div>
@@ -172,10 +173,10 @@
               </mat-header-cell>
               <mat-cell mat-cell *matCellDef="let pergunta">
                 <div class="flex">
-                  <i class="bx bx-info-circle" (click)="info(pergunta)"> </i>
+                  <i class="bx bx-info-circle" *ngIf="(permissionService.info$ | async) === true" (click)="info(pergunta)"> </i>
                 </div>
                 <div
-                  *ngIf="pergunta.actived == 'Ativo' && role == 'ADMIN'"
+                  *ngIf="pergunta.actived == 'Ativo' && (permissionService.edit$ | async) === true"
                   class="flex"
                 >
                   <i
@@ -184,7 +185,7 @@
                   ></i>
                 </div>
                 <div
-                  *ngIf="pergunta.actived == 'Desativado' && role == 'ADMIN'"
+                  *ngIf="pergunta.actived == 'Desativado' && (permissionService.edit$ | async) === true"
                   class="flex"
                 >
                   <i

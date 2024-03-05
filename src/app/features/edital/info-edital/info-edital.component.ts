@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PermissionsGuardService } from 'src/app/guards/permissions-guard.service';
 import { Edital } from 'src/app/interfaces/dto/edital';
 import { Role } from 'src/app/interfaces/dto/role';
 import { EditalService } from 'src/app/routes/edital.service';
+import { TelaService } from 'src/app/routes/tela.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { TokenJwtService } from 'src/app/services/token-jwt.service';
 import { UtilsService } from 'src/app/services/utils.service';
+import { roles } from 'src/roles';
 
 @Component({
   selector: 'app-info-edital',
@@ -23,6 +26,11 @@ export class InfoEditalComponent implements OnInit {
   Voltar = 'Voltar';
   tipoPagina = 'CMS';
   role = '';
+
+  telasDefault: any = null;
+  rolesDefault = roles;
+  permissions: any = [];
+
   constructor(
     private activedRouter: ActivatedRoute,
     private editalService: EditalService,
@@ -30,6 +38,8 @@ export class InfoEditalComponent implements OnInit {
     private utilsService: UtilsService,
     private formBuilder: FormBuilder,
     private notifier: NotifierService,
+    private telaService: TelaService,
+    public permissionService: PermissionsGuardService,
     private token: TokenJwtService
   ) {}
 
@@ -59,6 +69,14 @@ export class InfoEditalComponent implements OnInit {
         this.notifier.showError(error.error);
       }
     );
+
+    if (this.role == this.rolesDefault.ROLE_ADMIN) {
+      this.permissions = this.telaService.telaAdmin;
+    } else {
+      this.permissionService.permissionsVariables$.subscribe((res) => {
+        this.permissions = res;
+      });
+    }
   }
 
   createTable() {

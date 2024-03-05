@@ -11,8 +11,8 @@
           </p>
         </div>
 
-        <div class="" *ngIf="roleToken == 'ADMIN'">
-          <a routerLink="register" routerLinkActive="active">
+        <div class="" >
+          <a routerLink="register" routerLinkActive="active" *ngIf="(permissionService.created$ | async) === true">
             <app-button-green [value]="Adicionar"></app-button-green>
           </a>
         </div>
@@ -139,10 +139,10 @@
               </mat-header-cell>
               <mat-cell mat-cell *matCellDef="let role" class="flex justify-end">
                 <!-- <div class="flex">
-                  <i class="bx bx-info-circle" (click)="info(role)"> </i>
+                  <i class="bx bx-info-circle" *ngIf="(permissionService.info$ | async) === true" (click)="info(role)"> </i>
                 </div> -->
                 <div
-                  *ngIf="this.roleToken && this.roleToken == role_admin"
+                  *ngIf="(permissionService.edit$ | async) === true"
                   class="flex justify-end"
                 >
                   <i

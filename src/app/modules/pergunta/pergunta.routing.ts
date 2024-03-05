@@ -28,7 +28,7 @@ export const PerguntaRoutes: Routes = [
     component: CreatePerguntaComponent,
     canActivate: [AuthGuardService],
     data: {
-      route_identifier: 'pergunta-register',
+      route_identifier: 'pergunta',
     } as RouteData,
   },
   {
@@ -36,7 +36,7 @@ export const PerguntaRoutes: Routes = [
     component: EditPerguntaComponent,
     canActivate: [AuthGuardService],
     data: {
-      route_identifier: 'pergunta-edit',
+      route_identifier: 'pergunta',
     } as RouteData,
   },
   {
@@ -44,7 +44,7 @@ export const PerguntaRoutes: Routes = [
     component: InfoPerguntaComponent,
     canActivate: [AuthGuardService],
     data: {
-      route_identifier: 'pergunta-info',
+      route_identifier: 'pergunta',
     } as RouteData,
   }
 ];

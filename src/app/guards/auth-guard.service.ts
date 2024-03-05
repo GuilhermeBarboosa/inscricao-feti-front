@@ -10,6 +10,7 @@ import { NotifierService } from '../services/notifier.service';
 import { TokenJwtService } from '../services/token-jwt.service';
 import { RoleTelaService } from '../routes/role-tela.service';
 import { roles } from 'src/roles';
+import { PermissionsGuardService } from './permissions-guard.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,8 @@ export class AuthGuardService {
     private loginService: LoginService,
     private notifier: NotifierService,
     private token: TokenJwtService,
-    private roleTelaService: RoleTelaService
+    private roleTelaService: RoleTelaService,
+    private permissions: PermissionsGuardService
   ) {}
 
   canActivate(
@@ -50,6 +52,7 @@ export class AuthGuardService {
         res?.forEach((roleTela) => {
           if (roleTela.identificador === route.data['route_identifier']) {
             if (roleTela.role === userRole) {
+              this.permissions.setPermissions(roleTela);
               permission = true;
             }
           }

@@ -6,7 +6,7 @@ import { AuthenticationRoutes } from './modules/authentication/authentication.ro
 import { EditalRoutes } from './modules/edital/edital.routing';
 import { RoleTelaService } from './routes/role-tela.service';
 import { RouteData } from './interfaces/input/roteData';
-
+import { AuthGuardService } from './guards/auth-guard.service';
 
 export const routes: Routes = [
   {
@@ -14,20 +14,29 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./modules/authentication/authentication.module').then(
         (m) => m.AuthenticationModule
-      )
+      ),
+  },
+  {
+    path: 'user',
+    loadChildren: () =>
+      import('./modules/user/user.module').then((m) => m.UserModule),
+    canActivate: [LoginGuardService],
   },
   {
     path: 'login-candidato',
     loadChildren: () =>
       import(
         './modules/authentication-candidato/authentication-candidato.module'
-      ).then((m) => m.AuthenticationCandidatoModule)
+      ).then((m) => m.AuthenticationCandidatoModule),
   },
   {
     path: 'edital',
     loadChildren: () =>
       import('./modules/edital/edital.module').then((m) => m.EditalModule),
-    canActivate: [LoginGuardService]
+    canActivate: [LoginGuardService, AuthGuardService],
+    data: {
+      route_identifier: 'edital',
+    } as RouteData,
   },
   {
     path: 'inserirdoc',
@@ -43,29 +52,32 @@ export const routes: Routes = [
       import('./modules/dashboard/dashboard.module').then(
         (m) => m.DashboardModule
       ),
-    canActivate: [LoginGuardService],
+    canActivate: [LoginGuardService, AuthGuardService],
+    data: {
+      route_identifier: 'dashboard',
+    } as RouteData,
   },
   {
     path: 'role',
     loadChildren: () =>
-      import('./modules/role/role.module').then(
-        (m) => m.RoleModule
-      ),
-    canActivate: [LoginGuardService],
+      import('./modules/role/role.module').then((m) => m.RoleModule),
+    canActivate: [LoginGuardService, AuthGuardService],
+    data: {
+      route_identifier: 'role',
+    } as RouteData,
   },
   {
     path: 'politica',
     loadChildren: () =>
       import('./modules/politica/politica.module').then(
         (m) => m.PoliticaModule
-      )
+      ),
   },
   {
     path: 'inicio',
     loadChildren: () =>
       import('./modules/inicio/inicio.module').then((m) => m.InicioModule),
     canActivate: [LoginGuardService],
-
   },
   {
     path: 'minha-conta',
@@ -81,7 +93,10 @@ export const routes: Routes = [
       import('./modules/alternativa/alternativa.module').then(
         (m) => m.AlternativaModule
       ),
-    canActivate: [LoginGuardService],
+    canActivate: [LoginGuardService, AuthGuardService],
+    data: {
+      route_identifier: 'alternativa',
+    } as RouteData,
   },
   {
     path: 'minha-inscricao',
@@ -97,13 +112,10 @@ export const routes: Routes = [
       import('./modules/inscricao/inscricao.module').then(
         (m) => m.InscricaoModule
       ),
-    canActivate: [LoginGuardService],
-  },
-  {
-    path: 'user',
-    loadChildren: () =>
-      import('./modules/user/user.module').then((m) => m.UserModule),
-    canActivate: [LoginGuardService],
+    canActivate: [LoginGuardService, AuthGuardService],
+    data: {
+      route_identifier: 'inscricao',
+    } as RouteData,
   },
   {
     path: 'pergunta',
@@ -111,13 +123,19 @@ export const routes: Routes = [
       import('./modules/pergunta/pergunta.module').then(
         (m) => m.PerguntaModule
       ),
-    canActivate: [LoginGuardService],
+    canActivate: [LoginGuardService, AuthGuardService],
+    data: {
+      route_identifier: 'pergunta',
+    } as RouteData,
   },
   {
     path: 'funcao',
     loadChildren: () =>
       import('./modules/funcao/funcao.module').then((m) => m.FuncaoModule),
-    canActivate: [LoginGuardService],
+    canActivate: [LoginGuardService, AuthGuardService],
+    data: {
+      route_identifier: 'funcao',
+    } as RouteData,
   },
   {
     path: 'profile',

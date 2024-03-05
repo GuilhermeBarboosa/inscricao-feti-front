@@ -12,7 +12,7 @@
         </div>
 
         <div class="" >
-          <a routerLink="register" routerLinkActive="active">
+          <a routerLink="register" routerLinkActive="active" *ngIf="(permissionService.created$ | async) === true">
             <app-button-green [value]="Adicionar"></app-button-green>
           </a>
         </div>
@@ -188,15 +188,15 @@
               <mat-header-cell mat-header-cell *matHeaderCellDef>
               </mat-header-cell>
               <mat-cell mat-cell *matCellDef="let edital">
-                <div class="flex cursor-pointer">
-                  <i class="bx bx-download" (click)="downloadEdital(edital.id)">
+                <div class="flex cursor-pointer" >
+                  <i class="bx bx-download" (click)="downloadEdital(edital.id)" >
                   </i>
                 </div>
-                <div class="flex">
-                  <i class="bx bx-info-circle" (click)="info(edital)"> </i>
+                <div class="flex"  *ngIf="(permissionService.info$ | async) === true">
+                  <i class="bx bx-info-circle" *ngIf="(permissionService.info$ | async) === true" (click)="info(edital)" > </i>
                 </div>
                 <div
-                  *ngIf="edital.actived == 'Ativo' && role == 'ADMIN'"
+                  *ngIf="edital.actived == 'Ativo' && (permissionService.edit$ | async) === true"
                   class="flex"
                 >
                   <i
@@ -205,7 +205,7 @@
                   ></i>
                 </div>
                 <div
-                  *ngIf="edital.actived == 'Desativado' && role == 'ADMIN'"
+                  *ngIf="edital.actived == 'Desativado' && (permissionService.edit$ | async) === true"
                   class="flex"
                 >
                   <i

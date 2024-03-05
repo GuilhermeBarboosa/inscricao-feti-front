@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PermissionsGuardService } from 'src/app/guards/permissions-guard.service';
 import { Funcao } from 'src/app/interfaces/dto/funcao';
 import { Role } from 'src/app/interfaces/dto/role';
 import { FuncaoService } from 'src/app/routes/funcao.service';
+import { TelaService } from 'src/app/routes/tela.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { TokenJwtService } from 'src/app/services/token-jwt.service';
 import { UtilsService } from 'src/app/services/utils.service';
+import { roles } from 'src/roles';
 @Component({
   selector: 'app-info-funcao',
   templateUrl: './info-funcao.component.html',
@@ -23,6 +26,11 @@ export class InfoFuncaoComponent implements OnInit {
   Voltar = 'Voltar';
   tipoPagina = 'CMS';
   role = '';
+
+  telasDefault: any = null;
+  rolesDefault = roles;
+  permissions: any = [];
+
   constructor(
     private activedRouter: ActivatedRoute,
     private funcaoService: FuncaoService,
@@ -30,7 +38,9 @@ export class InfoFuncaoComponent implements OnInit {
     private utilsService: UtilsService,
     private formBuilder: FormBuilder,
     private notifier: NotifierService,
-    private token: TokenJwtService
+    private token: TokenJwtService,
+    private telaService: TelaService,
+    public permissionService: PermissionsGuardService,
   ) {}
 
   async ngOnInit() {
@@ -53,6 +63,14 @@ export class InfoFuncaoComponent implements OnInit {
         this.notifier.showError(error.error);
       }
     );
+
+    if (this.role == this.rolesDefault.ROLE_ADMIN) {
+      this.permissions = this.telaService.telaAdmin;
+    } else {
+      this.permissionService.permissionsVariables$.subscribe((res) => {
+        this.permissions = res;
+      });
+    }
   }
 
   createTable() {

@@ -22,7 +22,7 @@ export const UserRoutes: Routes = [
     component: CreateUserComponent,
     canActivate: [AuthGuardService],
     data: {
-      route_identifier: 'user-register',
+      route_identifier: 'user',
     } as RouteData,
   },
   {
@@ -30,7 +30,7 @@ export const UserRoutes: Routes = [
     component: EditUserComponent,
     canActivate: [AuthGuardService],
     data: {
-      route_identifier: 'user-edit',
+      route_identifier: 'user',
     } as RouteData,
   },
   {
@@ -38,7 +38,7 @@ export const UserRoutes: Routes = [
     component: InfoUserComponent,
     canActivate: [AuthGuardService],
     data: {
-      route_identifier: 'user-info',
+      route_identifier: 'user',
     } as RouteData,
   },
 ];
