@@ -11,7 +11,7 @@ export const ProfileRoutes: Routes = [
     component: ProfileComponent,
     canActivate: [LoginGuardService],
     data: {
-      route_identifier: 'profile', // Adicione um identificador único para a rota
+      route_identifier: 'profile',
     } as RouteData,
   },
 ];

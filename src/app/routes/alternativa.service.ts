@@ -8,8 +8,6 @@ import { AlternativaInput } from '../interfaces/input/alternativaInput';
 })
 export class AlternativaService{
 
-
-
   constructor(private http: HttpClient) {}
 
   HttpHeaders = new HttpHeaders({

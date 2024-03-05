@@ -14,7 +14,7 @@ export const InscricaoRoutes: Routes = [
     path: 'infoAll/:id',
     component: InfoAllInscricaoComponent,
     data: {
-      route_identifier: 'info-all-inscricao', // Adicione um identificador único para a rota
+      route_identifier: 'info-all-inscricao',
     } as RouteData,
   },
   {

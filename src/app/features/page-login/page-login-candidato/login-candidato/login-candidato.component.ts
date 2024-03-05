@@ -40,13 +40,13 @@ export class LoginCandidatoComponent implements OnInit {
         this.loginForm.get('password')?.value
       );
       this.loginService.login(loginInput).subscribe(
-        (data: any) => {
-          var data = JSON.parse(JSON.stringify(data));
-          this.tokenJwtService.setToken(data);
+        (response: any) => {
+          var login = JSON.parse(JSON.stringify(response));
+          this.tokenJwtService.setToken(login);
           this.loginService.obterClaims().subscribe(
-            (data: any) => {
-              var data = JSON.parse(JSON.stringify(data));
-              localStorage.setItem('user', data.name);
+            (claims: any) => {
+              var claims = JSON.parse(JSON.stringify(claims));
+              localStorage.setItem('user', claims.name);
               this.notifier.showSuccess('Login efetuado com sucesso!');
               this.router.navigateByUrl('/inicio');
             },

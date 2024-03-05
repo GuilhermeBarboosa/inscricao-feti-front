@@ -33,15 +33,15 @@ export class CadastroPerguntasComponent implements OnInit {
 
   async ngOnInit() {
     await this.login.obterClaims().subscribe((res) => {
-      const data = JSON.parse(JSON.stringify(res));
-      this.user = data.id;
+      const claims = JSON.parse(JSON.stringify(res));
+      this.user = claims.id;
     });
 
     await this.perguntaWithAlternativaService
       .getPerguntaWithAlternativa(this.idFuncao)
       .subscribe((data) => {
-        const response = JSON.parse(JSON.stringify(data));
-        this.list = response;
+        const perguntaWithAlternativaJson = JSON.parse(JSON.stringify(data));
+        this.list = perguntaWithAlternativaJson;
         this.initializeForm();
       });
   }

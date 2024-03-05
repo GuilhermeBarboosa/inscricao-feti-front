@@ -35,9 +35,9 @@ export class CreateEditalComponent implements OnInit {
 
   ngOnInit() {
     this.roleService.getAll().subscribe(
-      (data) => {
-        var roleResponse = JSON.parse(JSON.stringify(data));
-        this.roles = roleResponse;
+      (roleResponse) => {
+        var roleJson = JSON.parse(JSON.stringify(roleResponse));
+        this.roles = roleJson;
 
         this.createTable();
       },
@@ -50,9 +50,9 @@ export class CreateEditalComponent implements OnInit {
   async createTable() {
     this.formulario = this.formBuilder.group({
       edital: ['', [Validators.required, Validators.minLength(3)]],
-      data_inicio: ['22/11/2025', [Validators.required]],
-      data_fim: ['22/11/2025', [Validators.required]],
-      qtd_vagas: ['23', Validators.required],
+      data_inicio: ['', [Validators.required]],
+      data_fim: ['', [Validators.required]],
+      qtd_vagas: ['', Validators.required],
       arquivo: [null, Validators.required],
     });
   }
@@ -95,11 +95,11 @@ export class CreateEditalComponent implements OnInit {
       let editalInput = new EditalInput(editalDTO);
 
       this.editalService.create(editalInput).subscribe(
-        (data) => {
-          var dataResponse = JSON.parse(JSON.stringify(data));
+        (editalResponse) => {
+          var editalJson = JSON.parse(JSON.stringify(editalResponse));
 
           this.editalService
-            .uploadFile(this.formulario.get('arquivo')?.value, dataResponse.id)
+            .uploadFile(this.formulario.get('arquivo')?.value, editalJson.id)
             .subscribe((response) => {
               this.notifier.showSuccess('Edital cadastrado com sucesso!');
               this.router.navigateByUrl('/edital');

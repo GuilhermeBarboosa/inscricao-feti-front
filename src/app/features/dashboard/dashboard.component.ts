@@ -4,7 +4,6 @@ import { Edital } from 'src/app/interfaces/dto/edital';
 import { DashboardService } from 'src/app/routes/dashboard.service';
 import { EditalService } from 'src/app/routes/edital.service';
 import { UtilsService } from 'src/app/services/utils.service';
-import { RouteInfoService } from '../../services/route-info.service';
 Chart.register(...registerables);
 
 @Component({
@@ -19,37 +18,36 @@ export class DashboardComponent implements OnInit {
   usersChart: any = [];
   qtdFuncaoByEdital: any = [];
   getInfo: any;
-
   editalArray!: Edital[];
+
   constructor(
     private dashboard: DashboardService,
     private utils: UtilsService,
-    private editalService: EditalService,
-    private routeInfoService: RouteInfoService
+    private editalService: EditalService
   ) {}
 
   ngOnInit() {
-    this.dashboard.getAll().subscribe((response) => {
-      var json = JSON.parse(JSON.stringify(response));
+    this.dashboard.getAll().subscribe((dashboardResponse) => {
+      var dashboardJson = JSON.parse(JSON.stringify(dashboardResponse));
 
-      this.generatePieInscricao(json.quantidadeInscricaoOutput);
-      this.generateLineUsers(json.quantidadeUserByMesOutput);
-      this.getInfo = json.quantidadeAllOutput;
+      this.generatePieInscricao(dashboardJson.quantidadeInscricaoOutput);
+      this.generateLineUsers(dashboardJson.quantidadeUserByMesOutput);
+      this.getInfo = dashboardJson.quantidadeAllOutput;
     });
 
-    this.editalService.getAll().subscribe((data) => {
-      this.editalArray = JSON.parse(JSON.stringify(data));
+    this.editalService.getAll().subscribe((editalResponse) => {
+      this.editalArray = JSON.parse(JSON.stringify(editalResponse));
     });
   }
 
-  private generatePieInscricao(json: any) {
+  private generatePieInscricao(dashboardJson: any) {
     let labels: any = [];
     let qtdEdital: any = [];
     let colors: any = [];
 
-    json.forEach((element: any) => {
-      labels.push(element.edital);
-      qtdEdital.push(element.qtdEdital);
+    dashboardJson.forEach((dashboard: any) => {
+      labels.push(dashboard.edital);
+      qtdEdital.push(dashboard.qtdEdital);
       colors.push(this.utils.generateColors());
     });
 
@@ -90,14 +88,14 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  private generateLineUsers(json: any) {
+  private generateLineUsers(user: any) {
     let labels: any = [];
     let qtdUser: any = [];
     let colors: any = [];
 
-    json.forEach((element: any) => {
-      labels.push(element.data);
-      qtdUser.push(element.qtdUser);
+    user.forEach((user: any) => {
+      labels.push(user.data);
+      qtdUser.push(user.qtdUser);
       colors.push(this.utils.generateColors());
     });
 
@@ -141,14 +139,14 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  private generatePieFuncaoByEdital(json: any) {
+  private generatePieFuncaoByEdital(funcaoByEdital: any) {
     let labels: any = [];
     let qtdInscritos: any = [];
     let colors: any = [];
 
-    json.forEach((element: any) => {
-      labels.push(element.funcao);
-      qtdInscritos.push(element.qtdInscritos);
+    funcaoByEdital.forEach((funcaoByEdital: any) => {
+      labels.push(funcaoByEdital.funcao);
+      qtdInscritos.push(funcaoByEdital.qtdInscritos);
       colors.push(this.utils.generateColors());
     });
 
@@ -194,8 +192,8 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  getInfoByEdital(id: any) {
-    this.dashboard.getQtdFuncaoByEdital(id).subscribe((data) => {
+  getInfoByEdital(idEdital: any) {
+    this.dashboard.getQtdFuncaoByEdital(idEdital).subscribe((data) => {
       var json = JSON.parse(JSON.stringify(data));
       this.generatePieFuncaoByEdital(json);
     });

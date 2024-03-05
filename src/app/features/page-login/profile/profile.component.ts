@@ -28,8 +28,8 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.loginService.obterClaims().subscribe(
       (res) => {
-        var data = JSON.parse(JSON.stringify(res));
-        this.userService.getById(Number(data.id)).subscribe((res) => {
+        var claims = JSON.parse(JSON.stringify(res));
+        this.userService.getById(Number(claims.id)).subscribe((res) => {
           var userResponse = JSON.parse(JSON.stringify(res));
           this.user = userResponse;
 

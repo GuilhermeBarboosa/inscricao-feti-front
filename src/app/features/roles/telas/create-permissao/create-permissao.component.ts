@@ -74,15 +74,12 @@ export class CreatePermissaoComponent implements OnInit {
     );
 
     if (existingIndex !== -1) {
-      // Se o item já está no array, atualiza a propriedade 'checked'
       this.formulario.controls[existingIndex].patchValue({ checked: !this.formulario.controls[existingIndex].value.checked });
 
-      // Se não está mais marcado, remove-o do array
       if (!this.formulario.controls[existingIndex].value.checked) {
         this.formulario.removeAt(existingIndex);
       }
     } else {
-      // Se não está no array, adiciona
       const roleTelaGroup = this.formBuilder.group({
         role: this.id,
         tela: tela.id,

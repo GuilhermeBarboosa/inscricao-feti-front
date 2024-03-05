@@ -10,7 +10,7 @@ export const DashboardRoutes: Routes = [
     component: DashboardComponent,
     canActivate: [AuthGuardService],
     data: {
-      route_identifier: 'dashboard', // Adicione um identificador único para a rota
+      route_identifier: 'dashboard',
     } as RouteData,
   }
 ];

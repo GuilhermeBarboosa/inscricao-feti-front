@@ -2,8 +2,7 @@ import {
   Component,
   ElementRef,
   OnInit,
-  Renderer2,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';

@@ -91,40 +91,40 @@ export class LoginComponent implements OnInit {
     input!.type = input!.type === 'text' ? 'password' : 'text';
   }
 
-  async verifyRouteAcess(user: any) {
-    let tela: Tela[] = [];
-    let roleTela: RoleTela[] = [];
+  // async verifyRouteAcess(user: any) {
+  //   let tela: Tela[] = [];
+  //   let roleTela: RoleTela[] = [];
 
-    await this.telaService.telasVariables$.subscribe((telaResponse: any) => {
-      telaResponse.forEach((element: any) => {
-        if (
-          element &&
-          element.identificador &&
-          typeof element.identificador === 'string' &&
-          !element.identificador.includes('-')
-        ) {
-          tela.push(element);
-        }
-      });
-    });
+  //   await this.telaService.telasVariables$.subscribe((telaResponse: any) => {
+  //     telaResponse.forEach((element: any) => {
+  //       if (
+  //         element &&
+  //         element.identificador &&
+  //         typeof element.identificador === 'string' &&
+  //         !element.identificador.includes('-')
+  //       ) {
+  //         tela.push(element);
+  //       }
+  //     });
+  //   });
 
-    await this.roleTela
-      .getByRole(user.idRole)
-      .subscribe((responseRoleTela: any) => {
-        roleTela = JSON.parse(JSON.stringify(responseRoleTela));
+  //   await this.roleTela
+  //     .getByRole(user.idRole)
+  //     .subscribe((responseRoleTela: any) => {
+  //       roleTela = JSON.parse(JSON.stringify(responseRoleTela));
 
-        if(roleTela.length == 0){
-          this.notifier.showError('Usuário sem permissão para acessar o sistema!');
-        }else{
-          tela!.forEach((tela: Tela) => {
-            roleTela!.forEach((roleTela: RoleTela) => {
-              if (tela.id == roleTela.idTela) {
-                this.notifier.showSuccess('Login efetuado com sucesso!');
-                this.router.navigate([tela.identificador]);
-              }
-            });
-          });
-        }
-      });
-  }
+  //       if(roleTela.length == 0){
+  //         this.notifier.showError('Usuário sem permissão para acessar o sistema!');
+  //       }else{
+  //         tela!.forEach((tela: Tela) => {
+  //           roleTela!.forEach((roleTela: RoleTela) => {
+  //             if (tela.id == roleTela.idTela) {
+  //               this.notifier.showSuccess('Login efetuado com sucesso!');
+  //               this.router.navigate([tela.identificador]);
+  //             }
+  //           });
+  //         });
+  //       }
+  //     });
+  // }
 }

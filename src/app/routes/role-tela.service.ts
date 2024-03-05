@@ -20,7 +20,7 @@ export class RoleTelaService {
     this.getAll().subscribe((data: any) => {
       const roleTelaArray: RoleTela[] = JSON.parse(JSON.stringify(data));
       this.roleTelaSubject.next(roleTelaArray);
-      this.roleTela = roleTelaArray; // Atribui o array a roleTela
+      this.roleTela = roleTelaArray;
     });
   }
 

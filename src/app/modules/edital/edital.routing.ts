@@ -15,7 +15,7 @@ export const EditalRoutes: Routes = [
     component: EditalTableComponent,
     canActivate: [AuthGuardService],
     data: {
-      route_identifier: 'edital', // Adicione um identificador único para a rota
+      route_identifier: 'edital',
     } as RouteData,
   },
   {
@@ -23,7 +23,7 @@ export const EditalRoutes: Routes = [
     component: CreateEditalComponent,
     canActivate: [AuthGuardService],
     data: {
-      route_identifier: 'edital-register', // Adicione um identificador único para a rota
+      route_identifier: 'edital-register',
     } as RouteData,
   },
   {
@@ -31,7 +31,7 @@ export const EditalRoutes: Routes = [
     component: InfoEditalComponent,
     canActivate: [AuthGuardService],
     data: {
-      route_identifier: 'edital-info', // Adicione um identificador único para a rota
+      route_identifier: 'edital-info',
     } as RouteData,
   },
   {
@@ -39,7 +39,7 @@ export const EditalRoutes: Routes = [
     component: EditEditalComponent,
     canActivate: [AuthGuardService],
     data: {
-      route_identifier: 'edital-edit', // Adicione um identificador único para a rota
+      route_identifier: 'edital-edit',
     } as RouteData,
   },
   {

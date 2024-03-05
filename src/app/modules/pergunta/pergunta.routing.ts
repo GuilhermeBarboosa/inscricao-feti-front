@@ -16,30 +16,19 @@ export const PerguntaRoutes: Routes = [
     component: PerguntaTableComponent,
     canActivate: [AuthGuardService],
     data: {
-      route_identifier: 'pergunta', // Adicione um identificador único para a rota
+      route_identifier: 'pergunta',
     } as RouteData,
   },
   {
     path: 'funcao/:idFuncao',
     component: CadastroPerguntasComponent,
-    // canActivate: [AuthGuardService],
-    // data: {
-    //   rolesArray:[
-    //      {
-    //       role: roles.ROLE_ADMIN
-    //      },
-    //      {
-    //       role: roles.ROLE_SECRETARIO
-    //      }
-    //   ]
-    // },
   },
   {
     path: ':idFuncao/register',
     component: CreatePerguntaComponent,
     canActivate: [AuthGuardService],
     data: {
-      route_identifier: 'pergunta-register', // Adicione um identificador único para a rota
+      route_identifier: 'pergunta-register',
     } as RouteData,
   },
   {
@@ -47,7 +36,7 @@ export const PerguntaRoutes: Routes = [
     component: EditPerguntaComponent,
     canActivate: [AuthGuardService],
     data: {
-      route_identifier: 'pergunta-edit', // Adicione um identificador único para a rota
+      route_identifier: 'pergunta-edit',
     } as RouteData,
   },
   {
@@ -55,7 +44,7 @@ export const PerguntaRoutes: Routes = [
     component: InfoPerguntaComponent,
     canActivate: [AuthGuardService],
     data: {
-      route_identifier: 'pergunta-info', // Adicione um identificador único para a rota
+      route_identifier: 'pergunta-info',
     } as RouteData,
   }
 ];

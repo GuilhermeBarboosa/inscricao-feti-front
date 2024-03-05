@@ -6,9 +6,9 @@ import { LoginService } from 'src/app/routes/login.service';
 export class TokenJwtService {
   constructor(private loginService: LoginService) {}
 
-  setToken(token: any) {
-    localStorage.setItem('token', token.token);
-    localStorage.setItem('email', token.email);
+  setToken(login: any) {
+    localStorage.setItem('token', login.token);
+    localStorage.setItem('email', login.email);
   }
 
   getToken() {
